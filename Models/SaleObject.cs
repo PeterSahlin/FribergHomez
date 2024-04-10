@@ -7,10 +7,11 @@ namespace FribergHomez.Models
     {
         public int Id { get; set; }
         public string Address { get; set; } = "";
-        public Municipality Municipality { get; set; }
+        public Municipality Municipality { get; set; } = new Municipality();
+        public Category Category { get; set; } = new Category();
         public int StartingPrice { get; set; }
         public int LivingArea { get; set; }
-        public int ancillaryArea { get; set; }
+        public int AncillaryArea { get; set; }
         public int PlotArea { get; set; }
         public string Description { get; set; } = "";
         public int NumberOfRooms { get; set; }
@@ -18,7 +19,7 @@ namespace FribergHomez.Models
         public int OperatingCostPerYear { get; set; }
         public int YearOfConstruction { get; set; }
         public List<string> ImageUrl { get; set; } = new List<string>();
-        public string RealtorFirm { get; set; } = "";
+        public Firm Firm { get; set; } = new Firm();
 
     }
 }

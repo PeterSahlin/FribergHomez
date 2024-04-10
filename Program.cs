@@ -26,6 +26,7 @@ namespace FribergHomez
             builder.Services.AddScoped<ISaleObject, SaleObjectRepository>();
             builder.Services.AddScoped<IRealEstateAgent, RealEstateAgentRepository>();
             builder.Services.AddScoped<IMunicipality, MunicipalityRepository>();
+            builder.Services.AddScoped<ICategory, CategoryRepository>();
 
             var app = builder.Build();
 
