@@ -31,6 +31,7 @@ namespace FribergHomez
             app.MapControllers();
 
             app.Run();
+
         }
     }
 }
