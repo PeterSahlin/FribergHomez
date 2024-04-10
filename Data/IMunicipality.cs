@@ -1,6 +1,6 @@
 ﻿namespace FribergHomez.Data
 {
-    public interface ISaleObject
+    public interface IMunicipality
     {
     }
 }

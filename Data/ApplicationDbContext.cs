@@ -9,6 +9,7 @@ namespace FribergHomez.Data
         public DbSet<Firm> Firms { get; set; }
 
         public DbSet<SaleObject> SaleObjects { get; set; }
+        public DbSet<Municipality> Municipalities { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
