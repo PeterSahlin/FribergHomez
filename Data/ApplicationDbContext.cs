@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FribergHomez.Data
 {
+    //All
     public class ApplicationDbContext : DbContext
     {
 

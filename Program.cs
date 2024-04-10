@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FribergHomez
 {
+    //All
     public class Program
     {
         public static void Main(string[] args)

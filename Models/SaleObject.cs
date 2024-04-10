@@ -2,6 +2,7 @@
 
 namespace FribergHomez.Models
 {
+    //Henrik
     public class SaleObject
     {
         public int Id { get; set; }
