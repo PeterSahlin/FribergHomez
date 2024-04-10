@@ -10,5 +10,7 @@ namespace FribergHomez.Data
         {
 
         }
+
+        public DbSet<RealEstateAgent> Realtors { get; set; }
     }
 }
