@@ -1,7 +1,7 @@
 ﻿namespace FribergHomez.Data
 {
     //Henrik
-    public interface ISaleObject
+    public interface IMunicipality
     {
     }
 }

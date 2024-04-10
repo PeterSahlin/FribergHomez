@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FribergHomez
 {
+    //All
     public class Program
     {
         public static void Main(string[] args)
@@ -22,10 +23,9 @@ namespace FribergHomez
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddScoped<IFirm, FirmRepository>();
-
             builder.Services.AddScoped<ISaleObject, SaleObjectRepository>();
-
             builder.Services.AddScoped<IRealEstateAgent, RealEstateAgentRepository>();
+            builder.Services.AddScoped<IMunicipality, MunicipalityRepository>();
 
             var app = builder.Build();
 

@@ -1,5 +1,6 @@
 ﻿namespace FribergHomez.Models
 {
+    //Peter
     public class RealEstateAgent
     {
         public int Id { get; set; }

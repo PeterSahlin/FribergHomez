@@ -1,11 +1,11 @@
 ﻿namespace FribergHomez.Data
 {
     //Henrik
-    public class SaleObjectRepository:ISaleObject
+    public class MunicipalityRepository:IMunicipality
     {
         private readonly ApplicationDbContext applicationDbContext;
 
-        public SaleObjectRepository(ApplicationDbContext applicationDbContext)
+        public MunicipalityRepository(ApplicationDbContext applicationDbContext)
         {
             this.applicationDbContext = applicationDbContext;
         }
