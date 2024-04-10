@@ -12,6 +12,7 @@ namespace FribergHomez
 
             // Add services to the container.
             string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=FribergHomez;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(connectionString));
 
