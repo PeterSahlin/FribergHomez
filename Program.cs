@@ -1,5 +1,6 @@
 
 using FribergHomez.Data;
+using FribergHomez.Helper;
 using Microsoft.EntityFrameworkCore;
 
 namespace FribergHomez
@@ -43,6 +44,15 @@ namespace FribergHomez
 
 
             app.MapControllers();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var dbContext = services.GetRequiredService<ApplicationDbContext>();
+
+                SeedHelper.SeedCategories(dbContext);
+            }
+
 
             app.Run();
 
