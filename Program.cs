@@ -51,6 +51,7 @@ namespace FribergHomez
                 var dbContext = services.GetRequiredService<ApplicationDbContext>();
 
                 SeedHelper.SeedCategories(dbContext);
+                SeedHelper.SeedFirm(dbContext);
             }
 
 
