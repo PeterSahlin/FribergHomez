@@ -5,7 +5,11 @@ namespace FribergHomez.Data
 {
     public class ApplicationDbContext : DbContext
     {
+
+        public DbSet<Firm> Firms { get; set; }
+
         public DbSet<SaleObject> SaleObjects { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
 
