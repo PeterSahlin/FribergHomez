@@ -21,6 +21,7 @@ namespace FribergHomez
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddScoped<IRealEstateAgent, RealEstateAgentRepository>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

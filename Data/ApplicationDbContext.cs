@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FribergHomez.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FribergHomez.Data
 {
@@ -8,5 +9,7 @@ namespace FribergHomez.Data
         {
 
         }
+
+        public DbSet<RealEstateAgent> Realtors { get; set; }
     }
 }
