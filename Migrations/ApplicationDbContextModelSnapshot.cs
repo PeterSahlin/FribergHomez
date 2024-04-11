@@ -59,10 +59,6 @@ namespace FribergHomez.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RealEstateAgents")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Firms");
@@ -195,7 +191,7 @@ namespace FribergHomez.Migrations
             modelBuilder.Entity("FribergHomez.Models.RealEstateAgent", b =>
                 {
                     b.HasOne("FribergHomez.Models.Firm", "Firm")
-                        .WithMany()
+                        .WithMany("RealEstateAgents")
                         .HasForeignKey("FirmId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -232,6 +228,11 @@ namespace FribergHomez.Migrations
                     b.Navigation("Firm");
 
                     b.Navigation("Municipality");
+                });
+
+            modelBuilder.Entity("FribergHomez.Models.Firm", b =>
+                {
+                    b.Navigation("RealEstateAgents");
                 });
 
             modelBuilder.Entity("FribergHomez.Models.Municipality", b =>
