@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergHomez.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240410132825_initial")]
+    [Migration("20240411121236_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -59,10 +59,6 @@ namespace FribergHomez.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Presentation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RealEstateAgents")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -198,7 +194,7 @@ namespace FribergHomez.Migrations
             modelBuilder.Entity("FribergHomez.Models.RealEstateAgent", b =>
                 {
                     b.HasOne("FribergHomez.Models.Firm", "Firm")
-                        .WithMany()
+                        .WithMany("RealEstateAgents")
                         .HasForeignKey("FirmId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -235,6 +231,11 @@ namespace FribergHomez.Migrations
                     b.Navigation("Firm");
 
                     b.Navigation("Municipality");
+                });
+
+            modelBuilder.Entity("FribergHomez.Models.Firm", b =>
+                {
+                    b.Navigation("RealEstateAgents");
                 });
 
             modelBuilder.Entity("FribergHomez.Models.Municipality", b =>
