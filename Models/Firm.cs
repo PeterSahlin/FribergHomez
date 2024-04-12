@@ -12,17 +12,14 @@ namespace FribergHomez.Models
 
         public string ImageLocation { get; set; } = "";
 
-        public List<RealEstateAgent> RealEstateAgents { get; set; }
-        public Firm(string name, string presentation, string imageLocation, List<RealEstateAgent> listOfAgents)
+        // Note: Remove the RealEstateAgents navigation property
+
+        public Firm(string name, string presentation, string imageLocation)
         {
             Name = name;
             Presentation = presentation;
             ImageLocation = imageLocation;
-            RealEstateAgents = listOfAgents;
         }
-        public Firm()
-        {
-
-        }
+        public Firm() { }
     }
 }

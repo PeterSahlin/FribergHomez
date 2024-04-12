@@ -18,6 +18,5 @@ namespace FribergHomez.Data
         {
 
         }
-
     }
 }

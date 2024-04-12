@@ -1,4 +1,3 @@
-
 using FribergHomez.Data;
 using FribergHomez.Helper;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +7,7 @@ namespace FribergHomez
     //All
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -45,18 +44,15 @@ namespace FribergHomez
 
             app.MapControllers();
 
+
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 var dbContext = services.GetRequiredService<ApplicationDbContext>();
 
-                SeedHelper.SeedCategories(dbContext);
-                //SeedHelper.SeedFirm(dbContext);
-                SeedHelper.SeedMunicipalitiesAsync(dbContext);
+                await SeedHelper.SeedDataAsync(dbContext);
             }
-
             app.Run();
-
         }
     }
 }

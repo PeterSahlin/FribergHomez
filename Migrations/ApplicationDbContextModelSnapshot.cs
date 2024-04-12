@@ -191,7 +191,7 @@ namespace FribergHomez.Migrations
             modelBuilder.Entity("FribergHomez.Models.RealEstateAgent", b =>
                 {
                     b.HasOne("FribergHomez.Models.Firm", "Firm")
-                        .WithMany("RealEstateAgents")
+                        .WithMany()
                         .HasForeignKey("FirmId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -214,13 +214,13 @@ namespace FribergHomez.Migrations
                         .IsRequired();
 
                     b.HasOne("FribergHomez.Models.Municipality", "Municipality")
-                        .WithMany("SaleObjects")
+                        .WithMany()
                         .HasForeignKey("MunicipalityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FribergHomez.Models.RealEstateAgent", null)
-                        .WithMany("SaleObjects")
+                    b.HasOne("FribergHomez.Models.RealEstateAgent", "RealEstateAgent")
+                        .WithMany()
                         .HasForeignKey("RealEstateAgentId");
 
                     b.Navigation("Category");
@@ -228,21 +228,8 @@ namespace FribergHomez.Migrations
                     b.Navigation("Firm");
 
                     b.Navigation("Municipality");
-                });
 
-            modelBuilder.Entity("FribergHomez.Models.Firm", b =>
-                {
-                    b.Navigation("RealEstateAgents");
-                });
-
-            modelBuilder.Entity("FribergHomez.Models.Municipality", b =>
-                {
-                    b.Navigation("SaleObjects");
-                });
-
-            modelBuilder.Entity("FribergHomez.Models.RealEstateAgent", b =>
-                {
-                    b.Navigation("SaleObjects");
+                    b.Navigation("RealEstateAgent");
                 });
 #pragma warning restore 612, 618
         }
