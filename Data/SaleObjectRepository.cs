@@ -1,4 +1,7 @@
-﻿namespace FribergHomez.Data
+﻿using FribergHomez.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace FribergHomez.Data
 {
     //Henrik
     public class SaleObjectRepository:ISaleObject
@@ -8,6 +11,33 @@
         public SaleObjectRepository(ApplicationDbContext applicationDbContext)
         {
             this.applicationDbContext = applicationDbContext;
+        }
+        public async Task<List<SaleObject>> GetAllSalesObjectsAsync()
+        {
+            return await applicationDbContext.SaleObjects.ToListAsync();
+        }
+        public async Task GetSalesObjectByIdAsync(int id)
+        {
+            await applicationDbContext.SaleObjects.FirstOrDefaultAsync(x => x.Id == id);
+        }
+        public async Task AddSalesObjectAsync(SaleObject saleobject)
+        {
+            applicationDbContext.SaleObjects.Add(saleobject);
+            await applicationDbContext.SaveChangesAsync();
+        }
+        public async Task DeleteSalesObjectAsync(int id)
+        {
+            var salesObjectToDelete = await applicationDbContext.SaleObjects.FindAsync(id);
+            if (salesObjectToDelete != null)
+            {
+                applicationDbContext.SaleObjects.Remove(salesObjectToDelete);
+                await applicationDbContext.SaveChangesAsync();
+            }
+        }
+        public async Task UpdateSalesObjectAsync(SaleObject saleobject)
+        {
+            applicationDbContext.Entry(saleobject).State = EntityState.Modified;
+            await applicationDbContext.SaveChangesAsync();
         }
     }
 }
