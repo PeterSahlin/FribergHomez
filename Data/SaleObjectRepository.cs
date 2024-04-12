@@ -14,7 +14,13 @@ namespace FribergHomez.Data
         }
         public async Task<List<SaleObject>> GetAllSalesObjectsAsync()
         {
-            return await applicationDbContext.SaleObjects.ToListAsync();
+            //return await applicationDbContext.SaleObjects.ToListAsync();
+            return await applicationDbContext.SaleObjects
+                .Include(s => s.Municipality)
+                .Include(s => s.Category)
+                .Include(s => s.Firm)
+                .Include(s => s.RealEstateAgent)
+                .ToListAsync();
         }
         public async Task GetSalesObjectByIdAsync(int id)
         {
