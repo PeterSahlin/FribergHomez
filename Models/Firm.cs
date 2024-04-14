@@ -7,13 +7,8 @@ namespace FribergHomez.Models
     {
         public int Id { get; set; }
         public string Name { get; set; } = "";
-
         public string Presentation { get; set; } = "";
-
         public string ImageLocation { get; set; } = "";
-
-        // Note: Remove the RealEstateAgents navigation property
-
         public Firm(string name, string presentation, string imageLocation)
         {
             Name = name;

@@ -18,8 +18,8 @@ namespace FribergHomez.Data
             return await applicationDbContext.SaleObjects
                 .Include(s => s.Municipality)
                 .Include(s => s.Category)
-                .Include(s => s.Firm)
                 .Include(s => s.RealEstateAgent)
+                .Include(s => s.RealEstateAgent.Firm)
                 .ToListAsync();
         }
         public async Task GetSalesObjectByIdAsync(int id)
