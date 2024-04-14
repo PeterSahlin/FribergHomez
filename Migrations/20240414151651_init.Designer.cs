@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergHomez.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240412185656_init")]
+    [Migration("20240414151651_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -144,9 +144,6 @@ namespace FribergHomez.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FirmId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -182,8 +179,6 @@ namespace FribergHomez.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("FirmId");
-
                     b.HasIndex("MunicipalityId");
 
                     b.HasIndex("RealEstateAgentId");
@@ -210,12 +205,6 @@ namespace FribergHomez.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FribergHomez.Models.Firm", "Firm")
-                        .WithMany()
-                        .HasForeignKey("FirmId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FribergHomez.Models.Municipality", "Municipality")
                         .WithMany()
                         .HasForeignKey("MunicipalityId")
@@ -227,8 +216,6 @@ namespace FribergHomez.Migrations
                         .HasForeignKey("RealEstateAgentId");
 
                     b.Navigation("Category");
-
-                    b.Navigation("Firm");
 
                     b.Navigation("Municipality");
 

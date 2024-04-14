@@ -7,10 +7,6 @@ namespace FribergHomez.Models
     {
         public int Id { get; set; }
         public string Address { get; set; } = "";
-        public int MunicipalityId { get; set; } // Foreign key property
-        public Municipality Municipality { get; set; } // Navigation property
-        public int CategoryId { get; set; } // Foreign key property
-        public Category Category { get; set; } // Navigation property
         public int StartingPrice { get; set; }
         public int LivingArea { get; set; }
         public int AncillaryArea { get; set; }
@@ -21,9 +17,17 @@ namespace FribergHomez.Models
         public int OperatingCostPerYear { get; set; }
         public int YearOfConstruction { get; set; }
         public List<string> ImageUrl { get; set; } = new List<string>();
-        public int FirmId { get; set; } // Foreign key property
-        public Firm Firm { get; set; } // Navigation property
-        public int? RealEstateAgentId { get; set; } // Foreign key property
-        public RealEstateAgent RealEstateAgent { get; set; } // Navigation property
+
+        //Foreign Keys
+        public int? RealEstateAgentId { get; set; }
+        public int MunicipalityId { get; set; }
+        public int CategoryId { get; set; }
+
+        //Navigation Properties
+        public RealEstateAgent RealEstateAgent { get; set; } = new RealEstateAgent();
+        public Municipality Municipality { get; set; } = new Municipality();
+        public Category Category { get; set; } = new Category();
+
+        public SaleObject() { }
     }
 }

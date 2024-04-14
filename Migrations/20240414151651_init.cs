@@ -60,9 +60,9 @@ namespace FribergHomez.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FirmId = table.Column<int>(type: "int", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirmId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -82,8 +82,6 @@ namespace FribergHomez.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MunicipalityId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
                     StartingPrice = table.Column<int>(type: "int", nullable: false),
                     LivingArea = table.Column<int>(type: "int", nullable: false),
                     AncillaryArea = table.Column<int>(type: "int", nullable: false),
@@ -94,8 +92,9 @@ namespace FribergHomez.Migrations
                     OperatingCostPerYear = table.Column<int>(type: "int", nullable: false),
                     YearOfConstruction = table.Column<int>(type: "int", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FirmId = table.Column<int>(type: "int", nullable: false),
-                    RealEstateAgentId = table.Column<int>(type: "int", nullable: true)
+                    RealEstateAgentId = table.Column<int>(type: "int", nullable: true),
+                    MunicipalityId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -104,12 +103,6 @@ namespace FribergHomez.Migrations
                         name: "FK_SaleObjects_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_SaleObjects_Firms_FirmId",
-                        column: x => x.FirmId,
-                        principalTable: "Firms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -134,11 +127,6 @@ namespace FribergHomez.Migrations
                 name: "IX_SaleObjects_CategoryId",
                 table: "SaleObjects",
                 column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SaleObjects_FirmId",
-                table: "SaleObjects",
-                column: "FirmId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SaleObjects_MunicipalityId",

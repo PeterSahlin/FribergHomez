@@ -7,8 +7,6 @@ namespace FribergHomez.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
-        // Note: Remove the SaleObjects navigation property
-
         public Municipality(string name)
         {
             Name = name;
