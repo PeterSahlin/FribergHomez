@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using FribergHomez.Data;
+using FribergHomez.Models;
 
 namespace FribergHomez.Controllers
 {
@@ -23,6 +24,19 @@ namespace FribergHomez.Controllers
             }catch (Exception ex)
             {
                 return BadRequest(ex.Message);
+            }
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await saleObjectRepo.DeleteSalesObjectAsync(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error");
             }
         }
     }

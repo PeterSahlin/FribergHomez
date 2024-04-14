@@ -92,7 +92,7 @@ namespace FribergHomez.Migrations
                     OperatingCostPerYear = table.Column<int>(type: "int", nullable: false),
                     YearOfConstruction = table.Column<int>(type: "int", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RealEstateAgentId = table.Column<int>(type: "int", nullable: true),
+                    RealEstateAgentId = table.Column<int>(type: "int", nullable: false),
                     MunicipalityId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -115,7 +115,8 @@ namespace FribergHomez.Migrations
                         name: "FK_SaleObjects_Realtors_RealEstateAgentId",
                         column: x => x.RealEstateAgentId,
                         principalTable: "Realtors",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
