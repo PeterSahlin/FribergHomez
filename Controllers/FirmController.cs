@@ -7,20 +7,20 @@ namespace FribergHomez.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class FirmController : ControllerBase
     {
-        private readonly ICategory categoryRep;
-        public CategoryController(ICategory categoryRep)
+        private readonly IFirm firmRep;
+        public FirmController(IFirm firmRep)
         {
-            this.categoryRep = categoryRep;
+            this.firmRep = firmRep;
         }
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             try
             {
-                var categories = await categoryRep.GetAllCategoriesAsync();
-                return Ok(categories);
+                var firms = await firmRep.GetAllFirmsAsync();
+                return Ok(firms);
             }
             catch (Exception ex)
             {
@@ -32,7 +32,7 @@ namespace FribergHomez.Controllers
         {
             try
             {
-                await categoryRep.DeleteCategoryAsync(id);
+                await firmRep.DeleteFirmAsync(id);
                 return NoContent();
             }catch (Exception ex)
             {
@@ -40,11 +40,11 @@ namespace FribergHomez.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Category category)
+        public async Task<IActionResult> Post([FromBody] Firm firm)
         {
-            if (category == null)
+            if(firm == null)
             {
-                return BadRequest("Category object is null");
+                return BadRequest("Firm object is null");
             }
             if (!ModelState.IsValid)
             {
@@ -52,23 +52,22 @@ namespace FribergHomez.Controllers
             }
             try
             {
-                await categoryRep.AddCategoryAsync(category);
-                return StatusCode(201, category);
-            }
-            catch (Exception ex)
+                await firmRep.AddFirmAsync(firm);
+                return StatusCode(201, firm);
+            }catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Category category)
+        public async Task<IActionResult> Put(int id, [FromBody] Firm firm)
         {
-            if (category == null)
+            if (firm == null)
             {
-                return BadRequest("Category object is null");
+                return BadRequest("Firm object is null");
             }
 
-            if (id != category.Id)
+            if (id != firm.Id)
             {
                 return BadRequest("ID mismatch between route parameter and request body");
             }
@@ -77,22 +76,19 @@ namespace FribergHomez.Controllers
             {
                 return BadRequest("Invalid model object");
             }
-
             try
             {
-                var existingCategory = await categoryRep.GetCategoryByIdAsync(id);
-                if (existingCategory == null)
+                var existingFirm = await firmRep.GetFirmByIdAsync(id);
+                if(existingFirm == null)
                 {
-                    return NotFound("Category not found");
+                    return NotFound("Firm not found");
                 }
-
-                existingCategory.Name = category.Name;
-
-                await categoryRep.UpdateCategoryAsync(existingCategory);
-
+                existingFirm.Name = firm.Name;
+                existingFirm.Presentation = firm.Presentation;
+                existingFirm.ImageLocation = firm.ImageLocation;
+                await firmRep.UpdateFirmAsync(existingFirm);
                 return NoContent();
-            }
-            catch (Exception ex)
+            }catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
