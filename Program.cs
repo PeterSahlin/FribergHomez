@@ -8,7 +8,7 @@ namespace FribergHomez
     //All
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -49,9 +49,11 @@ namespace FribergHomez
             {
                 var services = scope.ServiceProvider;
                 var dbContext = services.GetRequiredService<ApplicationDbContext>();
+                SeedHelper seedHelper = new SeedHelper();
 
-                SeedHelper.SeedCategories(dbContext);
-                SeedHelper.SeedFirm(dbContext);
+                await seedHelper.SeedCategoriesAsync(dbContext);
+                //SeedHelper.SeedFirm(dbContext);
+               await seedHelper.SeedSaleObjectsAsync(dbContext);  //lägg sist?
             }
 
 
