@@ -6,6 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FribergHomez.Controllers
 {
+    /// <summary>
+    /// Den här funkar inte som den ska alls..... :(
+    /// </summary>
+
+
     [Route("api/[controller]")]
     [ApiController]
     public class SalesObjectController : ControllerBase

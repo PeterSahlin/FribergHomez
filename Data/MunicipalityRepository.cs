@@ -16,9 +16,9 @@ namespace FribergHomez.Data
         {
             return await applicationDbContext.Municipalities.ToListAsync();
         }
-        public async Task GetMunicipalityByIdAsync(int id)
+        public async Task<Municipality> GetMunicipalityByIdAsync(int id)
         {
-            await applicationDbContext.Municipalities.FirstOrDefaultAsync(x => x.Id == id);
+            return await applicationDbContext.Municipalities.FirstOrDefaultAsync(x => x.Id == id);
         }
         public async Task AddMunicipalityAsync(Municipality municipality)
         {
