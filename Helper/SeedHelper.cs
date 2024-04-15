@@ -35,7 +35,7 @@ namespace FribergHomez.Helper
                 //Added for testing
                 Municipality municipality = new Municipality();
                 municipality.Name = "Arkham";
-                //municipality.SaleObjects = new List<SaleObject> { new SaleObject() };
+                municipality.SaleObjects = new List<SaleObject>();
 
                 Firm firm = new Firm();
                 firm.Name = "HousezForSale";
@@ -53,13 +53,12 @@ namespace FribergHomez.Helper
 
                 List<SaleObject> saleObjectList = new List<SaleObject>
                 {
-                    new SaleObject {Address = "1007 Mountain Drive", Municipality = municipality , Category = category, StartingPrice = 50000000, LivingArea = 500, AncillaryArea = 100, PlotArea = 50000, Description = "Batman's base of operations", NumberOfRooms=12, MonthlyFee = 90000, OperatingCostPerYear = 7500000, YearOfConstruction = 1892, ImageUrl = imgUrl ,Firm = firm  }
+                    new SaleObject {Address = "1007 Mountain Drive", Municipality = municipality , Category = category, StartingPrice = 50000000, LivingArea = 500, AncillaryArea = 100, PlotArea = 50000, Description = "Batman's base of operations", NumberOfRooms=12, MonthlyFee = 90000, OperatingCostPerYear = 7500000, YearOfConstruction = 1892, ImageUrl = imgUrl ,Firm = firm  },
+                    new SaleObject {Address = "1007 Tiny Mountain Drive", Municipality = municipality , Category = category, StartingPrice = 500000, LivingArea = 50, AncillaryArea = 10, PlotArea = 5000, Description = "Mini-Batman's base of operations", NumberOfRooms=7, MonthlyFee = 60000, OperatingCostPerYear = 500000, YearOfConstruction = 1792, ImageUrl = imgUrl ,Firm = firm  }
+
                 };
 
-              
-
-
-                applicationDbContext.Entry(category).State = EntityState.Unchanged;                 //category sätt entity state unchanged
+                //applicationDbContext.Entry(category).State = EntityState.Unchanged; 
                 applicationDbContext.AddRange(saleObjectList);
                 await applicationDbContext.SaveChangesAsync();                      
             }
