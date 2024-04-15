@@ -9,6 +9,6 @@ namespace FribergHomez.Data
         Task GetSalesObjectByIdAsync(int id);
         Task AddSalesObjectAsync(SaleObject saleobject);
         Task DeleteSalesObjectAsync(int id);
-        Task UpdateSalesObjectAsync(SaleObject saleobject);
+        Task UpdateSalesObjectAsync(int id, SaleObject saleobject);
     }
 }

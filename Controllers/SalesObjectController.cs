@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using FribergHomez.Data;
 using FribergHomez.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FribergHomez.Controllers
 {

@@ -40,7 +40,7 @@ namespace FribergHomez.Data
                 await applicationDbContext.SaveChangesAsync();
             }
         }
-        public async Task UpdateSalesObjectAsync(SaleObject saleobject)
+        public async Task UpdateSalesObjectAsync(int id, SaleObject saleobject)
         {
             applicationDbContext.Entry(saleobject).State = EntityState.Modified;
             await applicationDbContext.SaveChangesAsync();
