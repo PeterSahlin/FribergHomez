@@ -1,4 +1,6 @@
-﻿namespace FribergHomez.Data
+﻿using FribergHomez.Models;
+
+namespace FribergHomez.Data
 {
     //Peter
     public class RealEstateAgentRepository:IRealEstateAgent
@@ -9,5 +11,7 @@
         {
             this.applicationDbContext = applicationDbContext;
         }
+
+       
     }
 }
