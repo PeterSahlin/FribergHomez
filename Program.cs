@@ -49,6 +49,7 @@ namespace FribergHomez
             {
                 var services = scope.ServiceProvider;
                 var dbContext = services.GetRequiredService<ApplicationDbContext>();
+
                 SeedHelper seedHelper = new SeedHelper();
 
                 await seedHelper.SeedFirmsAndAgentsAsync(dbContext); 

@@ -1,4 +1,4 @@
-﻿using FribergHomez.Models;
+using FribergHomez.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace FribergHomez.Data
@@ -12,6 +12,7 @@ namespace FribergHomez.Data
         {
             this.applicationDbContext = applicationDbContext;
         }
+
         public async Task<List<SaleObject>> GetAllSalesObjectsAsync()
         {
             return await applicationDbContext.SaleObjects.ToListAsync();

@@ -10,6 +10,7 @@ namespace FribergHomez.Helper
 
         public async Task SeedCategoriesAsync(ApplicationDbContext applicationDbContext)
 
+
         {
             if (!applicationDbContext.Categories.Any())
             {
@@ -26,6 +27,8 @@ namespace FribergHomez.Helper
 
             }
         }
+
+
 
         public async Task SeedSaleObjectsAsync(ApplicationDbContext applicationDbContext)
         {
@@ -134,6 +137,7 @@ namespace FribergHomez.Helper
             }
          
         }
+
         public async Task SeedMunicipalitiesAsync(ApplicationDbContext applicationDbContext)
         {
             if (!applicationDbContext.Municipalities.Any())
