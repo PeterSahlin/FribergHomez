@@ -49,10 +49,11 @@ namespace FribergHomez
             {
                 var services = scope.ServiceProvider;
                 var dbContext = services.GetRequiredService<ApplicationDbContext>();
+                var seedHelper = new SeedHelper();
 
-                SeedHelper.SeedCategories(dbContext);
+                seedHelper.SeedCategories(dbContext);
                 //SeedHelper.SeedFirm(dbContext);
-                SeedHelper.SeedMunicipalitiesAsync(dbContext);
+                seedHelper.SeedMunicipalitiesAsync(dbContext);
             }
 
             app.Run();
