@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergHomez.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240411121236_initial")]
-    partial class initial
+    [Migration("20240415083743_made category.name nullable")]
+    partial class madecategorynamenullable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,7 +34,6 @@ namespace FribergHomez.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

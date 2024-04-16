@@ -12,32 +12,32 @@ namespace FribergHomez.Data
         {
             this.applicationDbContext = applicationDbContext;
         }
-        public async Task CreateMunicipalityAsync(Municipality municipality)
-        {
-            applicationDbContext.Add(municipality);
-            await applicationDbContext.SaveChangesAsync();
-        }
-
-        public async Task DeleteMunicipalityAsync(Municipality municipality)
-        {
-            applicationDbContext.Remove(municipality);
-            await applicationDbContext.SaveChangesAsync();
-        }
-
-        public async Task EditMunicipalityAsync(Municipality municipality)
-        {
-            applicationDbContext.Update(municipality);
-            await applicationDbContext.SaveChangesAsync();
-        }
-
         public async Task<List<Municipality>> GetAllMunicipalitiesAsync()
         {
-            return await applicationDbContext.Municipalities.OrderBy(m => m.Id).ToListAsync();
+            return await applicationDbContext.Municipalities.ToListAsync();
         }
-
-        public async Task<Municipality> GetMunicipalitiesByIdAsync(int id)
+        public async Task GetMunicipalityByIdAsync(int id)
         {
-            return await applicationDbContext.Municipalities.FirstOrDefaultAsync(m => m.Id == id);
+            await applicationDbContext.Municipalities.FirstOrDefaultAsync(x => x.Id == id);
+        }
+        public async Task AddMunicipalityAsync(Municipality municipality)
+        {
+            applicationDbContext.Municipalities.Add(municipality);
+            await applicationDbContext.SaveChangesAsync();
+        }
+        public async Task DeleteMunicipalityAsync(int id)
+        {
+            var municipalityToDelete = await applicationDbContext.Municipalities.FindAsync(id);
+            if (municipalityToDelete != null)
+            {
+                applicationDbContext.Municipalities.Remove(municipalityToDelete);
+                await applicationDbContext.SaveChangesAsync();
+            }
+        }
+        public async Task UpdateMunicipalityAsync(Municipality municipality)
+        {
+            applicationDbContext.Entry(municipality).State = EntityState.Modified;
+            await applicationDbContext.SaveChangesAsync();
         }
     }
 }
