@@ -51,10 +51,10 @@ namespace FribergHomez
                 var dbContext = services.GetRequiredService<ApplicationDbContext>();
                 SeedHelper seedHelper = new SeedHelper();
 
-
+                await seedHelper.SeedFirmsAndAgentsAsync(dbContext); 
+                await seedHelper.SeedMunicipalitiesAsync(dbContext);
                 await seedHelper.SeedCategoriesAsync(dbContext);
-                //SeedHelper.SeedFirm(dbContext);
-               await seedHelper.SeedSaleObjectsAsync(dbContext);  //l�gg sist?
+                await seedHelper.SeedSaleObjectsAsync(dbContext);
 
             }
 
