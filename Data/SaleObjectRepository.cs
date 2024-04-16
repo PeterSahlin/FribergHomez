@@ -22,9 +22,9 @@ namespace FribergHomez.Data
                 .Include(s => s.RealEstateAgent.Firm)
                 .ToListAsync();
         }
-        public async Task GetSalesObjectByIdAsync(int id)
+        public async Task<SaleObject> GetSalesObjectByIdAsync(int id)
         {
-            await applicationDbContext.SaleObjects.FirstOrDefaultAsync(x => x.Id == id);
+            return await applicationDbContext.SaleObjects.FirstOrDefaultAsync(x => x.Id == id);
         }
         public async Task AddSalesObjectAsync(SaleObject saleobject)
         {
@@ -40,7 +40,7 @@ namespace FribergHomez.Data
                 await applicationDbContext.SaveChangesAsync();
             }
         }
-        public async Task UpdateSalesObjectAsync(int id, SaleObject saleobject)
+        public async Task UpdateSalesObjectAsync(SaleObject saleobject)
         {
             applicationDbContext.Entry(saleobject).State = EntityState.Modified;
             await applicationDbContext.SaveChangesAsync();

@@ -19,7 +19,7 @@ namespace FribergHomez.Models
         public List<string> ImageUrl { get; set; } = new List<string>();
 
         //Foreign Keys
-        public int RealEstateAgentId { get; set; }
+        public int? RealEstateAgentId { get; set; }
         public int MunicipalityId { get; set; }
         public int CategoryId { get; set; }
 

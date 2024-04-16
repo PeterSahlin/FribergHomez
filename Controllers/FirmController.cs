@@ -5,6 +5,9 @@ using FribergHomez.Models;
 
 namespace FribergHomez.Controllers
 {
+
+    //Skapa en DTO till denna. Gör sedan om put och post metoderna
+
     [Route("api/[controller]")]
     [ApiController]
     public class FirmController : ControllerBase

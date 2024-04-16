@@ -10,9 +10,11 @@ namespace FribergHomez.Controllers
     public class RealEstateAgentController : ControllerBase
     {
         private readonly IRealEstateAgent agentRepo;
-        public RealEstateAgentController(IRealEstateAgent agentRepo)
+        private readonly IFirm firmRepo;
+        public RealEstateAgentController(IRealEstateAgent agentRepo, IFirm firmRepo)
         {
             this.agentRepo = agentRepo;
+            this.firmRepo = firmRepo;
         }
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -41,67 +43,73 @@ namespace FribergHomez.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] RealEstateAgent agent)
+        public async Task<IActionResult> Post([FromBody] AgentDto agentDto)
         {
-            if (agent == null)
-            {
-                return BadRequest("Agent object is null");
-            }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Invalid model object");
-            }
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                var agent = new RealEstateAgent
+                {
+                    FirstName = agentDto.FirstName,
+                    LastName = agentDto.LastName,
+                    Email = agentDto.Email,
+                    PhoneNumber = agentDto.PhoneNumber,
+                    ImageUrl = agentDto.ImageUrl,
+                };
+                if (agentDto.FirmId.HasValue)
+                {
+                    var firm = await firmRepo.GetFirmByIdAsync(agentDto.FirmId.Value);
+                    if(firm == null)
+                    {
+                        return BadRequest("Invalid FirmId");
+                    }
+                    agent.Firm = firm;
+                }
                 await agentRepo.AddAgentAsync(agent);
                 return StatusCode(201, agent);
-            }
-            catch (Exception ex)
+            }catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] RealEstateAgent agent)
+        public async Task<IActionResult> Put(int id, [FromBody] AgentDto agentDto)
         {
-            if (agent == null)
-            {
-                return BadRequest("Agent object is null");
-            }
-
-            if (id != agent.Id)
-            {
-                return BadRequest("ID mismatch between route parameter and request body");
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Invalid model object");
-            }
-
             try
             {
-                var existingAgent = await agentRepo.GetAgentByIdAsync(id);
-                if (existingAgent == null)
+                if (!ModelState.IsValid)
                 {
-                    return NotFound("Category not found");
+                    return BadRequest(ModelState);
                 }
-
-                existingAgent.FirstName = agent.FirstName;
-                existingAgent.LastName = agent.LastName;
-                existingAgent.Email = agent.Email;
-                existingAgent.PhoneNumber = agent.PhoneNumber;
-                existingAgent.ImageUrl = agent.ImageUrl;
-                existingAgent.FirmId = agent.FirmId;
-
-                await agentRepo.UpdateAgentAsync(existingAgent);
-
+                var agent = await agentRepo.GetAgentByIdAsync(id);
+                if(agent == null)
+                {
+                    return NotFound("No agent found with that Id");
+                }
+                agent.FirstName = agentDto.FirstName;
+                agent.LastName = agentDto.LastName;
+                agent.Email = agentDto.Email;
+                agent.PhoneNumber = agentDto.PhoneNumber;
+                agent.ImageUrl = agentDto.ImageUrl;
+                agent.FirmId = agentDto.FirmId;
+                await agentRepo.UpdateAgentAsync(agent);
                 return NoContent();
-            }
-            catch (Exception ex)
+            }catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
+    }
+    public class AgentDto
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string ImageUrl { get; set; }
+        public int? FirmId { get; set; }
     }
 }
