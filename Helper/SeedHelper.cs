@@ -9,7 +9,7 @@ namespace FribergHomez.Helper
     {
 
         public async Task SeedCategoriesAsync(ApplicationDbContext applicationDbContext)
-
+            //All
 
         {
             if (!applicationDbContext.Categories.Any())
@@ -32,6 +32,7 @@ namespace FribergHomez.Helper
 
         public async Task SeedSaleObjectsAsync(ApplicationDbContext applicationDbContext)
         {
+            //Peter
 
             if (!applicationDbContext.SaleObjects.Any())
             {
@@ -77,7 +78,7 @@ namespace FribergHomez.Helper
 
         public async Task SeedFirmsAndAgentsAsync(ApplicationDbContext applicationDbContext)
         {
-
+            //Henrik
             if (!applicationDbContext.Firms.Any())
             {
                 var torontoFirm = new Firm
@@ -140,6 +141,7 @@ namespace FribergHomez.Helper
 
         public async Task SeedMunicipalitiesAsync(ApplicationDbContext applicationDbContext)
         {
+            //Thomas
             if (!applicationDbContext.Municipalities.Any())
             {
                 List<Municipality> municipalityList = new List<Municipality>
