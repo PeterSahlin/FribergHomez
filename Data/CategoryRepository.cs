@@ -19,6 +19,7 @@ namespace FribergHomez.Data
 
         public async Task DeleteCategoryAsync(int id)
         {
+            var categoryToDelete = applicationDbContext.Categories.Where(s => s.Id == id).FirstOrDefault();
                 applicationDbContext.Remove(categoryToDelete);
                 await applicationDbContext.SaveChangesAsync();
         }

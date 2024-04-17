@@ -5,7 +5,7 @@
 namespace FribergHomez.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -52,7 +52,7 @@ namespace FribergHomez.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Realtors",
+                name: "RealEstateAgents",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -60,19 +60,18 @@ namespace FribergHomez.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FirmId = table.Column<int>(type: "int", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirmId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Realtors", x => x.Id);
+                    table.PrimaryKey("PK_RealEstateAgents", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Realtors_Firms_FirmId",
+                        name: "FK_RealEstateAgents_Firms_FirmId",
                         column: x => x.FirmId,
                         principalTable: "Firms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -82,8 +81,6 @@ namespace FribergHomez.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MunicipalityId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
                     StartingPrice = table.Column<int>(type: "int", nullable: false),
                     LivingArea = table.Column<int>(type: "int", nullable: false),
                     AncillaryArea = table.Column<int>(type: "int", nullable: false),
@@ -94,8 +91,9 @@ namespace FribergHomez.Migrations
                     OperatingCostPerYear = table.Column<int>(type: "int", nullable: false),
                     YearOfConstruction = table.Column<int>(type: "int", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FirmId = table.Column<int>(type: "int", nullable: false),
-                    RealEstateAgentId = table.Column<int>(type: "int", nullable: true)
+                    RealEstateAgentId = table.Column<int>(type: "int", nullable: true),
+                    MunicipalityId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -107,38 +105,27 @@ namespace FribergHomez.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SaleObjects_Firms_FirmId",
-                        column: x => x.FirmId,
-                        principalTable: "Firms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_SaleObjects_Municipalities_MunicipalityId",
                         column: x => x.MunicipalityId,
                         principalTable: "Municipalities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SaleObjects_Realtors_RealEstateAgentId",
+                        name: "FK_SaleObjects_RealEstateAgents_RealEstateAgentId",
                         column: x => x.RealEstateAgentId,
-                        principalTable: "Realtors",
+                        principalTable: "RealEstateAgents",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Realtors_FirmId",
-                table: "Realtors",
+                name: "IX_RealEstateAgents_FirmId",
+                table: "RealEstateAgents",
                 column: "FirmId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SaleObjects_CategoryId",
                 table: "SaleObjects",
                 column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SaleObjects_FirmId",
-                table: "SaleObjects",
-                column: "FirmId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SaleObjects_MunicipalityId",
@@ -164,7 +151,7 @@ namespace FribergHomez.Migrations
                 name: "Municipalities");
 
             migrationBuilder.DropTable(
-                name: "Realtors");
+                name: "RealEstateAgents");
 
             migrationBuilder.DropTable(
                 name: "Firms");

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergHomez.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240415083743_made category.name nullable")]
-    partial class madecategorynamenullable
+    [Migration("20240417085138_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,6 +34,7 @@ namespace FribergHomez.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -95,7 +96,7 @@ namespace FribergHomez.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FirmId")
+                    b.Property<int?>("FirmId")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
@@ -118,7 +119,7 @@ namespace FribergHomez.Migrations
 
                     b.HasIndex("FirmId");
 
-                    b.ToTable("Realtors");
+                    b.ToTable("RealEstateAgents");
                 });
 
             modelBuilder.Entity("FribergHomez.Models.SaleObject", b =>
@@ -142,9 +143,6 @@ namespace FribergHomez.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("FirmId")
-                        .HasColumnType("int");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -181,8 +179,6 @@ namespace FribergHomez.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("FirmId");
-
                     b.HasIndex("MunicipalityId");
 
                     b.HasIndex("RealEstateAgentId");
@@ -194,9 +190,7 @@ namespace FribergHomez.Migrations
                 {
                     b.HasOne("FribergHomez.Models.Firm", "Firm")
                         .WithMany("RealEstateAgents")
-                        .HasForeignKey("FirmId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FirmId");
 
                     b.Navigation("Firm");
                 });
@@ -209,27 +203,21 @@ namespace FribergHomez.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FribergHomez.Models.Firm", "Firm")
-                        .WithMany()
-                        .HasForeignKey("FirmId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FribergHomez.Models.Municipality", "Municipality")
                         .WithMany("SaleObjects")
                         .HasForeignKey("MunicipalityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FribergHomez.Models.RealEstateAgent", null)
+                    b.HasOne("FribergHomez.Models.RealEstateAgent", "RealEstateAgent")
                         .WithMany("SaleObjects")
                         .HasForeignKey("RealEstateAgentId");
 
                     b.Navigation("Category");
 
-                    b.Navigation("Firm");
-
                     b.Navigation("Municipality");
+
+                    b.Navigation("RealEstateAgent");
                 });
 
             modelBuilder.Entity("FribergHomez.Models.Firm", b =>

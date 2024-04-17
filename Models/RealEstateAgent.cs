@@ -9,6 +9,7 @@
         public string Email { get; set; } = "";
         public string PhoneNumber { get; set; } = "";
         public string ImageUrl { get; set; } = "";
+        //public List<SaleObject> SaleObjects { get; set; }
 
         // Foreign Keys
         public int? FirmId { get; set; }
@@ -26,7 +27,7 @@
             
         }
 */
-        public RealEstateAgent(string firstName, string lastName, string email, Firm firm, string phoneNumber, string imageUrl, List<SaleObject> saleObjects)
+        public RealEstateAgent(string firstName, string lastName, string email, Firm firm, string phoneNumber, string imageUrl) //List<SaleObject> saleObjects)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -34,9 +35,8 @@
             Firm = firm;
             PhoneNumber = phoneNumber;
             ImageUrl = imageUrl;
-            SaleObjects = saleObjects;
+            //SaleObjects = saleObjects;
         }
         public RealEstateAgent() { }
-        }
     }
 }

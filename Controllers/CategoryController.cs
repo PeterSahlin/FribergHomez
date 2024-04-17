@@ -65,7 +65,7 @@ namespace FribergHomez.Controllers
             }
             try
             {
-                await categoryRep.AddCategoryAsync(category);
+                await categoryRep.CreateCategoryAsync(category);
                 return StatusCode(201, category);
             }
             catch (Exception ex)

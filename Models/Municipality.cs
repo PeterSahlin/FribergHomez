@@ -6,7 +6,7 @@ namespace FribergHomez.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<SaleObject> SaleObjects { get; set; }
+        //public List<SaleObject> SaleObjects { get; set; }
 
         public Municipality(string name)
         {

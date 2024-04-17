@@ -121,7 +121,7 @@ namespace FribergHomez.Controllers
                 };
                 if (objectDto.RealEstateAgentId.HasValue)
                 {
-                    var agent = await agentRepo.GetAgentByIdAsync(objectDto.RealEstateAgentId.Value);
+                    var agent = await agentRepo.GetRealEstateAgentByIdAsync(objectDto.RealEstateAgentId.Value);
                     if (agent == null)
                     {
                         return BadRequest("Invalid agentId");

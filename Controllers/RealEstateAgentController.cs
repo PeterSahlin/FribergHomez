@@ -21,7 +21,7 @@ namespace FribergHomez.Controllers
         {
             try
             {
-                var agents = await agentRepo.GetAllAgentsAsync();
+                var agents = await agentRepo.GetAllRealEstateAgentsAsync();
                 return Ok(agents);
             }
             catch (Exception ex)
@@ -34,7 +34,7 @@ namespace FribergHomez.Controllers
         {
             try
             {
-                await agentRepo.DeleteAgentAsync(id);
+                await agentRepo.DeleteRealEstateAgentAsync(id);
                 return NoContent();
             }
             catch (Exception ex)
@@ -68,7 +68,7 @@ namespace FribergHomez.Controllers
                     }
                     agent.Firm = firm;
                 }
-                await agentRepo.AddAgentAsync(agent);
+                await agentRepo.AddRealEstateAgentAsync(agent);
                 return StatusCode(201, agent);
             }catch (Exception ex)
             {
@@ -84,7 +84,7 @@ namespace FribergHomez.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-                var agent = await agentRepo.GetAgentByIdAsync(id);
+                var agent = await agentRepo.GetRealEstateAgentByIdAsync(id);
                 if(agent == null)
                 {
                     return NotFound("No agent found with that Id");
@@ -95,7 +95,7 @@ namespace FribergHomez.Controllers
                 agent.PhoneNumber = agentDto.PhoneNumber;
                 agent.ImageUrl = agentDto.ImageUrl;
                 agent.FirmId = agentDto.FirmId;
-                await agentRepo.UpdateAgentAsync(agent);
+                await agentRepo.UpdateRealEstateAgentAsync(agent);
                 return NoContent();
             }catch (Exception ex)
             {

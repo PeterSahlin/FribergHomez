@@ -21,7 +21,7 @@ namespace FribergHomez.Data
 
         public async Task DeleteRealEstateAgentAsync(int id)
         {
-            var realEstateAgentToDelete = await applicationDbContext.Realtors.FindAsync(id);
+            var realEstateAgentToDelete = await applicationDbContext.RealEstateAgents.FindAsync(id);
             if (realEstateAgentToDelete != null)
             {
                 applicationDbContext.Remove(realEstateAgentToDelete);
@@ -36,12 +36,12 @@ namespace FribergHomez.Data
 
         public async Task<List<RealEstateAgent>> GetAllRealEstateAgentsAsync()
         {
-            return await applicationDbContext.Realtors.ToListAsync();
+            return await applicationDbContext.RealEstateAgents.ToListAsync();
         }
 
         public async Task<RealEstateAgent> GetRealEstateAgentByIdAsync(int id)
         {
-            return await applicationDbContext.Realtors.FirstOrDefaultAsync(r => r.Id == id);
+            return await applicationDbContext.RealEstateAgents.FirstOrDefaultAsync(r => r.Id == id);
         }
     }
 }

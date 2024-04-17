@@ -55,7 +55,7 @@ namespace FribergHomez.Controllers
             }
             try
             {
-                await firmRep.AddFirmAsync(firm);
+                await firmRep.CreateFirmAsync(firm);
                 return StatusCode(201, firm);
             }catch (Exception ex)
             {
