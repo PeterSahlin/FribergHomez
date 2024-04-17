@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FribergHomez.Data
 {
     //Thomas
-    public class FirmRepository:IFirm
+    public class FirmRepository : IFirm
     {
         private readonly ApplicationDbContext applicationDbContext;
 
@@ -12,17 +12,9 @@ namespace FribergHomez.Data
         {
             this.applicationDbContext = applicationDbContext;
         }
-        public async Task<List<Firm>> GetAllFirmsAsync()
+        public async Task CreateFirmAsync(Firm firm)
         {
-            return await applicationDbContext.Firms.ToListAsync();
-        }
-        public async Task<Firm> GetFirmByIdAsync(int id)
-        {
-            return await applicationDbContext.Firms.FirstOrDefaultAsync(x => x.Id == id);
-        }
-        public async Task AddFirmAsync(Firm firm)
-        {
-            applicationDbContext.Firms.Add(firm);
+            applicationDbContext.Add(firm);
             await applicationDbContext.SaveChangesAsync();
         }
         public async Task DeleteFirmAsync(int id)
@@ -30,14 +22,24 @@ namespace FribergHomez.Data
             var firmToDelete = await applicationDbContext.Firms.FindAsync(id);
             if (firmToDelete != null)
             {
-                applicationDbContext.Firms.Remove(firmToDelete);
+                applicationDbContext.Remove(firmToDelete);
                 await applicationDbContext.SaveChangesAsync();
             }
         }
+
         public async Task UpdateFirmAsync(Firm firm)
         {
             applicationDbContext.Entry(firm).State = EntityState.Modified;
             await applicationDbContext.SaveChangesAsync();
+        }
+
+        public async Task<List<Firm>> GetAllFirmsAsync()
+        {
+            return await applicationDbContext.Firms.ToListAsync();
+        }
+        public async Task<Firm> GetFirmByIdAsync(int id)
+        {
+            return await applicationDbContext.Firms.FirstOrDefaultAsync(f => f.Id == id);
         }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FribergHomez.Data
 {
     //Peter
-    public class RealEstateAgentRepository:IRealEstateAgent
+    public class RealEstateAgentRepository : IRealEstateAgent
     {
         private readonly ApplicationDbContext applicationDbContext;
 
@@ -12,34 +12,36 @@ namespace FribergHomez.Data
         {
             this.applicationDbContext = applicationDbContext;
         }
-        public async Task<List<RealEstateAgent>> GetAllAgentsAsync()
+
+        public async Task AddRealEstateAgentAsync(RealEstateAgent realEstateAgent)
         {
-            return await applicationDbContext.Realtors
-                .Include(s => s.Firm)
-                .ToListAsync();
-        }
-        public async Task<RealEstateAgent> GetAgentByIdAsync(int id)
-        {
-            return await applicationDbContext.Realtors.FirstOrDefaultAsync(x => x.Id == id);
-        }
-        public async Task AddAgentAsync(RealEstateAgent agent)
-        {
-            applicationDbContext.Realtors.Add(agent);
+            applicationDbContext.Add(realEstateAgent);
             await applicationDbContext.SaveChangesAsync();
         }
-        public async Task DeleteAgentAsync(int id)
+
+        public async Task DeleteRealEstateAgentAsync(int id)
         {
-            var agentToDelete = await applicationDbContext.Realtors.FindAsync(id);
-            if (agentToDelete != null)
+            var realEstateAgentToDelete = await applicationDbContext.Realtors.FindAsync(id);
+            if (realEstateAgentToDelete != null)
             {
-                applicationDbContext.Realtors.Remove(agentToDelete);
+                applicationDbContext.Remove(realEstateAgentToDelete);
                 await applicationDbContext.SaveChangesAsync();
             }
         }
-        public async Task UpdateAgentAsync(RealEstateAgent agent)
+        public async Task UpdateRealEstateAgentAsync(RealEstateAgent realEstateAgent)
         {
-            applicationDbContext.Entry(agent).State = EntityState.Modified;
+            applicationDbContext.Entry(realEstateAgent).State = EntityState.Modified;
             await applicationDbContext.SaveChangesAsync();
+        }
+
+        public async Task<List<RealEstateAgent>> GetAllRealEstateAgentsAsync()
+        {
+            return await applicationDbContext.Realtors.ToListAsync();
+        }
+
+        public async Task<RealEstateAgent> GetRealEstateAgentByIdAsync(int id)
+        {
+            return await applicationDbContext.Realtors.FirstOrDefaultAsync(r => r.Id == id);
         }
     }
 }

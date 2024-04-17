@@ -17,7 +17,16 @@
         public Firm Firm { get; set; }
 
 
+/*
         public RealEstateAgent(string firstName, string lastName, string email, Firm firm, string phoneNumber, string imageUrl)
+        public List<SaleObject> SaleObjects { get; set; }
+
+        public RealEstateAgent()
+        {
+            
+        }
+*/
+        public RealEstateAgent(string firstName, string lastName, string email, Firm firm, string phoneNumber, string imageUrl, List<SaleObject> saleObjects)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -25,7 +34,9 @@
             Firm = firm;
             PhoneNumber = phoneNumber;
             ImageUrl = imageUrl;
+            SaleObjects = saleObjects;
         }
         public RealEstateAgent() { }
+        }
     }
 }
