@@ -1,4 +1,3 @@
-
 using FribergHomez.Data;
 using FribergHomez.Helper;
 using Microsoft.EntityFrameworkCore;
@@ -45,10 +44,13 @@ namespace FribergHomez
 
             app.MapControllers();
 
+
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 var dbContext = services.GetRequiredService<ApplicationDbContext>();
+
+               // await SeedHelper.SeedDataAsync(dbContext);
 
                 SeedHelper seedHelper = new SeedHelper();
 
@@ -56,11 +58,8 @@ namespace FribergHomez
                 await seedHelper.SeedMunicipalitiesAsync(dbContext);
                 await seedHelper.SeedCategoriesAsync(dbContext);
                 await seedHelper.SeedSaleObjectsAsync(dbContext);
-
             }
-
             app.Run();
-
         }
     }
 }

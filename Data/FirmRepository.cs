@@ -17,7 +17,6 @@ namespace FribergHomez.Data
             applicationDbContext.Add(firm);
             await applicationDbContext.SaveChangesAsync();
         }
-
         public async Task DeleteFirmAsync(int id)
         {
             var firmToDelete = await applicationDbContext.Firms.FindAsync(id);

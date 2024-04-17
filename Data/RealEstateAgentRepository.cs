@@ -1,7 +1,6 @@
 ﻿using FribergHomez.Models;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace FribergHomez.Data
 {
     //Peter
@@ -44,6 +43,5 @@ namespace FribergHomez.Data
         {
             return await applicationDbContext.Realtors.FirstOrDefaultAsync(r => r.Id == id);
         }
-
     }
 }

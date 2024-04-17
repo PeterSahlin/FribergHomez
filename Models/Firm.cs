@@ -7,9 +7,7 @@ namespace FribergHomez.Models
     {
         public int Id { get; set; }
         public string Name { get; set; } = "";
-
         public string Presentation { get; set; } = "";
-
         public string ImageLocation { get; set; } = "";
 
         public List<RealEstateAgent> RealEstateAgents { get; set; }
@@ -18,11 +16,13 @@ namespace FribergHomez.Models
             Name = name;
             Presentation = presentation;
             ImageLocation = imageLocation;
+
             RealEstateAgents = new List<RealEstateAgent>(); // Skapar en ny lista för Realtor-objekt
         }
-        public Firm()
+      /*  public Firm()
         {
             RealEstateAgents = new List<RealEstateAgent>();
-        }
+        }*/
+        public Firm() { }
     }
 }

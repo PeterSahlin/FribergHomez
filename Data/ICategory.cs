@@ -9,7 +9,5 @@ namespace FribergHomez.Data
         Task UpdateCategoryAsync(Category category);
         Task<List<Category>> GetAllCategoriesAsync();
         Task<Category> GetCategoryByIdAsync(int id);
-        
-
     }
 }
