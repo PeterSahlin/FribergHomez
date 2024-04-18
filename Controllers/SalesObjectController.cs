@@ -1,4 +1,5 @@
-﻿using FribergHomez.Data;
+﻿using AutoMapper;
+using FribergHomez.Data;
 using FribergHomez.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,10 +16,12 @@ namespace FribergHomez.Controllers
     {
         private readonly ISaleObject saleObjectRepo;
         private readonly IRealEstateAgent agentRepo;
-        public SalesObjectController(ISaleObject saleObjectRepo, IRealEstateAgent agentRepo)
+        private readonly IMapper mapper;
+        public SalesObjectController(ISaleObject saleObjectRepo, IRealEstateAgent agentRepo, IMapper mapper)
         {
             this.saleObjectRepo = saleObjectRepo;
             this.agentRepo = agentRepo;
+            this.mapper = mapper;
         }
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -68,24 +71,25 @@ namespace FribergHomez.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-                var saleObject = await saleObjectRepo.GetSalesObjectByIdAsync(id);
+                var saleObject = mapper.Map<SaleObject>(objectDto);
+                    /*await saleObjectRepo.GetSalesObjectByIdAsync(id);*/
                 if (saleObject == null)
                 {
                     return NotFound("No sale object found");
                 }
-                saleObject.Address = objectDto.Address;
-                saleObject.StartingPrice = objectDto.StartingPrice;
-                saleObject.LivingArea = objectDto.LivingArea;
-                saleObject.AncillaryArea = objectDto.AncillaryArea;
-                saleObject.PlotArea = objectDto.PlotArea;
-                saleObject.Description = objectDto.Description;
-                saleObject.NumberOfRooms = objectDto.NumberOfRooms;
-                saleObject.MonthlyFee = objectDto.MonthlyFee;
-                saleObject.OperatingCostPerYear = objectDto.AnnualOperatingCost;
-                saleObject.YearOfConstruction = objectDto.YearOfConstruction;
-                saleObject.CategoryId = objectDto.CategoryId;
-                saleObject.MunicipalityId = objectDto.MunicipalityId;
-                saleObject.RealEstateAgentId = objectDto.RealEstateAgentId;
+                //saleObject.Address = objectDto.Address;
+                //saleObject.StartingPrice = objectDto.StartingPrice;
+                //saleObject.LivingArea = objectDto.LivingArea;
+                //saleObject.AncillaryArea = objectDto.AncillaryArea;
+                //saleObject.PlotArea = objectDto.PlotArea;
+                //saleObject.Description = objectDto.Description;
+                //saleObject.NumberOfRooms = objectDto.NumberOfRooms;
+                //saleObject.MonthlyFee = objectDto.MonthlyFee;
+                //saleObject.OperatingCostPerYear = objectDto.AnnualOperatingCost;
+                //saleObject.YearOfConstruction = objectDto.ConstructionYear;
+                //saleObject.CategoryId = objectDto.CategoryId;
+                //saleObject.MunicipalityId = objectDto.MunicipalityId;
+                //saleObject.RealEstateAgentId = objectDto.RealEstateAgentId;
                 await saleObjectRepo.UpdateSalesObjectAsync(saleObject);
                 return NoContent();
             }
@@ -103,22 +107,23 @@ namespace FribergHomez.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-                var saleObject = new SaleObject
-                {
-                    Address = objectDto.Address,
-                    StartingPrice = objectDto.StartingPrice,
-                    LivingArea = objectDto.LivingArea,
-                    AncillaryArea = objectDto.AncillaryArea,
-                    PlotArea = objectDto.PlotArea,
-                    Description = objectDto.Description,
-                    NumberOfRooms = objectDto.NumberOfRooms,
-                    MonthlyFee = objectDto.MonthlyFee,
-                    OperatingCostPerYear = objectDto.AnnualOperatingCost,
-                    YearOfConstruction = objectDto.YearOfConstruction,
-                    CategoryId = objectDto.CategoryId,
-                    MunicipalityId = objectDto.MunicipalityId
+                var saleObject = mapper.Map<SaleObject>(objectDto);
+                    //new SaleObject
+                //{
+                //    Address = objectDto.Address,
+                //    StartingPrice = objectDto.StartingPrice,
+                //    LivingArea = objectDto.LivingArea,
+                //    AncillaryArea = objectDto.AncillaryArea,
+                //    PlotArea = objectDto.PlotArea,
+                //    Description = objectDto.Description,
+                //    NumberOfRooms = objectDto.NumberOfRooms,
+                //    MonthlyFee = objectDto.MonthlyFee,
+                //    OperatingCostPerYear = objectDto.AnnualOperatingCost,
+                //    YearOfConstruction = objectDto.ConstructionYear,
+                //    CategoryId = objectDto.CategoryId,
+                //    MunicipalityId = objectDto.MunicipalityId
 
-                };
+                //};
                 if (objectDto.RealEstateAgentId.HasValue)
                 {
                     var agent = await agentRepo.GetRealEstateAgentByIdAsync(objectDto.RealEstateAgentId.Value);
@@ -148,7 +153,7 @@ namespace FribergHomez.Controllers
         public int NumberOfRooms { get; set; }
         public int MonthlyFee { get; set; }
         public int AnnualOperatingCost { get; set; }
-        public int YearOfConstruction { get; set; }
+        public int ConstructionYear { get; set; }
         public int CategoryId { get; set; }
         public int? RealEstateAgentId { get; set; }
         public int MunicipalityId { get; set; }
