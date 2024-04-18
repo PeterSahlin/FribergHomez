@@ -28,6 +28,9 @@ namespace FribergHomez
             builder.Services.AddScoped<IMunicipality, MunicipalityRepository>();
             builder.Services.AddScoped<ICategory, CategoryRepository>();
 
+            //AutomapperService
+            builder.Services.AddAutoMapper(typeof(Program));
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

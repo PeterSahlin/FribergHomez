@@ -36,12 +36,16 @@ namespace FribergHomez.Data
 
         public async Task<List<RealEstateAgent>> GetAllRealEstateAgentsAsync()
         {
-            return await applicationDbContext.RealEstateAgents.ToListAsync();
+            return await applicationDbContext.RealEstateAgents
+                .Include(r => r.Firm)
+                .ToListAsync();
         }
 
         public async Task<RealEstateAgent> GetRealEstateAgentByIdAsync(int id)
         {
-            return await applicationDbContext.RealEstateAgents.FirstOrDefaultAsync(r => r.Id == id);
+            return await applicationDbContext.RealEstateAgents
+                .Include(r => r.Firm)
+                .FirstOrDefaultAsync(r => r.Id == id);
         }
     }
 }

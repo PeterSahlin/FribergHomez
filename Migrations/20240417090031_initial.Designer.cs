@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergHomez.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240417085138_init")]
-    partial class init
+    [Migration("20240417090031_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -189,7 +189,7 @@ namespace FribergHomez.Migrations
             modelBuilder.Entity("FribergHomez.Models.RealEstateAgent", b =>
                 {
                     b.HasOne("FribergHomez.Models.Firm", "Firm")
-                        .WithMany("RealEstateAgents")
+                        .WithMany()
                         .HasForeignKey("FirmId");
 
                     b.Navigation("Firm");
@@ -204,13 +204,13 @@ namespace FribergHomez.Migrations
                         .IsRequired();
 
                     b.HasOne("FribergHomez.Models.Municipality", "Municipality")
-                        .WithMany("SaleObjects")
+                        .WithMany()
                         .HasForeignKey("MunicipalityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FribergHomez.Models.RealEstateAgent", "RealEstateAgent")
-                        .WithMany("SaleObjects")
+                        .WithMany()
                         .HasForeignKey("RealEstateAgentId");
 
                     b.Navigation("Category");
@@ -218,21 +218,6 @@ namespace FribergHomez.Migrations
                     b.Navigation("Municipality");
 
                     b.Navigation("RealEstateAgent");
-                });
-
-            modelBuilder.Entity("FribergHomez.Models.Firm", b =>
-                {
-                    b.Navigation("RealEstateAgents");
-                });
-
-            modelBuilder.Entity("FribergHomez.Models.Municipality", b =>
-                {
-                    b.Navigation("SaleObjects");
-                });
-
-            modelBuilder.Entity("FribergHomez.Models.RealEstateAgent", b =>
-                {
-                    b.Navigation("SaleObjects");
                 });
 #pragma warning restore 612, 618
         }
