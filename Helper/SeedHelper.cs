@@ -144,7 +144,7 @@ namespace FribergHomez.Helper
 
         public async Task SeedCategoriesAsync(ApplicationDbContext applicationDbContext)
         {
-            if(!applicationDbContext.Categories.Any())
+            if (!applicationDbContext.Categories.Any())
             {
                 var category1 = new Category("House");
                 var category2 = new Category("Cottage");
@@ -202,25 +202,17 @@ namespace FribergHomez.Helper
                     new SaleObject {Address = "Plutos gränd 9F", Municipality = municipality3 , Category = category2, StartingPrice = 1295000, LivingArea = 52, AncillaryArea = 3, PlotArea = 0, Description = "Interiört möts vi av en härlig atmosfär där planlösningen är smart och tilltalande. Moderna och väl iordning gjorda ytskikt gör att det blir enkelt att trivas och flytta rakt in!\r\n\r\nBostaden disponerar ett fullutrustat IKEA kök med en praktisk köksmöbel som fungerar som en köksö. Öppen planlösning mellan kök och vardagsrum skapar härliga umgängesytor. Vidare finns här ett väl tilltaget sovrum, extra plus är att man valt att göra iordning walk-in-closeten till ett fint extra arbetsrum. Vidare erbjuds ett fräscht badrum utrustat med tvättmaskin. Guldkant på tillvaron ges på balkongen, belägen i ett skönt västerläge är detta en härlig plats att njuta och ha det gott på. \r\n", NumberOfRooms=2, MonthlyFee = 4095, OperatingCostPerYear = 8580, YearOfConstruction = 2009, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/itemgallery_cut/ba/f3/baf3fe664061e18d936e02a5964fbd17.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/6d/ef/6def1cf6a1738a64750636a0aeb52269.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/11/4d/114d1e2d9a3a89fe0d26a6f821acf604.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/b4/8d/b48dc72e15ff7d6e2b070f8d3f50300a.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/b4/6d/b46de9370a71404e6a79633b120eadb4.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/91/27/9127615fd734c702303fd0ff76535fcd.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/db/3a/db3a68723a16b4e01bd8f28e4160784f.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/91/f5/91f5df6c754451437bfcb6ea044024af.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/ee/5d/ee5d84b8a4304558633ab0c0ba65075b.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/66/b4/66b400a711215ed795b92fc35b848829.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/d2/d2/d2d26c34c3d848c0b151dd89655e9976.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/85/63/8563daf0605f5aef43c5aeedee9ac06b.jpg"} ,RealEstateAgent = stjarnhusAgent  },
                     new SaleObject {Address = "Fikonvägen 51", Municipality = municipality4 , Category = category2, StartingPrice = 2400000, LivingArea = 94, AncillaryArea = 3, PlotArea = 0, Description = "Med ett av områdets bästa lägen välkomnas du här till denna trivsamma fyrarumslägenhet i populära Älmhult. Både kök och de två badrummen är smakfullt renoverade. I köket finns plats för större matplats invid fönstret och det ena badrummet är utrustat med tvättmaskin. Tack vare hörnläget har bostaden ett fint ljusinsläpp från tre väderstreck. Balkongen på husets gavel i sydvästligt läge ger härligt solläge från lunch till sena kvällen. Välkommen att trivas!", NumberOfRooms=4, MonthlyFee = 4977, OperatingCostPerYear = 10900, YearOfConstruction = 1979, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/itemgallery_cut/fe/21/fe218456fbf21d8e074d2102700550fc.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/62/e2/62e2b935f8cbdf8be3e4cee04c39d64c.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/67/f4/67f4fff2a90af24ecc375db98bbee94c.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/05/da/05da52c7a682d18ec5f1176009efd6ce.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/51/d0/51d072c3d1900befb23435b11d84fd04.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/a0/b1/a0b1007ae95e0001edfae11023b9b11e.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/0f/14/0f141e8f2fbb745a5430c01cae2f1fa5.jpg", "https://bilder.hemnet.se/images/itemgallery_portrait_cut/ef/6e/ef6e6435a4b7fedfaa8bd675593cb621.jpg", "https://bilder.hemnet.se/images/itemgallery_portrait_cut/90/a9/90a9e184cffb0cce04dd8ce83c4a42d6.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/2c/b6/2cb6ad6cca916e6836733d7882e902a7.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/98/22/982293276b95f49e60c440d31a10fce3.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/76/56/765647ad675331c8089795aa51f7074b.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/8b/de/8bde2c2b10d158a77a608a27a72863fd.jpg"} ,RealEstateAgent = hemlangtanAgent  },
                     
-                    
-
-
-
-                    
-
+                   
                     //seed cottages
                     new SaleObject {Address = "Bollmoravägen 4", Municipality = municipality2 , Category = category2, StartingPrice = 1450000, LivingArea = 23, AncillaryArea = 2, PlotArea = 0, Description = "", NumberOfRooms=6, MonthlyFee = 2425, OperatingCostPerYear = 29100, YearOfConstruction = 1938, ImageUrl = new List<string>{ ""} ,RealEstateAgent = stjarnhusAgent  },
+                    
                     //seed terranced houses
+                    //peter
                     new SaleObject {Address = "Sandavägen 22", Municipality = municipality1 , Category = category4, StartingPrice = 4495000, LivingArea = 132, AncillaryArea = 34, PlotArea = 328, Description = "Huset ligger högt med magiskt fin utsikt och mycket bra solläge med eftermiddags och kvällssol beroende på årstid från den stora balkongen och trädgården med altan på baksidan. På framsidan finns två fina uteplatser som är stenlagda. Här finns även ett stort garage med goda förvarings utrymmen samt parkering för två bilar. ", NumberOfRooms=6, MonthlyFee = 3206, OperatingCostPerYear = 38473, YearOfConstruction = 1970, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/itemgallery_cut/31/a6/31a6b5d2f6a7551a68d0c1bbb7cb86bb.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/e2/c5/e2c543b939896000718dfaa086b203fc.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/9d/e9/9de9bf561c715f165e8249274680899a.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/82/48/824869053dd9d0877f7f5fcf59e967fd.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/11/f0/11f0bc358528a2fa369873067a1c77b7.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/19/bc/19bc7dcc4c07583fc167fc5f4e650962.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/8d/03/8d03be90d86d46d41f56ed4dc1c4c24d.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/13/af/13afa5d03276ab0dbac21bc8c1fde6d0.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/2b/62/2b62cfa28d6e72d8fc09f37b5ad43419.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/64/d1/64d1845c26ae7f5e2951582d65839717.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/47/29/47295655e423aded317eb5a5633b7005.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/39/3d/393d1a0baa5bdcc76eb78b41f46c633c.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/8e/f5/8ef5862b49a2499fbdafa01bb9de9ec4.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/73/93/73930100216595d559e5f7806751b9e3.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/9d/7d/9d7dab3820ef6f3fc713295f5ae4e3e8.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/dd/1f/dd1f3930254e8af7efe78b55c1f14152.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/fe/e1/fee1b4a9bba1ef3991e6840c7f39b3ed.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/c9/3d/c93d40ff20ee989240fb846ef5a4fc62.jpg"} ,RealEstateAgent = hemlangtanAgent  },
                     new SaleObject {Address = "Stuterivägen 25", Municipality = municipality2 , Category = category4, StartingPrice = 5290000, LivingArea = 134, AncillaryArea = 22, PlotArea = 127, Description = "Den här bostaden är ett under av god planering med exklusiva materialval tillsammans med trendig design. Här finner ni genomgående parkettgolv i 1-stavig vit ask och klinker med underliggande golvvärme på hela entréplan. Här lyckades arkitekten med konststycket att få in många rum och samtidigt få dem att kännas luftiga, stora och inbjudande med generösa fönsterpartier.", NumberOfRooms=5, MonthlyFee = 4959, OperatingCostPerYear = 13450, YearOfConstruction = 2017, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/itemgallery_cut/7d/93/7d93c69a0ed8b96568c9671be4c1c967.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/f9/4a/f94a395ee18e02a85b12d02afe72723a.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/7c/5f/7c5f20fd347aebe560c013a2907767bb.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/0c/62/0c62cb84b5f7b82e613a46c465fa754f.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/3b/88/3b88a1c9019be8a9a4e096e2bf38ccea.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/da/ae/daae518aeea5431ed7cea7922d1c678f.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/85/bf/85bfb80e86fcce65505474d3b20eff98.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/73/c1/73c19e441f69b41d7d7b8547a9711714.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/04/5a/045a60dd45fff986a6f0d4b9b941fabb.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/70/1d/701dff2eb9bab344011a97367566a1c3.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/da/21/da2138a801cac6c521d7656f27006477.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/ae/76/ae762105d24fb22d9bbf8535bc5d82d8.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/f8/27/f82730fb943da5517f00d15476d593a4.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/72/34/723453325418f2c7ec710a90e7b97967.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/94/3a/943a3beb6665378100b3e88ba99bd58d.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/84/01/8401f2795f4e07c8851d81decc036cd7.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/79/12/791247b9f734ad7a24ec34e9d61a0b03.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/d5/22/d5223f5851760912a25c6d1df088d664.jpg"} ,RealEstateAgent = elysiumAgent  },
                     new SaleObject {Address = "Ekvägen 19A", Municipality = municipality3 , Category = category4, StartingPrice = 2950000, LivingArea = 120, AncillaryArea = 16, PlotArea = 372, Description = "Med en boyta på 120 kvm fördelat över 5 rum, ivarav 4 sovrum, erbjuder detta hem gott om plats för hela familjen. Här finner du ett rymligt kök med matplats, ett ljust vardagsrum och praktiska utrymmen såsom tvättstuga, gästtoalett och badrum. Detta trevliga boende lockar med inte mindre än 2 soliga uteplatser, perfekta för avkoppling och umgänge under varma sommardagar. Dessutom finns gott om förvaringsmöjligheter, vilket underlättar vardagen.\r\n", NumberOfRooms=5, MonthlyFee = 5409, OperatingCostPerYear = 64912, YearOfConstruction = 1968, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/itemgallery_cut/f3/20/f32074b6a1e9382e4e355a13d6c0b334.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/94/10/9410157319b084d3a1e7c94f5c3e14f1.jpg", "https://bilder.hemnet.se/images/itemgallery_portrait_cut/bd/1e/bd1e885061649aabde659dd1bb0678b6.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/b5/4f/b54f29655bed185ba35b59a6ccbb4230.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/12/f8/12f808fce203fdfd97296ac998b7c76c.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/9f/a7/9fa77bdc1efa49a7a3a57996cc6c6604.jpg", "https://bilder.hemnet.se/images/itemgallery_portrait_cut/4c/76/4c761d7ae045fc2ecce080e7e2ee02fe.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/58/8d/588d8577ee6ef9460677fe985fa9f82e.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/42/59/425959dffbffc8789c06eab4a1faf52b.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/1d/3f/1d3f2fa62e69e9cbe717e306be1aed51.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/d2/da/d2da929ee629dcd62713afde1fe78930.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/90/f2/90f259ab75648e52d3064c449d7d6b5d.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/da/8b/da8b1faefbb34ea0aa093793e619a28b.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/85/40/854024bd480f6ee7d29e989de92e499c.jpg", "https://bilder.hemnet.se/images/itemgallery_portrait_cut/08/f3/08f3b336f470405b100e5101e8a88326.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/2f/73/2f73fadc7da43997a2a046cc83180fff.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/28/00/2800859de50a4b5bdfc81083877491a4.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/a5/b8/a5b893c309925b5dbbb8776b404859aa.jpg"} ,RealEstateAgent = hemlangtanAgent  },
                     new SaleObject {Address = "Vällstavägen 3", Municipality = municipality4 , Category = category4, StartingPrice = 4495000, LivingArea = 123, AncillaryArea = 5, PlotArea = 0, Description = "Här bor du i ett modernt boende i barnvänligt område. Husen är väldisponerade med fina sällskapsytor som präglas av ljus och rymd. Vardagsrum i öppen planlösning mot köket med härligt ljusinsläpp. Fullt utrustat kök öppet mot matplats och vardagsrum. Tre sovrum som med enkla medel kan bli fyra. På entréplan finns kombinerat duschrum och tvättstuga och på den övre våningen finns såväl badrum som en mindre klädkammare. Från vardagsrummet nås den härliga uteplatsen och trädgården med altan och gräsytor - här är det bara att släppa ut barnen!", NumberOfRooms=5, MonthlyFee = 5261, OperatingCostPerYear = 22668, YearOfConstruction = 2019, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/itemgallery_cut/95/2e/952ee0d5dd1e2903b1393d36529e73db.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/80/a2/80a226980c8ac3a09212803e797eaf6b.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/b5/a7/b5a72149974cc893b57b730ccded5353.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/ef/d3/efd300b49080dc42053d3b5d484e9888.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/ac/96/ac968e61e075404b06a46ee3cf6a0f43.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/dc/5c/dc5c7a14a7e6b6286bc4ebba0b5bcc27.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/ba/a6/baa6b687541f719759d2fa3f756eb278.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/ea/7c/ea7cc07c974d43e840be7701439ef86a.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/29/01/2901eb22f06b268e96304e8fe12d5b0a.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/13/a6/13a6adf29b5110f774a90c1ba8602343.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/ee/4a/ee4ad7b88c8b194401651f64a3187751.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/d3/bc/d3bc97f1b0b105cc1921dc88997cae6e.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/33/71/3371227089106039ec4ad1cd50cf550b.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/44/e9/44e9c63f58676cb7a4a695a9d2c6008a.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/85/db/85db18201702f5abd5ba2c370d50d727.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/48/a3/48a345fef68766dfa5e89844075af060.jpg"} ,RealEstateAgent = elysiumAgent  },
                     new SaleObject {Address = "Klappdansvägen 6", Municipality = municipality6 , Category = category4, StartingPrice = 2250000, LivingArea = 104, AncillaryArea = 155, PlotArea = 386, Description = "Välkommen till Klappdansvägen 6 och detta mycket praktiska hus som passar den stora familjen. Här uppenbarar sig massor av plats för lek och bus då undervåningen bjuder på stora ytor att leka på. Tomten ligger med soligt västerläge, här kan man njuta på den trevliga altanen som går att förädla. Boytan på 104 kvm är för delad på 3 sovrum (för närvarande 2), vardagsrum och kök. Dessutom har man 155 kvm i biyta där hela källaren och ett rymligt garage ingår. Alldeles i närheten har man Bulids underbara naturområde perfekt för härliga promenader eller andra aktiviteter, och Hovhultsskolan inom gångavstånd även för de minsta barnen. Fasaden är nyligen ommålad och utbytt där det behövdes.", NumberOfRooms=6, MonthlyFee = 3708, OperatingCostPerYear = 44500, YearOfConstruction = 1970, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/itemgallery_cut/ad/6c/ad6c9a88afae9b22159f776d6f99381a.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/8a/d4/8ad44ab7f5b84c0805736c7deee4af30.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/5f/fb/5ffb21c54e897218e3f6ec7905d273c6.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/a3/c3/a3c37631bb71f8554c0a5c4d396684cf.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/b6/15/b61504b65e64656468ab5a98fe93c0d4.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/7f/cd/7fcdab15b156fd07d71343de252b4a97.jpg", "https://bilder.hemnet.se/images/itemgallery_portrait_cut/7d/bd/7dbd09f5b616bbee91417c0c5babd782.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/68/c8/68c839d2824c170776387f9266c47281.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/c4/4a/c44a48dfdb93bf02e172b8f55accfd1e.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/4b/86/4b862de13edd743a2fdcb60cbd921a01.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/db/f3/dbf3844fe70875a51acbf4318a188a5c.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/78/01/7801358ec6dfb658992bbf8a9a007a23.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/04/68/04680437b2f346fb0d45b3bcd4068d63.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/c0/14/c014516a55e1b1718a376354cc5dce0f.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/1e/5d/1e5d8cda5001ebae284b8ca5a7ac6347.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/3f/22/3f222382c655bcd63a5a9e1d0a18622b.jpg"} ,RealEstateAgent = elysiumAgent  },
-                    
-                    
-                    
-                    
-
 
                 };
 
@@ -241,7 +233,6 @@ namespace FribergHomez.Helper
                     Name = "Stjärnhus Mäklartjänst",
                     Presentation = "Stjärnhus Mäklartjänst är en modern mäklarfirma som drivs av passion för att hjälpa kunder att hitta sina drömhem. Med innovativa marknadsföringsstrategier och en dedikerad team av fastighetsmäklare arbetar de för att maximera värdet för varje bostadsförsäljning och skapa en enastående kundupplevelse.",
                     ImageLocation = "placeholder.img",
-                    //RealEstateAgents = listOfTorontoAgents
                 };
 
                 var hemlangtanFirm = new Firm
@@ -249,21 +240,19 @@ namespace FribergHomez.Helper
                     Name = "Hemlängtan Fastighetsmäkleri",
                     Presentation = "Hemlängtan Fastighetsmäkleri är en professionell mäklarfirma som specialiserar sig på att hjälpa kunder att hitta sitt drömhem. Med en passion för att skapa meningsfulla hem och en personlig touch i varje interaktion strävar de efter att göra köp- och säljprocessen så smidig och trevlig som möjligt för sina kunder.",
                     ImageLocation = "placeholder.img",
-                    //RealEstateAgents = listOfPittsburghAgents
                 };
                 var elysiumFirm = new Firm
                 {
                     Name = "Elysium Fastighetsförmedling",
                     Presentation = "Elysium Fastighetsförmedling strävar efter att förmedla bostäder som ger kunderna en känsla av himmelskt paradis. Med en djup förståelse för kundernas önskemål och behov arbetar de för att skapa en smidig och lyckad fastighetsaffär, där varje hem blir en oas av frid och skönhet.",
                     ImageLocation = "placeholder.img",
-                    //RealEstateAgents = listOfColoradoAgents
                 };
                 applicationDbContext.AddRange(stjarnhusFirm, hemlangtanFirm, elysiumFirm);
-                applicationDbContext.SaveChanges();
+                await applicationDbContext.SaveChangesAsync();
             }
 
 
-            List<SaleObject> saleObjectList = new List<SaleObject>();
+            //List<SaleObject> saleObjectList = new List<SaleObject>();
             if (!applicationDbContext.RealEstateAgents.Any())
             {
                 Firm stjarnhusFirm = applicationDbContext.Firms.FirstOrDefault(f => f.Name.Contains("Stjärnhus"));
@@ -292,36 +281,19 @@ namespace FribergHomez.Helper
             {
                 List<Municipality> municipalityList = new List<Municipality>
                 {
-                //new Municipality { Name = "Ale" },
-                //new Municipality { Name = "Alingsås" },
-                //new Municipality { Name = "Alvesta" },
-                //new Municipality("Aneby"),
-                //new Municipality("Arboga"),
-                //new Municipality("Arjeplog"),
-                //new Municipality("Arvidsjaur"),
-                //new Municipality("Arvika"),
-                //new Municipality("Askersund"),
-                //new Municipality("Avesta"),
-                //new Municipality("Bengtsfors"),
-                //new Municipality("Berg"),
-                //new Municipality("Bjurholm"),
-                //new Municipality("Bjuv"),
-                //new Municipality("Boden"),
-                //new Municipality("Bollebygd"),
-                //new Municipality("Bollnäs"),
 
-                new Municipality("Härryda"),
-                new Municipality("Hjo"),
-                new Municipality("Umeå"),
-                new Municipality("Flen"),
-                new Municipality("Älmhult"),
-                new Municipality("Åre"),
+                    new Municipality("Härryda"),
+                    new Municipality("Hjo"),
+                    new Municipality("Umeå"),
+                    new Municipality("Flen"),
+                    new Municipality("Älmhult"),
+                    new Municipality("Åre"),
 
 
 
                 };
                 applicationDbContext.AddRange(municipalityList);
-                applicationDbContext.SaveChanges();
+                await applicationDbContext.SaveChangesAsync();
             };
 
         }
