@@ -41,7 +41,7 @@ namespace FribergHomez.Data
                 .ToListAsync();
         }
 
-        public async Task<RealEstateAgent> GetRealEstateAgentByIdAsync(int id)
+        public async Task<RealEstateAgent> GetRealEstateAgentByIdAsync(Guid id)
         {
             return await applicationDbContext.RealEstateAgents
                 .Include(r => r.Firm)
