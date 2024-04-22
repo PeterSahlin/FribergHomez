@@ -10,9 +10,13 @@ namespace FribergHomez.Models
         public string LastName { get; set; } = "";
         public string ImageUrl { get; set; } = "";
 
+        //public List<SaleObject> SaleObjects { get; set; } 
+
+
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         //public List<SaleObject> SaleObjects { get; set; }
+
 
         // Foreign Keys
         public int? FirmId { get; set; }
