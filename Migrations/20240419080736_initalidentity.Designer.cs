@@ -4,6 +4,7 @@ using FribergHomez.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergHomez.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240419080736_initalidentity")]
+    partial class initalidentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,6 +84,44 @@ namespace FribergHomez.Migrations
                     b.ToTable("Municipalities");
                 });
 
+            modelBuilder.Entity("FribergHomez.Models.RealEstateAgent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("FirmId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FirmId");
+
+                    b.ToTable("RealEstateAgents");
+                });
+
             modelBuilder.Entity("FribergHomez.Models.SaleObject", b =>
                 {
                     b.Property<int>("Id")
@@ -128,9 +169,6 @@ namespace FribergHomez.Migrations
                     b.Property<int?>("RealEstateAgentId")
                         .HasColumnType("int");
 
-                    b.Property<string>("RealEstateAgentId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("StartingPrice")
                         .HasColumnType("int");
 
@@ -143,7 +181,7 @@ namespace FribergHomez.Migrations
 
                     b.HasIndex("MunicipalityId");
 
-                    b.HasIndex("RealEstateAgentId1");
+                    b.HasIndex("RealEstateAgentId");
 
                     b.ToTable("SaleObjects");
                 });
@@ -212,11 +250,6 @@ namespace FribergHomez.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(21)
-                        .HasColumnType("nvarchar(21)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -268,10 +301,6 @@ namespace FribergHomez.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -357,26 +386,11 @@ namespace FribergHomez.Migrations
 
             modelBuilder.Entity("FribergHomez.Models.RealEstateAgent", b =>
                 {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+                    b.HasOne("FribergHomez.Models.Firm", "Firm")
+                        .WithMany()
+                        .HasForeignKey("FirmId");
 
-                    b.Property<int?>("FirmId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasIndex("FirmId");
-
-                    b.HasDiscriminator().HasValue("RealEstateAgent");
+                    b.Navigation("Firm");
                 });
 
             modelBuilder.Entity("FribergHomez.Models.SaleObject", b =>
@@ -395,7 +409,7 @@ namespace FribergHomez.Migrations
 
                     b.HasOne("FribergHomez.Models.RealEstateAgent", "RealEstateAgent")
                         .WithMany()
-                        .HasForeignKey("RealEstateAgentId1");
+                        .HasForeignKey("RealEstateAgentId");
 
                     b.Navigation("Category");
 
@@ -453,15 +467,6 @@ namespace FribergHomez.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("FribergHomez.Models.RealEstateAgent", b =>
-                {
-                    b.HasOne("FribergHomez.Models.Firm", "Firm")
-                        .WithMany()
-                        .HasForeignKey("FirmId");
-
-                    b.Navigation("Firm");
                 });
 #pragma warning restore 612, 618
         }
