@@ -155,7 +155,7 @@ namespace FribergHomez.Controllers
         public int AnnualOperatingCost { get; set; }
         public int ConstructionYear { get; set; }
         public int CategoryId { get; set; }
-        public Guid? RealEstateAgentId { get; set; }
+        public int? RealEstateAgentId { get; set; }
         public int MunicipalityId { get; set; }
     }
 }

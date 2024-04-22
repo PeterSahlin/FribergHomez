@@ -32,13 +32,13 @@ namespace FribergHomez
             builder.Services.AddScoped<ICategory, CategoryRepository>();
 
             //Identity
-            builder.Services.AddIdentity<RealEstateAgent, IdentityRole<Guid>>(options => {
-                options.SignIn.RequireConfirmedEmail = false;
-                options.SignIn.RequireConfirmedPhoneNumber = false;
-                options.SignIn.RequireConfirmedAccount = false;
-            })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            //builder.Services.AddIdentity<RealEstateAgent, IdentityRole<Guid>>(options => {
+            //    options.SignIn.RequireConfirmedEmail = false;
+            //    options.SignIn.RequireConfirmedPhoneNumber = false;
+            //    options.SignIn.RequireConfirmedAccount = false;
+            //})
+            //    .AddEntityFrameworkStores<ApplicationDbContext>()
+            //    .AddDefaultTokenProviders();
 
             //AutomapperService
             builder.Services.AddAutoMapper(typeof(Program));

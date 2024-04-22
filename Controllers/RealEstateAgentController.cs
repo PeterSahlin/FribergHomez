@@ -76,7 +76,7 @@ namespace FribergHomez.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid id, [FromBody] AgentDto agentDto)
+        public async Task<IActionResult> Put(int id, [FromBody] AgentDto agentDto)
         {
             try
             {
