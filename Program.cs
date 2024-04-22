@@ -1,6 +1,9 @@
 using FribergHomez.Data;
 using FribergHomez.Helper;
+using FribergHomez.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FribergHomez
 {
@@ -27,6 +30,15 @@ namespace FribergHomez
             builder.Services.AddScoped<IRealEstateAgent, RealEstateAgentRepository>();
             builder.Services.AddScoped<IMunicipality, MunicipalityRepository>();
             builder.Services.AddScoped<ICategory, CategoryRepository>();
+
+            //Identity
+            //builder.Services.AddIdentity<RealEstateAgent, IdentityRole<Guid>>(options => {
+            //    options.SignIn.RequireConfirmedEmail = false;
+            //    options.SignIn.RequireConfirmedPhoneNumber = false;
+            //    options.SignIn.RequireConfirmedAccount = false;
+            //})
+            //    .AddEntityFrameworkStores<ApplicationDbContext>()
+            //    .AddDefaultTokenProviders();
 
             //AutomapperService
             builder.Services.AddAutoMapper(typeof(Program));
