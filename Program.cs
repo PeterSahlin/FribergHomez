@@ -31,6 +31,8 @@ namespace FribergHomez
             //AutomapperService
             builder.Services.AddAutoMapper(typeof(Program));
 
+            //Identity
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
