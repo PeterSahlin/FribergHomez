@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FribergHomez", "FribergHomez.csproj", "{3C555639-3D7B-4E2D-9621-3A6823FC845C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FribergHomezClient", "..\FribergHomezClient\FribergHomezClient.csproj", "{9ECD7582-3316-40CF-87AD-898E38142EE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FribergHomezClient", "..\FribergHomezClient\FribergHomezClient.csproj", "{9ECD7582-3316-40CF-87AD-898E38142EE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
