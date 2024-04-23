@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FribergHomez
 {
-    //All
+    //All 
     public class Program
     {
         public static async Task Main(string[] args)
