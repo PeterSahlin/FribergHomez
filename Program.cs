@@ -31,6 +31,18 @@ namespace FribergHomez
             builder.Services.AddScoped<IMunicipality, MunicipalityRepository>();
             builder.Services.AddScoped<ICategory, CategoryRepository>();
 
+            //Cors
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+                });
+            });
+            
+
             //Identity
             //builder.Services.AddIdentity<RealEstateAgent, IdentityRole<Guid>>(options => {
             //    options.SignIn.RequireConfirmedEmail = false;
@@ -58,6 +70,8 @@ namespace FribergHomez
 
             app.UseAuthorization();
 
+            //Cors
+            app.UseCors();
 
             app.MapControllers();
 

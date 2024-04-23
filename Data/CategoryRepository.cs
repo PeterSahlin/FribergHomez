@@ -30,7 +30,7 @@ namespace FribergHomez.Data
             await applicationDbContext.SaveChangesAsync();
         }
 
-        public async Task<List<Category>> GetAllCategoriesAsync()
+        public async Task<List<Category>> GetAllCategoriesAsync()                               //ienumerable?
         {
             return await applicationDbContext.Categories.ToListAsync();
         }
