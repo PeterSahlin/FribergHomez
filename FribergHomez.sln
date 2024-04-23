@@ -5,7 +5,9 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FribergHomez", "FribergHomez.csproj", "{3C555639-3D7B-4E2D-9621-3A6823FC845C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FribergHomezClient", "..\FribergHomezClient\FribergHomezClient.csproj", "{9ECD7582-3316-40CF-87AD-898E38142EE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FribergHomezClientWRONG", "..\FribergHomezClient\FribergHomezClientWRONG.csproj", "{9ECD7582-3316-40CF-87AD-898E38142EE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FribergHomezClient", "FribergHomezClient\FribergHomezClient.csproj", "{A2A9608F-7FC0-4627-8F35-C05580876C54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{9ECD7582-3316-40CF-87AD-898E38142EE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9ECD7582-3316-40CF-87AD-898E38142EE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9ECD7582-3316-40CF-87AD-898E38142EE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2A9608F-7FC0-4627-8F35-C05580876C54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2A9608F-7FC0-4627-8F35-C05580876C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2A9608F-7FC0-4627-8F35-C05580876C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2A9608F-7FC0-4627-8F35-C05580876C54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
