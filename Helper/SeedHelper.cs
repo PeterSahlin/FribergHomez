@@ -149,7 +149,7 @@ namespace FribergHomez.Helper
                 var category1 = new Category("House");
                 var category2 = new Category("Cottage");
                 var category3 = new Category("Condo");
-                var category4 = new Category("Terraced House");
+                var category4 = new Category("Condo Terraced House");
                 applicationDbContext.AddRange(category1, category2, category3, category4);
                 await applicationDbContext.SaveChangesAsync();
             }
@@ -180,9 +180,9 @@ namespace FribergHomez.Helper
 
                 //get categories
                 Category category1 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "House");
-                Category category2 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "Condo");
-                Category category3 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "Cottage");
-                Category category4 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "Terraced House");
+                Category category2 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "Cottage");
+                Category category3 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "Condo");
+                Category category4 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "Condo Terraced House");
 
 
                 //create sales objects
