@@ -34,7 +34,11 @@ namespace FribergHomez.Data
         }
         public async Task AddSalesObjectAsync(SaleObject saleobject)
         {
+           
             applicationDbContext.SaleObjects.Add(saleobject);
+            applicationDbContext.Entry(saleobject.Category).State = EntityState.Detached;
+            applicationDbContext.Entry(saleobject.Municipality).State = EntityState.Detached;
+            applicationDbContext.Entry(saleobject.RealEstateAgent).State = EntityState.Detached;
             await applicationDbContext.SaveChangesAsync();
         }
         public async Task DeleteSalesObjectAsync(int id)
