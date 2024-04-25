@@ -146,10 +146,10 @@ namespace FribergHomez.Helper
         {
             if (!applicationDbContext.Categories.Any())
             {
-                var category1 = new Category("House");
-                var category2 = new Category("Cottage");
-                var category3 = new Category("Condo");
-                var category4 = new Category("Condo Terraced House");
+                var category1 = new Category("Villa");
+                var category2 = new Category("Fritidshus");
+                var category3 = new Category("Lägenhet");
+                var category4 = new Category("Radhus");
                 applicationDbContext.AddRange(category1, category2, category3, category4);
                 await applicationDbContext.SaveChangesAsync();
             }
@@ -179,10 +179,10 @@ namespace FribergHomez.Helper
                 Firm elysiumFirm = await applicationDbContext.Firms.FirstAsync(f => f.Name.Contains("Elysium"));
 
                 //get categories
-                Category category1 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "House");
-                Category category2 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "Cottage");
-                Category category3 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "Condo");
-                Category category4 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "Condo Terraced House");
+                Category category1 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "Villa");
+                Category category2 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "Fritidshus");
+                Category category3 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "Lägenhet");
+                Category category4 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "Radhus");
 
 
                 //create sales objects
@@ -227,6 +227,9 @@ namespace FribergHomez.Helper
                 };
 
                 applicationDbContext.AddRange(saleObjectList);
+                //applicationDbContext.Entry(saleObjectList[0].Category).State = EntityState.Unchanged;
+                //applicationDbContext.Entry(saleObjectList[0].Municipality).State = EntityState.Unchanged;
+                //applicationDbContext.Entry(saleObjectList[0].RealEstateAgent).State = EntityState.Unchanged;
                 await applicationDbContext.SaveChangesAsync();
             }
         }
@@ -269,11 +272,11 @@ namespace FribergHomez.Helper
                 Firm hemlangtanFirm = applicationDbContext.Firms.FirstOrDefault(f => f.Name.Contains("Hemlängtan"));
                 Firm elysiumFirm = applicationDbContext.Firms.FirstOrDefault(f => f.Name.Contains("Elysium"));
 
-                var stjarnhusAgent1 = new RealEstateAgent { FirstName = "Mats", LastName = "Sundin", Email = "mats@stjarnhus.com", PhoneNumber = "555-47874", Firm = stjarnhusFirm }; //SaleObjects = saleObjectList };
+                var stjarnhusAgent1 = new RealEstateAgent { FirstName = "Mats", LastName = "Sundin", ImageUrl= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRqYLRKkNcA1GFnlpSzx44HU_PQUsWKl_rEw&s", Email = "mats@stjarnhus.com", PhoneNumber = "555-47874", Firm = stjarnhusFirm }; //SaleObjects = saleObjectList };
 
-                var hemlangtanAgent1 = new RealEstateAgent { FirstName = "Niklas", LastName = "Lidström", Email = "niklas@hemlangtan.com", PhoneNumber = "599-435811", Firm = hemlangtanFirm }; //SaleObjects = saleObjectList };
+                var hemlangtanAgent1 = new RealEstateAgent { FirstName = "Niklas", LastName = "Lidström", ImageUrl = "https://assets-global.website-files.com/651ff9f9e751432883ffd860/65425d1dfafa3a0355ac279c_nicklas.png", Email = "niklas@hemlangtan.com", PhoneNumber = "599-435811", Firm = hemlangtanFirm }; //SaleObjects = saleObjectList };
 
-                var elysiumAgent1 = new RealEstateAgent { FirstName = "Peter", LastName = "Forsberg", Email = "peter@elysium.com", PhoneNumber = "988-12447", Firm = elysiumFirm };
+                var elysiumAgent1 = new RealEstateAgent { FirstName = "Peter", LastName = "Forsberg", ImageUrl= "https://nextlevelgroup.se/Images/Profiler/Profil-PeterForsberg.jpg", Email = "peter@elysium.com", PhoneNumber = "988-12447", Firm = elysiumFirm };
 
                 applicationDbContext.AddRange(stjarnhusAgent1);
                 applicationDbContext.AddRange(hemlangtanAgent1);
