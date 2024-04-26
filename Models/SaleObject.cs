@@ -18,6 +18,7 @@ namespace FribergHomez.Models
         public int YearOfConstruction { get; set; }
         public List<string> ImageUrl { get; set; } = new List<string>();
 
+        public bool IsActive { get; set; }  = true;
 
         //Foreign Keys
         public int? RealEstateAgentId { get; set; }
@@ -30,11 +31,11 @@ namespace FribergHomez.Models
         public Category Category { get; set; }
 
         public SaleObject() { }
-        
+
         //Peter
-        public SaleObject(string adress, Municipality municipality, Category category, int startingPrice, 
-                            int livingArea, int ancilleryArea, int plotArea, string description, int numberOfRooms, 
-                            int monthlyFee, int operationCostPerYear, int yearOfConstruction, List<string> imgUrl, RealEstateAgent realEstateAgent)
+        public SaleObject(string adress, Municipality municipality, Category category, int startingPrice,
+                            int livingArea, int ancilleryArea, int plotArea, string description, int numberOfRooms,
+                            int monthlyFee, int operationCostPerYear, int yearOfConstruction, List<string> imgUrl, RealEstateAgent realEstateAgent, bool isActive)
         {
             Address = adress;
             Municipality = municipality;
@@ -50,6 +51,7 @@ namespace FribergHomez.Models
             YearOfConstruction = yearOfConstruction;
             ImageUrl = imgUrl;
             RealEstateAgent = realEstateAgent;
+            IsActive = isActive;
         }
     }
 }

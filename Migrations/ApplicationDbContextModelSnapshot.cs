@@ -145,6 +145,9 @@ namespace FribergHomez.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<int>("LivingArea")
                         .HasColumnType("int");
 

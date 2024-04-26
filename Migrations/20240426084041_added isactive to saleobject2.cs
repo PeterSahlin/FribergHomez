@@ -5,7 +5,7 @@
 namespace FribergHomez.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class addedisactivetosaleobject2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -91,6 +91,7 @@ namespace FribergHomez.Migrations
                     OperatingCostPerYear = table.Column<int>(type: "int", nullable: false),
                     YearOfConstruction = table.Column<int>(type: "int", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     RealEstateAgentId = table.Column<int>(type: "int", nullable: true),
                     MunicipalityId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)

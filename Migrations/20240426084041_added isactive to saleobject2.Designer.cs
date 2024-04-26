@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergHomez.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240425140140_tried to fix seed2")]
-    partial class triedtofixseed2
+    [Migration("20240426084041_added isactive to saleobject2")]
+    partial class addedisactivetosaleobject2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -148,6 +148,9 @@ namespace FribergHomez.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<int>("LivingArea")
                         .HasColumnType("int");
 
@@ -166,7 +169,7 @@ namespace FribergHomez.Migrations
                     b.Property<int>("PlotArea")
                         .HasColumnType("int");
 
-                    b.Property<int>("RealEstateAgentId")
+                    b.Property<int?>("RealEstateAgentId")
                         .HasColumnType("int");
 
                     b.Property<int>("StartingPrice")
@@ -211,9 +214,7 @@ namespace FribergHomez.Migrations
 
                     b.HasOne("FribergHomez.Models.RealEstateAgent", "RealEstateAgent")
                         .WithMany()
-                        .HasForeignKey("RealEstateAgentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RealEstateAgentId");
 
                     b.Navigation("Category");
 

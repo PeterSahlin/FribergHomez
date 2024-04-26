@@ -15,7 +15,7 @@ namespace FribergHomez.Data
 
         public async Task<List<SaleObject>> GetAllSalesObjectsAsync()
         {
-            //return await applicationDbContext.SaleObjects.ToListAsync();
+            
             return await applicationDbContext.SaleObjects
                 .Include(s => s.Municipality)
                 .Include(s => s.Category)
@@ -23,6 +23,23 @@ namespace FribergHomez.Data
                 .Include(s => s.RealEstateAgent.Firm)
                 .ToListAsync();
         }
+        public async Task<List<SaleObject>> GetActiveSalesObjectsAsync()
+        {
+            return await applicationDbContext.SaleObjects
+                .Include(s => s.Municipality)
+                .Include(s => s.Category)
+                .Include(s => s.RealEstateAgent)
+                .Include(s => s.RealEstateAgent.Firm)
+                .Where(s=>s.IsActive==true)
+                .ToListAsync();
+        }
+
+        public async Task UpdateSalesObjectAsync(SaleObject saleobject)
+        {
+            applicationDbContext.Entry(saleobject).State = EntityState.Modified;
+            await applicationDbContext.SaveChangesAsync();
+        }
+
         public async Task<SaleObject> GetSalesObjectByIdAsync(int id)
         {
             return await applicationDbContext.SaleObjects
@@ -46,14 +63,9 @@ namespace FribergHomez.Data
             var salesObjectToDelete = await applicationDbContext.SaleObjects.FindAsync(id);
             if (salesObjectToDelete != null)
             {
-                applicationDbContext.SaleObjects.Remove(salesObjectToDelete);
+                salesObjectToDelete.IsActive = false;
                 await applicationDbContext.SaveChangesAsync();
             }
-        }
-        public async Task UpdateSalesObjectAsync(SaleObject saleobject)
-        {
-            applicationDbContext.Entry(saleobject).State = EntityState.Modified;
-            await applicationDbContext.SaveChangesAsync();
         }
     }
 }

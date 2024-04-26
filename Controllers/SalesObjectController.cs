@@ -23,6 +23,8 @@ namespace FribergHomez.Controllers
             this.agentRepo = agentRepo;
             this.mapper = mapper;
         }
+
+        //get all salesobjects
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -36,6 +38,23 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        //get active sales objects
+        [HttpGet ("GetAllActiveSalesObjects")]
+        public async Task<IActionResult> GetActiveSalesObjects()
+        {
+            try
+            {
+                var activeSalesObjects = await saleObjectRepo.GetActiveSalesObjectsAsync();
+                return Ok(activeSalesObjects);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
