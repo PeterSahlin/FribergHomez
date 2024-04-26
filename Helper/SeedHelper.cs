@@ -227,9 +227,6 @@ namespace FribergHomez.Helper
                 };
 
                 applicationDbContext.AddRange(saleObjectList);
-                //applicationDbContext.Entry(saleObjectList[0].Category).State = EntityState.Unchanged;
-                //applicationDbContext.Entry(saleObjectList[0].Municipality).State = EntityState.Unchanged;
-                //applicationDbContext.Entry(saleObjectList[0].RealEstateAgent).State = EntityState.Unchanged;
                 await applicationDbContext.SaveChangesAsync();
             }
         }

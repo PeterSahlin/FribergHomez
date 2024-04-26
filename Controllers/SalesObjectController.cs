@@ -62,8 +62,8 @@ namespace FribergHomez.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] SalesObjectDto objectDto)
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] SalesObjectDto objectDto)
         {
             try
             {
