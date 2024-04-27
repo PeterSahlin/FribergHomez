@@ -22,7 +22,7 @@ namespace FribergHomez.Data
             var firmToDelete = await applicationDbContext.Firms.FindAsync(id);
             if (firmToDelete != null)
             {
-                applicationDbContext.Remove(firmToDelete);
+                firmToDelete.IsActive = false;
                 await applicationDbContext.SaveChangesAsync();
             }
         }

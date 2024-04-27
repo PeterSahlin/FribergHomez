@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergHomez.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240426092329_init")]
+    [Migration("20240427212017_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -53,6 +53,9 @@ namespace FribergHomez.Migrations
                     b.Property<string>("ImageLocation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
