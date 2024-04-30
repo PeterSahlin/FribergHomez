@@ -1,6 +1,7 @@
 using FribergHomez.Data;
 using FribergHomez.Helper;
 using FribergHomez.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,9 +14,9 @@ namespace FribergHomez
         public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
             // Add services to the container.
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=FribergHomez;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+            string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(connectionString));
@@ -41,7 +42,6 @@ namespace FribergHomez
                     .AllowAnyHeader();
                 });
             });
-            
 
             //Identity
             //builder.Services.AddIdentity<RealEstateAgent, IdentityRole<Guid>>(options => {
