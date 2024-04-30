@@ -74,17 +74,17 @@ namespace FribergHomez.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Category category)
+        public async Task<IActionResult> Put([FromBody] Category category)
         {
             if (category == null)
             {
                 return BadRequest("Category object is null");
             }
 
-            if (id != category.Id)
-            {
-                return BadRequest("ID mismatch between route parameter and request body");
-            }
+            //if (id != category.Id)
+            //{
+            //    return BadRequest("ID mismatch between route parameter and request body");
+            //}
 
             if (!ModelState.IsValid)
             {
@@ -93,15 +93,15 @@ namespace FribergHomez.Controllers
 
             try
             {
-                var existingCategory = await categoryRep.GetCategoryByIdAsync(id);
-                if (existingCategory == null)
-                {
-                    return NotFound("Category not found");
-                }
+                //var existingCategory = await categoryRep.GetCategoryByIdAsync(id);
+                //if (existingCategory == null)
+                //{
+                //    return NotFound("Category not found");
+                //}
 
-                existingCategory.Name = category.Name;
+                //existingCategory.Name = category.Name;
 
-                await categoryRep.UpdateCategoryAsync(existingCategory);
+                await categoryRep.UpdateCategoryAsync(category);
 
                 return NoContent();
             }

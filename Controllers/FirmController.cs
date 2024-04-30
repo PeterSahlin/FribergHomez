@@ -31,7 +31,9 @@ namespace FribergHomez.Controllers
             }
         }
 
-        [HttpGet ("{id}")]
+
+        [HttpGet("{id}")]
+
         public async Task<IActionResult> Get(int id)
         {
             try
