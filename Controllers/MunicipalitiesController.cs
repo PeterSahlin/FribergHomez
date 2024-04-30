@@ -27,6 +27,19 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            try
+            {
+                var municipality = await municipalityRepo.GetMunicipalityByIdAsync(id);
+                return Ok(municipality);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -61,18 +74,18 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Municipality municipality)
+        [HttpPut/*("{id}")*/]
+        public async Task<IActionResult> Put([FromBody] Municipality municipality)
         {
             if (municipality == null)
             {
                 return BadRequest("Municipality object is null");
             }
 
-            if (id != municipality.Id)
-            {
-                return BadRequest("ID mismatch between route parameter and request body");
-            }
+            //if (id != municipality.Id)
+            //{
+            //    return BadRequest("ID mismatch between route parameter and request body");
+            //}
 
             if (!ModelState.IsValid)
             {
@@ -81,15 +94,15 @@ namespace FribergHomez.Controllers
 
             try
             {
-                var existingMunicipality = await municipalityRepo.GetMunicipalityByIdAsync(id);
-                if (existingMunicipality == null)
-                {
-                    return NotFound("Category not found");
-                }
+                //var existingMunicipality = await municipalityRepo.GetMunicipalityByIdAsync(id);
+                //if (existingMunicipality == null)
+                //{
+                //    return NotFound("Category not found");
+                //}
 
-                existingMunicipality.Name = existingMunicipality.Name;
+                //existingMunicipality.Name = existingMunicipality.Name;
 
-                await municipalityRepo.UpdateMunicipalityAsync(existingMunicipality);
+                await municipalityRepo.UpdateMunicipalityAsync(municipality);
 
                 return NoContent();
             }
