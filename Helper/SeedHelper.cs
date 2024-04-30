@@ -7,141 +7,7 @@ namespace FribergHomez.Helper
 {
     public class SeedHelper
     {
-        /*
-                public async Task SeedCategoriesAsync(ApplicationDbContext applicationDbContext)
-                    //All
-                {
-                    if (!context.Realtors.Any())
-                    {
-                        var firm1 = new Firm("Homewise Solutions", "HomePerfected", "PerfectHomeImages");
-                        var firm2 = new Firm("Urban Nest Realty", "CityScape Living", "UrbanNestImages");
-                        var firm3 = new Firm("EquiHome Realtors", "BalancedDwellings", "EquiHomeGallery");
-
-                        var agent1 = new RealEstateAgent("John", "Doe", "john@example.com", firm1, "1234567890", "image_url_here");
-                        var agent2 = new RealEstateAgent("Emily", "Smith", "emily@example.com", firm2, "2345678901", "image_url_here");
-                        var agent3 = new RealEstateAgent("Michael", "Johnson", "michael@example.com", firm3, "3456789012", "image_url_here");
-                        var agent4 = new RealEstateAgent("Jessica", "Brown", "jessica@example.com", firm1, "4567890123", "image_url_here");
-                        var agent5 = new RealEstateAgent("David", "Martinez", "david@example.com", firm2, "5678901234", "image_url_here");
-                        var agent6 = new RealEstateAgent("Jennifer", "Garcia", "jennifer@example.com", firm3, "6789012345", "image_url_here");
-                        var agent7 = new RealEstateAgent("Christopher", "Wilson", "chris@example.com", firm1, "7890123456", "image_url_here");
-                        var agent8 = new RealEstateAgent("Ashley", "Anderson", "ashley@example.com", firm2, "8901234567", "image_url_here");
-                        var agent9 = new RealEstateAgent("Matthew", "Taylor", "matthew@example.com", firm3, "9012345678", "image_url_here");
-                        var agent10 = new RealEstateAgent("Jessica", "Thomas", "jessica@example.com", firm1, "0123456789", "image_url_here");
-
-
-                        var municipality1 = new Municipality("Ale");
-                        var municipality2 = new Municipality("Alingsås");
-                        var municipality3 = new Municipality("Alvesta");
-                        var municipality4 = new Municipality("Aneby");
-                        var municipality5 = new Municipality("Arboga");
-                        var municipality6 = new Municipality("Arjeplog");
-                        var municipality7 = new Municipality("Arvidsjaur");
-                        var municipality8 = new Municipality("Arvika");
-                        var municipality9 = new Municipality("Askersund");
-                        var municipality10 = new Municipality("Avesta");
-
-                        var category1 = new Category("House");
-                        var category2 = new Category("Cottage");
-                        var category3 = new Category("Condo");
-                        var category4 = new Category("Condo Terraced House"); 
-
-                        var saleObject1 = new SaleObject
-                        {
-                            Address = "Storgatan 555",
-                            Municipality = municipality1,
-                            Category = category1,
-                            StartingPrice = 250000,
-                            LivingArea = 200,
-                            AncillaryArea = 50,
-                            PlotArea = 500,
-                            Description = "Beautiful house with garden",
-                            NumberOfRooms = 5,
-                            MonthlyFee = 100,
-                            OperatingCostPerYear = 2000,
-                            YearOfConstruction = 2000,
-                            ImageUrl = new List<string> { "image_url1", "image_url2" },
-                            RealEstateAgent = agent1
-                        };
-                        var saleObject2 = new SaleObject
-                        {
-                            Address = "Stenvägen 4",
-                            Municipality = municipality2,
-                            Category = category2,
-                            StartingPrice = 250000,
-                            LivingArea = 200,
-                            AncillaryArea = 50,
-                            PlotArea = 500,
-                            Description = "Beautiful cottage with garden",
-                            NumberOfRooms = 5,
-                            MonthlyFee = 100,
-                            OperatingCostPerYear = 2000,
-                            YearOfConstruction = 2000,
-                            ImageUrl = new List<string> { "image_url1", "image_url2" },
-                            RealEstateAgent = agent2
-                        };
-                        var saleObject3 = new SaleObject
-                        {
-                            Address = "Grusvägen 123",
-                            Municipality = municipality3,
-                            Category = category3,
-                            StartingPrice = 250000,
-                            LivingArea = 200,
-                            AncillaryArea = 50,
-                            PlotArea = 500,
-                            Description = "Beautiful Condo with garden",
-                            NumberOfRooms = 5,
-                            MonthlyFee = 100,
-                            OperatingCostPerYear = 2000,
-                            YearOfConstruction = 2000,
-                            ImageUrl = new List<string> { "image_url1", "image_url2" },
-                            RealEstateAgent = agent3
-                        };
-                        var saleObject4 = new SaleObject
-                        {
-                            Address = "Mittivägen 55",
-                            Municipality = municipality4,
-                            Category = category4,
-                            StartingPrice = 250000,
-                            LivingArea = 200,
-                            AncillaryArea = 50,
-                            PlotArea = 500,
-                            Description = "This is definitely a place where you can live",
-                            NumberOfRooms = 5,
-                            MonthlyFee = 100,
-                            OperatingCostPerYear = 2000,
-                            YearOfConstruction = 2000,
-                            ImageUrl = new List<string> { "image_url1", "image_url2" },
-                            RealEstateAgent = agent4
-                        };
-                        var saleObject5 = new SaleObject
-                        {
-                            Address = "NågonstansISverige 66",
-                            Municipality = municipality6,
-                            Category = category1,
-                            StartingPrice = 250000,
-                            LivingArea = 200,
-                            AncillaryArea = 50,
-                            PlotArea = 500,
-                            Description = "This is a house",
-                            NumberOfRooms = 5,
-                            MonthlyFee = 100,
-                            OperatingCostPerYear = 2000,
-                            YearOfConstruction = 2000,
-                            ImageUrl = new List<string> { "image_url1", "image_url2" },
-                            RealEstateAgent = agent5
-                        };
-
-                        await context.AddRangeAsync(new List<Firm> { firm1, firm2, firm3});
-                        await context.AddRangeAsync(new List<RealEstateAgent> { agent1, agent2, agent3, agent4, agent5, agent6, agent7, agent8, agent9, agent10 });
-                        await context.AddRangeAsync(new List<Municipality> { municipality1, municipality2, municipality3, municipality4, municipality5, municipality6, municipality7, municipality8, municipality9, municipality10 });
-                        await context.AddRangeAsync(new List<Category> { category1, category2, category3, category4 });
-                        await context.AddRangeAsync(new List<SaleObject> { saleObject1, saleObject2, saleObject3, saleObject4, saleObject5 });
-                        await context.SaveChangesAsync();
-                    }
-                    }
-                }
-              */
-
+     
         public async Task SeedCategoriesAsync(ApplicationDbContext applicationDbContext)
         {
             if (!applicationDbContext.Categories.Any())
@@ -161,9 +27,9 @@ namespace FribergHomez.Helper
             if (!applicationDbContext.SaleObjects.Any())
             {
                 //get real estate agents
-                RealEstateAgent stjarnhusAgent = await applicationDbContext.RealEstateAgents.FirstAsync(f => f.Email.Contains("stjarnhus"));
-                RealEstateAgent hemlangtanAgent = await applicationDbContext.RealEstateAgents.FirstAsync(f => f.Email.Contains("hemlangtan"));
-                RealEstateAgent elysiumAgent = await applicationDbContext.RealEstateAgents.FirstAsync(f => f.Email.Contains("elysium"));
+                RealEstateAgent hemlangtanAgent = await applicationDbContext.RealEstateAgents.FirstAsync(f => f.Email.Contains("Kedjekamrater"));
+                RealEstateAgent stjarnhusAgent = await applicationDbContext.RealEstateAgents.FirstAsync(f => f.Email.Contains("Slagskott"));
+                RealEstateAgent elysiumAgent = await applicationDbContext.RealEstateAgents.FirstAsync(f => f.Email.Contains("Raka"));
 
                 //get municipalities
                 Municipality municipality1 = await applicationDbContext.Municipalities.FirstAsync(m => m.Name == "Härryda");
@@ -174,9 +40,9 @@ namespace FribergHomez.Helper
                 Municipality municipality6 = await applicationDbContext.Municipalities.FirstAsync(m => m.Name == "Åre");
 
                 //get firms
-                Firm stjarnhusFirm = await applicationDbContext.Firms.FirstAsync(f => f.Name.Contains("Stjärnhus"));
-                Firm hemlangtanFirm = await applicationDbContext.Firms.FirstAsync(f => f.Name.Contains("Hemlängtan"));
-                Firm elysiumFirm = await applicationDbContext.Firms.FirstAsync(f => f.Name.Contains("Elysium"));
+                Firm kedjekamraterFirm = await applicationDbContext.Firms.FirstAsync(f => f.Name.Contains("Kedjekamrater"));
+                Firm slagskottFirm = await applicationDbContext.Firms.FirstAsync(f => f.Name.Contains("Slagskott"));
+                Firm rakaPuckarFirm = await applicationDbContext.Firms.FirstAsync(f => f.Name.Contains("Raka"));
 
                 //get categories
                 Category category1 = applicationDbContext.Categories.FirstOrDefault(c => c.Name == "Villa");
@@ -196,6 +62,7 @@ namespace FribergHomez.Helper
                     new SaleObject {IsActive = true, Address = "Baggåsvägen 26", Municipality = municipality5 , Category = category1, StartingPrice = 1395000, LivingArea = 108, AncillaryArea = 22, PlotArea = 2116, Description = "I lungt läge på Baggåsvägen 26 strax utanför Liatorp hittar du denna trevliga fastighet som ligger med naturen in på knuten. Här erbjuds fina boende ytor med möjlighet till aktiv hobby. Bostadshuset är i 1 1/2 plan med vidbyggt dubbelgarage och erbjuder 3-4 sovrum, vardagsrum med braskamin, badrum, kök, allrum, matrum med vedspis samt rejäl tvättstuga. Stort vidbyggt dubbelgarage med inredningsbar övervåning.", NumberOfRooms=6, MonthlyFee = 2425, OperatingCostPerYear = 29100, YearOfConstruction = 1938, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/itemgallery_cut/9f/fa/9ffa28d8fdfc4d554fefbab681a84d16.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/2a/8c/2a8c5bb7f0b26cc5baed861b81a06818.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/1a/f3/1af3d0393aff9da09482023d326d7785.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/45/6b/456bef0889430f6aefa94aa20bfdb033.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/f2/2d/f22d319d9e368f1302e6285e44acbf83.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/77/9c/779c41009414c91d1073a854d2d710d4.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/92/98/929890af453b3c7e980feba5d20fbb6d.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/04/c9/04c96d62a70577eac3f031b79f7fe741.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/6e/e1/6ee1de0daaeebcd6e4d896b440df79c2.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/4e/15/4e15294385de06a148e126a8b53d6b26.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/8b/38/8b380378db5a9d09284a63e075c7919b.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/1f/b7/1fb7f693cb40a6e01fa60c67084cdfbe.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/bb/45/bb456f8ffb11e2bdc0f0984640fa2d70.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/42/be/42be6b8c8051d1439566af34826416d7.jpg"} ,RealEstateAgent = stjarnhusAgent  },
 
                     //seed condos
+                   
                     new SaleObject {IsActive = true, Address = "Dieselloksgatan 11C", Municipality = municipality1 , Category = category2, StartingPrice = 3650000, LivingArea = 99, AncillaryArea = 5, PlotArea = 0, Description = "Direkt när man kommer in i lägenheten möts man av den öppna och härliga planlösningen mellan kök och vardagsrum. Tilltalande Vedum-kök, helkaklat badrum med tvättdel, gäst-wc och tre sovrum med gott om förvaringsutrymmen och genomgående enstavsparkett. Två utgångar till den stora inglasade balkongen med skjutbara glas som har eftermiddags- och kvällssol samt utsikt ner mot kanalen.", NumberOfRooms=4, MonthlyFee = 6301, OperatingCostPerYear = 6000, YearOfConstruction = 2020, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/itemgallery_cut/eb/c6/ebc6333893cf9eb8bc03c362486b8ac2.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/eb/56/eb563bf12f7348fa625a6f404b131ec7.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/b8/95/b8952e279624f771f2affe3550d107b8.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/47/3d/473d0dc63aecf2e7b6823837dd96c9a3.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/6f/da/6fda31dfbb59137976e57f89d31856ec.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/db/ca/dbcada4f35a6943d6704cfb70c4d5e88.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/a2/f7/a2f73ed4ae8e6afd0f93fe63ef923be2.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/91/27/91279ca196b71089728757f88130d3e8.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/14/24/1424eeb0c33d42a243c813076e031025.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/e5/01/e501b2ca5a338134b4fd11dc7f871ee7.jpg", "https://bilder.hemnet.se/images/itemgallery_portrait_cut/80/6d/806d83e218824d48fad8ddf842b0be2d.jpg"} ,RealEstateAgent = stjarnhusAgent  },
                     new SaleObject {IsActive = true, Address = "Lillängvägen 8B", Municipality = municipality6 , Category = category2, StartingPrice = 5100000, LivingArea = 107, AncillaryArea = 7, PlotArea = 0, Description = "Här kommer du som vill ha ljusinsläpp och  stora sociala ytor verkligen att trivas. Tack vare de stora och höga fönsterpartierna så ges bostaden en härlig rymd. När du parkerar bilen utanför så möts du av ett stort trädäck med inbjudande spabad och gott om plats för utemöbler, grill och odlingskrukor. Väl inne i huset finns gott om avhängning i hallen som har klinkers på golv. Badrummet  med bastu finns i direkt anslutning till entrén och det andra en våning upp.  Vardagsrum och kök har en härlig öppen planlösning med braskaminen i centrum. Köket är väl balanserat för dig att skapa härliga middagar i goda vänners lag samtidigt som spabadet och bastun kan värma trötta skidåkarben.  ", NumberOfRooms=5, MonthlyFee = 4203, OperatingCostPerYear = 53892, YearOfConstruction = 2019, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/itemgallery_cut/2d/7a/2d7aa9f22410dec583f0984c00510a89.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/aa/07/aa07aca35096c619c3f7c6a8464966d1.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/0b/72/0b7213a97a301b49933b1b9cffd7502c.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/69/45/69451c1e8d86c6393353db2d0e14e712.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/16/57/165788a57adc35bbd4cf5471097ccb1f.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/d8/4e/d84e3bb4afc7592e2075b9ba55bac6ca.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/87/cc/87cc1aa1751289b0fad539d90cbb3d47.jpg"} ,RealEstateAgent = hemlangtanAgent  },
                     new SaleObject {IsActive = true, Address = "Bollmoravägen 4", Municipality = municipality2 , Category = category2, StartingPrice = 1450000, LivingArea = 23, AncillaryArea = 2, PlotArea = 0, Description = "Bostaden präglas av ljusa och nyligen nymålade väggar och tak, rymligt och fullt utrustat kök med diskmaskin, halvstor kyl och frys, ugn, mikro samt induktionshäll. Fint helkaklat badrum med ljusa material med WC, handfat, dusch och kommod. Möjlighet till tvättmaskin finns. Sammanfattningsvis är detta en optimal bostad för dig som söker ett billigt och trivsamt boende med ett centralt läge till det mesta!", NumberOfRooms=1, MonthlyFee = 1988, OperatingCostPerYear = 2388, YearOfConstruction = 1964, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/itemgallery_cut/95/fd/95fddcb0cbb49e1e275c3fa96555b0b5.jpg", "https://bilder.hemnet.se/images/itemgallery_portrait_cut/32/85/3285c0ecbcc772c9e86bf53a64168732.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/01/d9/01d9706f8a050a084bf20eb1c3d398df.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/2d/35/2d35ae74515590f09802c081c98694ca.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/5d/63/5d63a5e11a176cd56ab437e5eeaab57a.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/b9/4a/b94a0329f77fb20225bb55950832ca71.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/2c/f6/2cf6baa7634f536512768a8f91384834.jpg", "https://bilder.hemnet.se/images/itemgallery_portrait_cut/68/30/68303c9474a7168086f6838410212dad.jpg", "https://bilder.hemnet.se/images/itemgallery_portrait_cut/e7/10/e710285bc6b8b5e74563bf1ed3ef8af0.jpg"} ,RealEstateAgent = elysiumAgent  },
@@ -204,7 +71,7 @@ namespace FribergHomez.Helper
                     
                    
                     //seed cottages
-
+                    //thomas
                     new SaleObject {IsActive = true, Address = "Renlavsstigen 17", Municipality = municipality1 , Category = category2, StartingPrice = 1250000, LivingArea = 63, AncillaryArea = 410, PlotArea = 1190, Description = "Huset är bra planerat med tre sovrum och en tillhörande gäststuga om ca 10 kvm. Stor altan och härlig trädgård att kunna avnjuta sommarkvällarna på.", NumberOfRooms=4, MonthlyFee = 2258, OperatingCostPerYear = 27100, YearOfConstruction = 1976, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/1024x/db/1d/db1d380e541d98ad380ecb803736f148.jpg", "https://bilder.hemnet.se/images/1024x/92/63/92636f19061cc462a5635dd47db2c735.jpg", "https://bilder.hemnet.se/images/1024x/9d/4f/9d4f5489844816cd45350d2370530b28.jpg", "https://bilder.hemnet.se/images/1024x/26/de/26de845c40a1ed19ba6ab7fcbafb22d2.jpg", "https://bilder.hemnet.se/images/1024x/cd/4a/cd4a1ff65e6c28aa51fa59fc27f442a0.jpg", "https://bilder.hemnet.se/images/1024x/3b/c1/3bc15bdd31b8a4367a1208601000b74a.jpg", "https://bilder.hemnet.se/images/1024x/7b/de/7bde0c8f4e17c422eec11b7f8576da43.jpg", "https://bilder.hemnet.se/images/1024x/e6/af/e6af518b3306ea9c13f07193719d437c.jpg", "https://bilder.hemnet.se/images/1024x/76/76/76766f43172ad175a76a42507234a546.jpg", "https://bilder.hemnet.se/images/1024x/22/59/22595491938ee14f6894b0bf9bda387d.jpg" } ,RealEstateAgent = stjarnhusAgent  },
                     new SaleObject {IsActive = true, Address = "Bobergs Kustväg 7", Municipality = municipality2 , Category = category2, StartingPrice = 2200000, LivingArea = 58, AncillaryArea = 365, PlotArea = 1050, Description = "Varmt välkomna till detta fritidshus som ligger på ett naturskönt läge med närhet till havet! Nuvarande ägare hälsar att solen står på från lunch till solnedgång som man kan följa på den härliga verandan beläget på husets framsida. Här kan man även höra havet, och blir man sugen på ett kvälls- eller morgondopp så kan man promenera raka vägen ner och på ca 10 min så är man där! Med en härlig trädgård, med gärdsgård och ett växthus. På andra sidan gärdsgården kikar hästarna nyfiket in! ", NumberOfRooms=4, MonthlyFee = 3316, OperatingCostPerYear = 39793, YearOfConstruction = 1962, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/1024x/13/76/1376e54464b125d66e55ae15f947066f.jpg", "https://bilder.hemnet.se/images/1024x/7f/6d/7f6dc13552fe21082db27ad50c630a1a.jpg", "https://bilder.hemnet.se/images/1024x/84/e4/84e4cd70209ce4d47adc6dfea0b24103.jpg", "https://bilder.hemnet.se/images/1024x/dc/c1/dcc150d2f2c1e6d635d0bb350d07b348.jpg", "https://bilder.hemnet.se/images/1024x/1c/dd/1cddcfc326ad0882a79bbedd7bac5155.jpg", "https://bilder.hemnet.se/images/1024x/f3/6d/f36dc9db7b7ca72134ae97699cfe0bc2.jpg", "https://bilder.hemnet.se/images/1024x/ec/db/ecdb7e2a702ddfccbf55455d527d2ce5.jpg", "https://bilder.hemnet.se/images/1024x/92/38/9238944f876537bfb13162f719e101f2.jpg", "https://bilder.hemnet.se/images/1024x/66/dc/66dca3dd3ffb09f81fd2bd6ae7729a5c.jpg", "https://bilder.hemnet.se/images/1024x/28/69/28693acc0e3b8685c221a5686fc43485.jpg" } ,RealEstateAgent = elysiumAgent  },
                     new SaleObject {IsActive = true, Address = "Wientorpsvägen 1", Municipality = municipality3 , Category = category2, StartingPrice = 2495000, LivingArea = 79, AncillaryArea = 11, PlotArea = 2170, Description = "Upplev det söta livet i detta fritidshus med vackra planteringar, perfekt för avkoppling och nöje. Charmigt boende i vackra Umeå.", NumberOfRooms=3, MonthlyFee = 2610, OperatingCostPerYear = 31322, YearOfConstruction = 1978, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/1024x/2c/3a/2c3aee680d8ca3d0c3ffe4f11e338f5f.jpg", "https://bilder.hemnet.se/images/1024x/75/cf/75cf4ca24c36627449708360ed712267.jpg", "https://bilder.hemnet.se/images/1024x/33/42/3342c6d9380c7aa8107b9c1cb6683714.jpg", "https://bilder.hemnet.se/images/1024x/11/6c/116c76355fb991003e00a1d7ac8197a1.jpg", "https://bilder.hemnet.se/images/1024x/a4/30/a430de1205e0eea12d6cc8dbf1d41b85.jpg", "https://bilder.hemnet.se/images/1024x/84/24/8424aa42e0059d3090d052d65bd359ec.jpg", "https://bilder.hemnet.se/images/1024x/f3/3d/f33d0cd447db8191b77a8905880d92d1.jpg", "https://bilder.hemnet.se/images/1024x/d4/87/d48757a88b041b8c16d19ea825199dd5.jpg", "https://bilder.hemnet.se/images/1024x/d8/4c/d84c090f6202dba246ed8e121c4fbe4b.jpg", "https://bilder.hemnet.se/images/1024x/29/13/29138e2cbe66230b058abbd3a88c337d.jpg", "https://bilder.hemnet.se/images/1024x/b2/3a/b23a3b0e591b4f71b6fce11583b79ca3.jpg", "https://bilder.hemnet.se/images/1024x/3c/a2/3ca2f2aba3b4f2c8b237f67dd0266def.jpg" } ,RealEstateAgent = elysiumAgent  },
@@ -212,11 +79,8 @@ namespace FribergHomez.Helper
                     new SaleObject {IsActive = true, Address = "Vassbäcksvägen 1", Municipality = municipality6 , Category = category2, StartingPrice = 1595000, LivingArea = 64, AncillaryArea = 16, PlotArea = 1531, Description = "Vassbäcksvägen ligger lite avskiljt med ett behagligt och skyddat läge som du når genom att följa Strandvägen några hundra meter söder om fiskeläget. Fastigheten erbjuder bostadshus uppfört i timmer omfattandes ett stort allrum med köksdel, två sovrum samt duschrum med wc. Utöver huvudstugan finns även en timrad gäststuga som är sammankopplad med bostadsstugan via en vindskyddad uteplats under tak.", NumberOfRooms=3, MonthlyFee = 1436, OperatingCostPerYear = 17241, YearOfConstruction = 1963, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/1024x/d8/73/d873ccd36d9ad4b89e0386445d0d88c0.jpg", "https://bilder.hemnet.se/images/1024x/af/14/af1468fcbfccedfa69c43b75f1e9c4bf.jpg", "https://bilder.hemnet.se/images/1024x/8b/78/8b786c186f1cd026d574077ab63ec486.jpg", "https://bilder.hemnet.se/images/1024x/47/3d/473d7bd3a64817f54d123aea462aaeb8.jpg", "https://bilder.hemnet.se/images/1024x/db/c5/dbc5285ac62e05927630b6c7529dffed.jpg", "https://bilder.hemnet.se/images/1024x/ac/21/ac21e974be520ff07e65cc7b1b1a38e1.jpg", "https://bilder.hemnet.se/images/1024x/32/85/3285080cc0e1718741b004e03f96d8a8.jpg", "https://bilder.hemnet.se/images/1024x/43/4e/434ee25f6c1d211543d811ec2bc31ea8.jpg", "https://bilder.hemnet.se/images/1024x/6c/55/6c55875f93873c63d62a81a45db7a082.jpg", "https://bilder.hemnet.se/images/1024x/82/81/82815732513eacadbb145f35c999fb42.jpg", "https://bilder.hemnet.se/images/1024x/49/f2/49f2fef2adca8d0751fcb01e57e34e8d.jpg" } ,RealEstateAgent = stjarnhusAgent  },
 
 
-
-
-                    
                     //seed terranced houses
-                    //peter
+                   
                     new SaleObject {IsActive = true, Address = "Sandavägen 22", Municipality = municipality1 , Category = category4, StartingPrice = 4495000, LivingArea = 132, AncillaryArea = 34, PlotArea = 328, Description = "Huset ligger högt med magiskt fin utsikt och mycket bra solläge med eftermiddags och kvällssol beroende på årstid från den stora balkongen och trädgården med altan på baksidan. På framsidan finns två fina uteplatser som är stenlagda. Här finns även ett stort garage med goda förvarings utrymmen samt parkering för två bilar. ", NumberOfRooms=6, MonthlyFee = 3206, OperatingCostPerYear = 38473, YearOfConstruction = 1970, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/itemgallery_cut/31/a6/31a6b5d2f6a7551a68d0c1bbb7cb86bb.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/e2/c5/e2c543b939896000718dfaa086b203fc.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/9d/e9/9de9bf561c715f165e8249274680899a.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/82/48/824869053dd9d0877f7f5fcf59e967fd.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/11/f0/11f0bc358528a2fa369873067a1c77b7.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/19/bc/19bc7dcc4c07583fc167fc5f4e650962.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/8d/03/8d03be90d86d46d41f56ed4dc1c4c24d.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/13/af/13afa5d03276ab0dbac21bc8c1fde6d0.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/2b/62/2b62cfa28d6e72d8fc09f37b5ad43419.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/64/d1/64d1845c26ae7f5e2951582d65839717.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/47/29/47295655e423aded317eb5a5633b7005.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/39/3d/393d1a0baa5bdcc76eb78b41f46c633c.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/8e/f5/8ef5862b49a2499fbdafa01bb9de9ec4.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/73/93/73930100216595d559e5f7806751b9e3.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/9d/7d/9d7dab3820ef6f3fc713295f5ae4e3e8.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/dd/1f/dd1f3930254e8af7efe78b55c1f14152.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/fe/e1/fee1b4a9bba1ef3991e6840c7f39b3ed.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/c9/3d/c93d40ff20ee989240fb846ef5a4fc62.jpg"} ,RealEstateAgent = hemlangtanAgent  },
                     new SaleObject {IsActive = true, Address = "Stuterivägen 25", Municipality = municipality2 , Category = category4, StartingPrice = 5290000, LivingArea = 134, AncillaryArea = 22, PlotArea = 127, Description = "Den här bostaden är ett under av god planering med exklusiva materialval tillsammans med trendig design. Här finner ni genomgående parkettgolv i 1-stavig vit ask och klinker med underliggande golvvärme på hela entréplan. Här lyckades arkitekten med konststycket att få in många rum och samtidigt få dem att kännas luftiga, stora och inbjudande med generösa fönsterpartier.", NumberOfRooms=5, MonthlyFee = 4959, OperatingCostPerYear = 13450, YearOfConstruction = 2017, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/itemgallery_cut/7d/93/7d93c69a0ed8b96568c9671be4c1c967.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/f9/4a/f94a395ee18e02a85b12d02afe72723a.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/7c/5f/7c5f20fd347aebe560c013a2907767bb.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/0c/62/0c62cb84b5f7b82e613a46c465fa754f.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/3b/88/3b88a1c9019be8a9a4e096e2bf38ccea.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/da/ae/daae518aeea5431ed7cea7922d1c678f.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/85/bf/85bfb80e86fcce65505474d3b20eff98.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/73/c1/73c19e441f69b41d7d7b8547a9711714.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/04/5a/045a60dd45fff986a6f0d4b9b941fabb.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/70/1d/701dff2eb9bab344011a97367566a1c3.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/da/21/da2138a801cac6c521d7656f27006477.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/ae/76/ae762105d24fb22d9bbf8535bc5d82d8.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/f8/27/f82730fb943da5517f00d15476d593a4.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/72/34/723453325418f2c7ec710a90e7b97967.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/94/3a/943a3beb6665378100b3e88ba99bd58d.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/84/01/8401f2795f4e07c8851d81decc036cd7.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/79/12/791247b9f734ad7a24ec34e9d61a0b03.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/d5/22/d5223f5851760912a25c6d1df088d664.jpg"} ,RealEstateAgent = elysiumAgent  },
                     new SaleObject {IsActive = true, Address = "Ekvägen 19A", Municipality = municipality3 , Category = category4, StartingPrice = 2950000, LivingArea = 120, AncillaryArea = 16, PlotArea = 372, Description = "Med en boyta på 120 kvm fördelat över 5 rum, ivarav 4 sovrum, erbjuder detta hem gott om plats för hela familjen. Här finner du ett rymligt kök med matplats, ett ljust vardagsrum och praktiska utrymmen såsom tvättstuga, gästtoalett och badrum. Detta trevliga boende lockar med inte mindre än 2 soliga uteplatser, perfekta för avkoppling och umgänge under varma sommardagar. Dessutom finns gott om förvaringsmöjligheter, vilket underlättar vardagen.\r\n", NumberOfRooms=5, MonthlyFee = 5409, OperatingCostPerYear = 64912, YearOfConstruction = 1968, ImageUrl = new List<string>{ "https://bilder.hemnet.se/images/itemgallery_cut/f3/20/f32074b6a1e9382e4e355a13d6c0b334.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/94/10/9410157319b084d3a1e7c94f5c3e14f1.jpg", "https://bilder.hemnet.se/images/itemgallery_portrait_cut/bd/1e/bd1e885061649aabde659dd1bb0678b6.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/b5/4f/b54f29655bed185ba35b59a6ccbb4230.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/12/f8/12f808fce203fdfd97296ac998b7c76c.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/9f/a7/9fa77bdc1efa49a7a3a57996cc6c6604.jpg", "https://bilder.hemnet.se/images/itemgallery_portrait_cut/4c/76/4c761d7ae045fc2ecce080e7e2ee02fe.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/58/8d/588d8577ee6ef9460677fe985fa9f82e.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/42/59/425959dffbffc8789c06eab4a1faf52b.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/1d/3f/1d3f2fa62e69e9cbe717e306be1aed51.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/d2/da/d2da929ee629dcd62713afde1fe78930.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/90/f2/90f259ab75648e52d3064c449d7d6b5d.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/da/8b/da8b1faefbb34ea0aa093793e619a28b.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/85/40/854024bd480f6ee7d29e989de92e499c.jpg", "https://bilder.hemnet.se/images/itemgallery_portrait_cut/08/f3/08f3b336f470405b100e5101e8a88326.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/2f/73/2f73fadc7da43997a2a046cc83180fff.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/28/00/2800859de50a4b5bdfc81083877491a4.jpg", "https://bilder.hemnet.se/images/itemgallery_cut/a5/b8/a5b893c309925b5dbbb8776b404859aa.jpg"} ,RealEstateAgent = hemlangtanAgent  },
@@ -238,50 +102,53 @@ namespace FribergHomez.Helper
             //Henrik
             if (!applicationDbContext.Firms.Any())
             {
-                var stjarnhusFirm = new Firm
-                {
-                    Name = "Stjärnhus Mäklartjänst",
-                    Presentation = "Stjärnhus Mäklartjänst är en modern mäklarfirma som drivs av passion för att hjälpa kunder att hitta sina drömhem. Med innovativa marknadsföringsstrategier och en dedikerad team av fastighetsmäklare arbetar de för att maximera värdet för varje bostadsförsäljning och skapa en enastående kundupplevelse.",
-                    ImageLocation = "placeholder.img",
-                };
 
-                var hemlangtanFirm = new Firm
+                var kedjekamraterFirm = new Firm
                 {
-                    Name = "Hemlängtan Fastighetsmäkleri",
-                    Presentation = "Hemlängtan Fastighetsmäkleri är en professionell mäklarfirma som specialiserar sig på att hjälpa kunder att hitta sitt drömhem. Med en passion för att skapa meningsfulla hem och en personlig touch i varje interaktion strävar de efter att göra köp- och säljprocessen så smidig och trevlig som möjligt för sina kunder.",
+                    Name = "Kedjekamrater Fastighetsmäkleri",
+                    Presentation = "Kedjekamrater Fastighetsmäkleri är en professionell mäklarfirma som specialiserar sig på att hjälpa kunder att hitta sitt drömhem. Med en passion för att skapa meningsfulla hem och en personlig touch i varje interaktion strävar de efter att göra köp- och säljprocessen så smidig och trevlig som möjligt för sina kunder.",
                     ImageLocation = "placeholder.img",
                 };
-                var elysiumFirm = new Firm
+                var slagskottFirm = new Firm
                 {
-                    Name = "Elysium Fastighetsförmedling",
-                    Presentation = "Elysium Fastighetsförmedling strävar efter att förmedla bostäder som ger kunderna en känsla av himmelskt paradis. Med en djup förståelse för kundernas önskemål och behov arbetar de för att skapa en smidig och lyckad fastighetsaffär, där varje hem blir en oas av frid och skönhet.",
+                    Name = "Slagskott & Slott Mäklartjänst",
+                    Presentation = "Slagskott & Slott Mäklartjänst är en modern mäklarfirma som drivs av passion för att hjälpa kunder att hitta sina drömhem. Med innovativa marknadsföringsstrategier och en dedikerad team av fastighetsmäklare arbetar de för att maximera värdet för varje bostadsförsäljning och skapa en enastående kundupplevelse.",
                     ImageLocation = "placeholder.img",
                 };
-                applicationDbContext.AddRange(stjarnhusFirm, hemlangtanFirm, elysiumFirm);
+                var rakaPuckarFirm = new Firm
+                {
+                    Name = "Raka Puckar Fastighetsförmedling",
+                    Presentation = "Raka Puckar Fastighetsförmedling strävar efter att förmedla bostäder som ger kunderna en känsla av himmelskt paradis. Med en djup förståelse för kundernas önskemål och behov arbetar de för att skapa en smidig och lyckad fastighetsaffär, där varje hem blir en oas av frid och skönhet.",
+                    ImageLocation = "placeholder.img",
+                };
+                applicationDbContext.AddRange(kedjekamraterFirm, slagskottFirm, rakaPuckarFirm);
                 await applicationDbContext.SaveChangesAsync();
             }
 
 
-            //List<SaleObject> saleObjectList = new List<SaleObject>();
             if (!applicationDbContext.RealEstateAgents.Any())
             {
-                Firm stjarnhusFirm = applicationDbContext.Firms.FirstOrDefault(f => f.Name.Contains("Stjärnhus"));
-                Firm hemlangtanFirm = applicationDbContext.Firms.FirstOrDefault(f => f.Name.Contains("Hemlängtan"));
-                Firm elysiumFirm = applicationDbContext.Firms.FirstOrDefault(f => f.Name.Contains("Elysium"));
+                Firm kedjekamraterFirm = applicationDbContext.Firms.FirstOrDefault(f => f.Name.Contains("Kedjekamrater"));
+                Firm slagskottFirm = applicationDbContext.Firms.FirstOrDefault(f => f.Name.Contains("Slagskott"));
+                Firm rakaPuckarFirm = applicationDbContext.Firms.FirstOrDefault(f => f.Name.Contains("Raka"));
 
-                var stjarnhusAgent1 = new RealEstateAgent { FirstName = "Mats", LastName = "Sundin", ImageUrl= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRqYLRKkNcA1GFnlpSzx44HU_PQUsWKl_rEw&s", Email = "mats@stjarnhus.com", PhoneNumber = "555-47874", Firm = stjarnhusFirm }; //SaleObjects = saleObjectList };
+                var kedjekamraterAgent1 = new RealEstateAgent { FirstName = "Mats", LastName = "Sundin", ImageUrl= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRqYLRKkNcA1GFnlpSzx44HU_PQUsWKl_rEw&s", Email = "mats@kedjekamrater.se", PhoneNumber = "555-47813", Firm = kedjekamraterFirm };
+                var kedjekamraterAgent2 = new RealEstateAgent { FirstName = "Tomas", LastName = "Sandström", ImageUrl = "https://www.hockeydb.com/ihdb/photos/tomas-sandstrom-1993-40.jpg", Email = "tomas@kedjekamrater.se", PhoneNumber = "555-47817", Firm = kedjekamraterFirm };
+                var kedjekamraterAgent3 = new RealEstateAgent { FirstName = "Mikael", LastName = "Renberg", ImageUrl = "https://www.hockeydb.com/ihdb/photos/mikael-renberg-1995-53.jpg", Email = "mikael@kedjekamrater.", PhoneNumber = "555-47819", Firm = kedjekamraterFirm };
 
-                var hemlangtanAgent1 = new RealEstateAgent { FirstName = "Niklas", LastName = "Lidström", ImageUrl = "https://assets-global.website-files.com/651ff9f9e751432883ffd860/65425d1dfafa3a0355ac279c_nicklas.png", Email = "niklas@hemlangtan.com", PhoneNumber = "599-435811", Firm = hemlangtanFirm }; //SaleObjects = saleObjectList };
+                var slagskottAgent1 = new RealEstateAgent { FirstName = "Niklas", LastName = "Lidström", ImageUrl = "https://assets-global.website-files.com/651ff9f9e751432883ffd860/65425d1dfafa3a0355ac279c_nicklas.png", Email = "niklas@slagskottochslott.se", PhoneNumber = "599-43505", Firm = slagskottFirm };
+                var slagskottAgent2 = new RealEstateAgent { FirstName = "Tomas", LastName = "Holmström", ImageUrl = "https://dms-api.ntm.eu/api/v1/images/r2kx187r/smart/width/980/height/551/as/jpeg/redirect", Email = "tomas@slagskottochslott.se", PhoneNumber = "599-435896", Firm = slagskottFirm };
+                var slagskottAgent3 = new RealEstateAgent { FirstName = "Ulf", LastName = "Dahlén", ImageUrl = "https://www.hockeydb.com/ihdb/photos/ulf-dahlen-1994-233.jpg", Email = "tomas@slagskottochslott.se", PhoneNumber = "599-435896", Firm = slagskottFirm };
 
-                var elysiumAgent1 = new RealEstateAgent { FirstName = "Peter", LastName = "Forsberg", ImageUrl= "https://nextlevelgroup.se/Images/Profiler/Profil-PeterForsberg.jpg", Email = "peter@elysium.com", PhoneNumber = "988-12447", Firm = elysiumFirm };
+                var rakaPuckarAgent1 = new RealEstateAgent { FirstName = "Peter", LastName = "Forsberg", ImageUrl= "https://nextlevelgroup.se/Images/Profiler/Profil-PeterForsberg.jpg", Email = "peter@rakapuckar.se", PhoneNumber = "988-12421", Firm = rakaPuckarFirm };
+                var rakaPuckarAgent2 = new RealEstateAgent { FirstName = "Ulf", LastName = "Samuelsson", ImageUrl = "https://www.hockeydb.com/ihdb/photos/ulf-samuelsson-1991-46.jpg", Email = "ulf@rakapuckar.se", PhoneNumber = "988-12405", Firm = rakaPuckarFirm };
+                var rakaPuckarAgent3 = new RealEstateAgent { FirstName = "Tommy", LastName = "Salo", ImageUrl = "https://www.hockeydb.com/ihdb/photos/tommy-salo-1996-52.jpg", Email = "tommy@rakapuckar.se", PhoneNumber = "988-12435", Firm = rakaPuckarFirm };
 
-                applicationDbContext.AddRange(stjarnhusAgent1);
-                applicationDbContext.AddRange(hemlangtanAgent1);
-                applicationDbContext.AddRange(elysiumAgent1);
+                applicationDbContext.AddRange(slagskottAgent1, slagskottAgent2, slagskottAgent3);
+                applicationDbContext.AddRange(kedjekamraterAgent1, kedjekamraterAgent2, kedjekamraterAgent3);
+                applicationDbContext.AddRange(rakaPuckarAgent1, rakaPuckarAgent2, rakaPuckarAgent3);
                 await applicationDbContext.SaveChangesAsync();
-
             }
-
         }
 
         public async Task SeedMunicipalitiesAsync(ApplicationDbContext applicationDbContext)

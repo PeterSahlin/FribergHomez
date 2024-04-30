@@ -30,7 +30,10 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
         [HttpGet("{id}")]
+
         public async Task<IActionResult> Get(int id)
         {
             try

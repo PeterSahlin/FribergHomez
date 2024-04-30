@@ -24,10 +24,24 @@ namespace FribergHomez.Data
             var realEstateAgentToDelete = await applicationDbContext.RealEstateAgents.FindAsync(id);
             if (realEstateAgentToDelete != null)
             {
+                realEstateAgentToDelete.IsActive = false;
+                await applicationDbContext.SaveChangesAsync();
+            }
+        }
+
+        public async Task RealEstateAgentDeletePermanently(int id)
+        {
+            var realEstateAgentToDelete = await applicationDbContext.RealEstateAgents.FindAsync(id);
+            if (realEstateAgentToDelete != null)
+            {
                 applicationDbContext.Remove(realEstateAgentToDelete);
                 await applicationDbContext.SaveChangesAsync();
             }
         }
+
+        
+
+
         public async Task UpdateRealEstateAgentAsync(RealEstateAgent realEstateAgent)
         {
             applicationDbContext.Entry(realEstateAgent).State = EntityState.Modified;

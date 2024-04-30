@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using FribergHomez.Data;
 using FribergHomez.Models;
+using AutoMapper;
 
 namespace FribergHomez.Controllers
 {
@@ -11,10 +12,13 @@ namespace FribergHomez.Controllers
     {
         private readonly IRealEstateAgent agentRepo;
         private readonly IFirm firmRepo;
-        public RealEstateAgentController(IRealEstateAgent agentRepo, IFirm firmRepo)
+        private readonly IMapper mapper;
+
+        public RealEstateAgentController(IRealEstateAgent agentRepo, IFirm firmRepo, IMapper mapper)
         {
             this.agentRepo = agentRepo;
             this.firmRepo = firmRepo;
+            this.mapper = mapper;
         }
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -29,6 +33,22 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            try
+            {
+                var agent = await agentRepo.GetRealEstateAgentByIdAsync(id);
+                return Ok(agent);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+       
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -42,6 +62,25 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        
+        [HttpDelete("Delete/{id}")]
+        public async Task<IActionResult> DeletePermanently(int id)
+        {
+            try
+            {
+                await agentRepo.RealEstateAgentDeletePermanently(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] AgentDto agentDto)
         {
@@ -49,67 +88,82 @@ namespace FribergHomez.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(ModelState);
+                    return BadRequest("Modelstate is invalid");
                 }
-                var agent = new RealEstateAgent
-                {
-                    FirstName = agentDto.FirstName,
-                    LastName = agentDto.LastName,
-                    Email = agentDto.Email,
-                    PhoneNumber = agentDto.PhoneNumber,
-                    ImageUrl = agentDto.ImageUrl,
-                };
+
+                var realEstateAgent = mapper.Map<RealEstateAgent>(agentDto);
+
+
+                //new RealEstateAgent
+
+                //{
+                //    FirstName = agentDto.FirstName,
+                //    LastName = agentDto.LastName,
+                //    Email = agentDto.Email,
+                //    PhoneNumber = agentDto.PhoneNumber,
+                //    ImageUrl = agentDto.ImageUrl,
+                //};
                 if (agentDto.FirmId.HasValue)
                 {
                     var firm = await firmRepo.GetFirmByIdAsync(agentDto.FirmId.Value);
-                    if(firm == null)
+                    if (firm == null)
                     {
                         return BadRequest("Invalid FirmId");
                     }
-                    agent.Firm = firm;
+                    realEstateAgent.Firm = firm;
                 }
-                await agentRepo.AddRealEstateAgentAsync(agent);
-                return StatusCode(201, agent);
-            }catch (Exception ex)
+
+                await agentRepo.AddRealEstateAgentAsync(realEstateAgent);
+                return StatusCode(201, realEstateAgent);
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] AgentDto agentDto)
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] AgentDto agentDto)
         {
             try
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(ModelState);
+                    return BadRequest("Modelstate is invalid");
                 }
-                var agent = await agentRepo.GetRealEstateAgentByIdAsync(id);
-                if(agent == null)
-                {
-                    return NotFound("No agent found with that Id");
-                }
-                agent.FirstName = agentDto.FirstName;
-                agent.LastName = agentDto.LastName;
-                agent.Email = agentDto.Email;
-                agent.PhoneNumber = agentDto.PhoneNumber;
-                agent.ImageUrl = agentDto.ImageUrl;
-                agent.FirmId = agentDto.FirmId;
-                await agentRepo.UpdateRealEstateAgentAsync(agent);
+                var updatedagent = mapper.Map<RealEstateAgent>(agentDto);
+                await agentRepo.UpdateRealEstateAgentAsync(updatedagent);
                 return NoContent();
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
+            //var agent = await agentRepo.GetRealEstateAgentByIdAsync(id);
+            //if(agent == null)
+            //{
+            //    return NotFound("No agent found with that Id");
+            //}
+            //agent.FirstName = agentDto.FirstName;
+            //agent.LastName = agentDto.LastName;
+            //agent.Email = agentDto.Email;
+            //agent.PhoneNumber = agentDto.PhoneNumber;
+            //agent.ImageUrl = agentDto.ImageUrl;
+            //agent.FirmId = agentDto.FirmId;
         }
     }
     public class AgentDto
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string ImageUrl { get; set; }
         public int? FirmId { get; set; }
+        public bool IsActive { get; set; } = true;
+
+        //Navigation Properties
+        public Firm Firm { get; set; }
     }
 }
