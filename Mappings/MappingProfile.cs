@@ -15,6 +15,8 @@ namespace FribergHomez.Mappings
             .ReverseMap();
 
             //RealEstateAgent
+            CreateMap<RealEstateAgent, AgentDto>()
+                .ReverseMap();
 
 
         }

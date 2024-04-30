@@ -30,6 +30,20 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet ("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            try
+            {
+                var firm = await firmRep.GetFirmByIdAsync(id);
+                return Ok(firm);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

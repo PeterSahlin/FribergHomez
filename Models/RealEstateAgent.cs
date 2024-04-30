@@ -15,7 +15,8 @@ namespace FribergHomez.Models
 
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
-        //public List<SaleObject> SaleObjects { get; set; }
+
+        public bool IsActive { get; set; } = true;
 
 
         // Foreign Keys
@@ -34,7 +35,7 @@ namespace FribergHomez.Models
             
         }
 */
-        public RealEstateAgent(string firstName, string lastName, string email, Firm firm, string phoneNumber, string imageUrl) //List<SaleObject> saleObjects)
+        public RealEstateAgent(string firstName, string lastName, string email, Firm firm, string phoneNumber, string imageUrl, bool isActive, int firmId) 
         {
             FirstName = firstName;
             LastName = lastName;
@@ -42,7 +43,8 @@ namespace FribergHomez.Models
             Firm = firm;
             PhoneNumber = phoneNumber;
             ImageUrl = imageUrl;
-            //SaleObjects = saleObjects;
+            IsActive = isActive;
+            FirmId = firmId;
         }
         public RealEstateAgent() { }
     }

@@ -5,7 +5,7 @@
 namespace FribergHomez.Migrations
 {
     /// <inheritdoc />
-    public partial class addedisactivetosaleobject2 : Migration
+    public partial class changedfirmnames : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -62,6 +62,7 @@ namespace FribergHomez.Migrations
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     FirmId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

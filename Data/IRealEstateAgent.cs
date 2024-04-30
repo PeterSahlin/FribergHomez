@@ -9,6 +9,7 @@ namespace FribergHomez.Data
         Task <RealEstateAgent> GetRealEstateAgentByIdAsync(int id);
         Task AddRealEstateAgentAsync(RealEstateAgent realEstateAgent);
         Task DeleteRealEstateAgentAsync(int id);
+        Task RealEstateAgentDeletePermanently(int id);
         Task UpdateRealEstateAgentAsync(RealEstateAgent realEstateAgent);
     }
 }
