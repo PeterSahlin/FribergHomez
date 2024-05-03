@@ -53,10 +53,17 @@ namespace FribergHomez.Data
         {
            
             applicationDbContext.SaleObjects.Add(saleobject);
-            applicationDbContext.Entry(saleobject.Category).State = EntityState.Detached;
-            applicationDbContext.Entry(saleobject.Municipality).State = EntityState.Detached;
-            applicationDbContext.Entry(saleobject.RealEstateAgent).State = EntityState.Detached;
-            await applicationDbContext.SaveChangesAsync();
+            //applicationDbContext.Entry(saleobject.Category).State = EntityState.Detached;
+            //applicationDbContext.Entry(saleobject.Municipality).State = EntityState.Detached;
+            //applicationDbContext.Entry(saleobject.RealEstateAgent).State = EntityState.Detached;
+            try
+            {
+                await applicationDbContext.SaveChangesAsync();
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            
         }
         public async Task DeleteSalesObjectAsync(int id)
         {

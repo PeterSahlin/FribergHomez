@@ -16,12 +16,16 @@ namespace FribergHomez.Controllers
     {
         private readonly ISaleObject saleObjectRepo;
         private readonly IRealEstateAgent agentRepo;
+        private readonly IMunicipality municipalityrepo;
+        private readonly ICategory categoryrepo;
         private readonly IMapper mapper;
-        public SalesObjectController(ISaleObject saleObjectRepo, IRealEstateAgent agentRepo, IMapper mapper)
+        public SalesObjectController(ISaleObject saleObjectRepo, IRealEstateAgent agentRepo, IMapper mapper, IMunicipality municipalityrepo, ICategory categoryrepo)
         {
             this.saleObjectRepo = saleObjectRepo;
             this.agentRepo = agentRepo;
             this.mapper = mapper;
+            this.municipalityrepo = municipalityrepo;
+            this.categoryrepo = categoryrepo;
         }
 
         //get all salesobjects
@@ -127,7 +131,7 @@ namespace FribergHomez.Controllers
                     return BadRequest(ModelState);
                 }
                 var saleObject = mapper.Map<SaleObject>(objectDto);
-                    //new SaleObject
+                //new SaleObject
                 //{
                 //    Address = objectDto.Address,
                 //    StartingPrice = objectDto.StartingPrice,
@@ -150,7 +154,19 @@ namespace FribergHomez.Controllers
                     {
                         return BadRequest("Invalid agentId");
                     }
+                    var municipality = await municipalityrepo.GetMunicipalityByIdAsync(objectDto.MunicipalityId.Value);
+                    if (municipality == null)
+                    {
+                        return BadRequest("Invalid municipalityId");
+                    }
+                    var category = await categoryrepo.GetCategoryByIdAsync(objectDto.CategoryId.Value);
+                    if(category == null)
+                    {
+                        return BadRequest("Invalid categoryId");
+                    }
                     saleObject.RealEstateAgent = agent;
+                    saleObject.Municipality = municipality;
+                    saleObject.Category = category;
                 }
                 await saleObjectRepo.AddSalesObjectAsync(saleObject);
                 return StatusCode(201, saleObject);
@@ -164,19 +180,20 @@ namespace FribergHomez.Controllers
     public class SalesObjectDto
     {
         public int Id { get; set; }
-        public string Address { get; set; }
+        public string Address { get; set; } = "";
         public int StartingPrice { get; set; }
         public int LivingArea { get; set; }
         public int AncillaryArea { get; set; }
         public int PlotArea { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; } = "";
         public int NumberOfRooms { get; set; }
         public int MonthlyFee { get; set; }
         public int OperatingCostPerYear { get; set; }
         public int YearOfConstruction { get; set; }
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public int? RealEstateAgentId { get; set; }
-        public int MunicipalityId { get; set; }
+        public int? MunicipalityId { get; set; }
         public List<string> ImageUrl { get; set; } = new List<string>();
+        public bool IsActive { get; set; } = true;
     }
 }
