@@ -5,7 +5,7 @@
 namespace FribergHomez.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,7 +31,8 @@ namespace FribergHomez.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Presentation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageLocation = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ImageLocation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,6 +63,7 @@ namespace FribergHomez.Migrations
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     FirmId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
