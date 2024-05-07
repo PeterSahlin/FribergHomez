@@ -6,10 +6,10 @@ namespace FribergHomez.Data
     public interface IRealEstateAgent
     {
         Task<List<RealEstateAgent>> GetAllRealEstateAgentsAsync();
-        Task <RealEstateAgent> GetRealEstateAgentByIdAsync(int id);
+        Task <RealEstateAgent> GetRealEstateAgentByIdAsync(string id);
         Task AddRealEstateAgentAsync(RealEstateAgent realEstateAgent);
-        Task DeleteRealEstateAgentAsync(int id);
-        Task RealEstateAgentDeletePermanently(int id);
+        Task DeleteRealEstateAgentAsync(string id);
+        Task RealEstateAgentDeletePermanently(string id);
         Task UpdateRealEstateAgentAsync(RealEstateAgent realEstateAgent);
     }
 }

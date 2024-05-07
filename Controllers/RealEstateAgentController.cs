@@ -35,7 +35,7 @@ namespace FribergHomez.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(string id)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace FribergHomez.Controllers
 
        
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace FribergHomez.Controllers
 
         
         [HttpDelete("Delete/{id}")]
-        public async Task<IActionResult> DeletePermanently(int id)
+        public async Task<IActionResult> DeletePermanently(string id)
         {
             try
             {
@@ -153,7 +153,7 @@ namespace FribergHomez.Controllers
     }
     public class AgentDto
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 

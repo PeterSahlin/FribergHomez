@@ -44,13 +44,9 @@ namespace FribergHomez
             });
 
             //Identity
-            //builder.Services.AddIdentity<RealEstateAgent, IdentityRole<Guid>>(options => {
-            //    options.SignIn.RequireConfirmedEmail = false;
-            //    options.SignIn.RequireConfirmedPhoneNumber = false;
-            //    options.SignIn.RequireConfirmedAccount = false;
-            //})
-            //    .AddEntityFrameworkStores<ApplicationDbContext>()
-            //    .AddDefaultTokenProviders();
+            builder.Services.AddIdentityCore<RealEstateAgent>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             //AutomapperService
             builder.Services.AddAutoMapper(typeof(Program));

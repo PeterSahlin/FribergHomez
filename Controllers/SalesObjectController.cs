@@ -2,6 +2,7 @@
 using FribergHomez.Data;
 using FribergHomez.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace FribergHomez.Controllers
 {
@@ -147,9 +148,9 @@ namespace FribergHomez.Controllers
                 //    MunicipalityId = objectDto.MunicipalityId
 
                 //};
-                if (objectDto.RealEstateAgentId.HasValue)
+                if (!objectDto.RealEstateAgentId.IsNullOrEmpty())
                 {
-                    var agent = await agentRepo.GetRealEstateAgentByIdAsync(objectDto.RealEstateAgentId.Value);
+                    var agent = await agentRepo.GetRealEstateAgentByIdAsync(objectDto.RealEstateAgentId);
                     if (agent == null)
                     {
                         return BadRequest("Invalid agentId");
@@ -191,7 +192,7 @@ namespace FribergHomez.Controllers
         public int OperatingCostPerYear { get; set; }
         public int YearOfConstruction { get; set; }
         public int? CategoryId { get; set; }
-        public int? RealEstateAgentId { get; set; }
+        public string? RealEstateAgentId { get; set; }
         public int? MunicipalityId { get; set; }
         public List<string> ImageUrl { get; set; } = new List<string>();
         public bool IsActive { get; set; } = true;
