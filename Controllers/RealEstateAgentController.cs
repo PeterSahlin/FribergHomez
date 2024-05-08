@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using FribergHomez.Data;
 using FribergHomez.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 
 namespace FribergHomez.Controllers
 {
@@ -13,12 +14,14 @@ namespace FribergHomez.Controllers
         private readonly IRealEstateAgent agentRepo;
         private readonly IFirm firmRepo;
         private readonly IMapper mapper;
+        private readonly UserManager<RealEstateAgent> userManager;
 
-        public RealEstateAgentController(IRealEstateAgent agentRepo, IFirm firmRepo, IMapper mapper)
+        public RealEstateAgentController(IRealEstateAgent agentRepo, IFirm firmRepo, IMapper mapper, UserManager<RealEstateAgent> userManager)
         {
             this.agentRepo = agentRepo;
             this.firmRepo = firmRepo;
             this.mapper = mapper;
+            this.userManager = userManager;
         }
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -48,7 +51,7 @@ namespace FribergHomez.Controllers
             }
         }
 
-       
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -63,7 +66,7 @@ namespace FribergHomez.Controllers
             }
         }
 
-        
+
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeletePermanently(string id)
         {
@@ -91,18 +94,20 @@ namespace FribergHomez.Controllers
                     return BadRequest("Modelstate is invalid");
                 }
 
-                var realEstateAgent = mapper.Map<RealEstateAgent>(agentDto);
+                //var realEstateAgent = mapper.Map<RealEstateAgent>(agentDto);
 
 
-                //new RealEstateAgent
+                var realEstateAgent = new RealEstateAgent
 
-                //{
-                //    FirstName = agentDto.FirstName,
-                //    LastName = agentDto.LastName,
-                //    Email = agentDto.Email,
-                //    PhoneNumber = agentDto.PhoneNumber,
-                //    ImageUrl = agentDto.ImageUrl,
-                //};
+                {
+                    FirstName = agentDto.FirstName,
+                    LastName = agentDto.LastName,
+                    Email = agentDto.Email,
+                    PhoneNumber = agentDto.PhoneNumber,
+                    ImageUrl = agentDto.ImageUrl,
+                    IsActive = agentDto.IsActive,
+                    
+                };
                 if (agentDto.FirmId.HasValue)
                 {
                     var firm = await firmRepo.GetFirmByIdAsync(agentDto.FirmId.Value);
@@ -113,8 +118,16 @@ namespace FribergHomez.Controllers
                     realEstateAgent.Firm = firm;
                 }
 
-                await agentRepo.AddRealEstateAgentAsync(realEstateAgent);
+                var result = await userManager.CreateAsync(realEstateAgent, agentDto.Password);
+                if (result.Succeeded)
+                {
                 return StatusCode(201, realEstateAgent);
+                }
+                else
+                {
+                    return BadRequest("Lyckades inte att skapa användare");
+                }
+                //await agentRepo.AddRealEstateAgentAsync(realEstateAgent);
             }
             catch (Exception ex)
             {
@@ -130,8 +143,16 @@ namespace FribergHomez.Controllers
                 {
                     return BadRequest("Modelstate is invalid");
                 }
-                var updatedagent = mapper.Map<RealEstateAgent>(agentDto);
-                await agentRepo.UpdateRealEstateAgentAsync(updatedagent);
+                //var updatedagent = mapper.Map<RealEstateAgent>(agentDto);
+
+                RealEstateAgent dbagent = await agentRepo.GetRealEstateAgentByIdAsync(agentDto.Id);
+                dbagent.FirstName = agentDto.FirstName;
+                dbagent.LastName = agentDto.LastName;
+                dbagent.Email = agentDto.Email;
+                dbagent.PhoneNumber = agentDto.PhoneNumber;
+                dbagent.ImageUrl = agentDto.ImageUrl;
+
+                await agentRepo.UpdateRealEstateAgentAsync(dbagent);
                 return NoContent();
             }
             catch (Exception ex)
@@ -157,11 +178,12 @@ namespace FribergHomez.Controllers
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
+        public string? Email { get; set; }
+        public string? PhoneNumber { get; set; }
         public string ImageUrl { get; set; }
         public int? FirmId { get; set; }
         public bool IsActive { get; set; } = true;
+        public string Password { get; set; }
 
         //Navigation Properties
         public Firm Firm { get; set; }

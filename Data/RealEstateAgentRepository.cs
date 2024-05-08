@@ -44,7 +44,8 @@ namespace FribergHomez.Data
 
         public async Task UpdateRealEstateAgentAsync(RealEstateAgent realEstateAgent)
         {
-            applicationDbContext.Entry(realEstateAgent).State = EntityState.Modified;
+            applicationDbContext.Update(realEstateAgent);
+            //applicationDbContext.Entry(realEstateAgent).State = EntityState.Modified;
             await applicationDbContext.SaveChangesAsync();
         }
 

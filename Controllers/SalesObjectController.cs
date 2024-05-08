@@ -131,23 +131,24 @@ namespace FribergHomez.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-                var saleObject = mapper.Map<SaleObject>(objectDto);
-                //new SaleObject
-                //{
-                //    Address = objectDto.Address,
-                //    StartingPrice = objectDto.StartingPrice,
-                //    LivingArea = objectDto.LivingArea,
-                //    AncillaryArea = objectDto.AncillaryArea,
-                //    PlotArea = objectDto.PlotArea,
-                //    Description = objectDto.Description,
-                //    NumberOfRooms = objectDto.NumberOfRooms,
-                //    MonthlyFee = objectDto.MonthlyFee,
-                //    OperatingCostPerYear = objectDto.AnnualOperatingCost,
-                //    YearOfConstruction = objectDto.ConstructionYear,
-                //    CategoryId = objectDto.CategoryId,
-                //    MunicipalityId = objectDto.MunicipalityId
+                //var saleObject = mapper.Map<SaleObject>(objectDto);
+                var saleObject = new SaleObject 
+                {
+                    Address = objectDto.Address,
+                    StartingPrice = objectDto.StartingPrice,
+                    LivingArea = objectDto.LivingArea,
+                    AncillaryArea = objectDto.AncillaryArea,
+                    PlotArea = objectDto.PlotArea,
+                    Description = objectDto.Description,
+                    NumberOfRooms = objectDto.NumberOfRooms,
+                    MonthlyFee = objectDto.MonthlyFee,
+                    OperatingCostPerYear = objectDto.OperatingCostPerYear,
+                    YearOfConstruction = objectDto.YearOfConstruction,
+                    CategoryId = objectDto.CategoryId,
+                    MunicipalityId = objectDto.MunicipalityId,
+                    RealEstateAgentId = objectDto.RealEstateAgentId
 
-                //};
+                };
                 if (!objectDto.RealEstateAgentId.IsNullOrEmpty())
                 {
                     var agent = await agentRepo.GetRealEstateAgentByIdAsync(objectDto.RealEstateAgentId);

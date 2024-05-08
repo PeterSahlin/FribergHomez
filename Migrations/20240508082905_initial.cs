@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FribergHomez.Migrations
 {
     /// <inheritdoc />
-    public partial class identity : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -96,17 +96,17 @@ namespace FribergHomez.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     FirmId = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
                     TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
@@ -226,32 +226,28 @@ namespace FribergHomez.Migrations
                     YearOfConstruction = table.Column<int>(type: "int", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    RealEstateAgentId = table.Column<int>(type: "int", nullable: true),
-                    MunicipalityId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    RealEstateAgentId1 = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    RealEstateAgentId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    MunicipalityId = table.Column<int>(type: "int", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SaleObjects", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SaleObjects_AspNetUsers_RealEstateAgentId1",
-                        column: x => x.RealEstateAgentId1,
+                        name: "FK_SaleObjects_AspNetUsers_RealEstateAgentId",
+                        column: x => x.RealEstateAgentId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_SaleObjects_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_SaleObjects_Municipalities_MunicipalityId",
                         column: x => x.MunicipalityId,
                         principalTable: "Municipalities",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -309,9 +305,9 @@ namespace FribergHomez.Migrations
                 column: "MunicipalityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SaleObjects_RealEstateAgentId1",
+                name: "IX_SaleObjects_RealEstateAgentId",
                 table: "SaleObjects",
-                column: "RealEstateAgentId1");
+                column: "RealEstateAgentId");
         }
 
         /// <inheritdoc />

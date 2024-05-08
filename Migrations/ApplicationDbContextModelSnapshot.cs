@@ -184,7 +184,7 @@ namespace FribergHomez.Migrations
                     b.Property<int>("AncillaryArea")
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -204,7 +204,7 @@ namespace FribergHomez.Migrations
                     b.Property<int>("MonthlyFee")
                         .HasColumnType("int");
 
-                    b.Property<int>("MunicipalityId")
+                    b.Property<int?>("MunicipalityId")
                         .HasColumnType("int");
 
                     b.Property<int>("NumberOfRooms")
@@ -216,11 +216,7 @@ namespace FribergHomez.Migrations
                     b.Property<int>("PlotArea")
                         .HasColumnType("int");
 
-                    b.Property<int?>("RealEstateAgentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RealEstateAgentId1")
-                        .IsRequired()
+                    b.Property<string>("RealEstateAgentId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("StartingPrice")
@@ -235,7 +231,7 @@ namespace FribergHomez.Migrations
 
                     b.HasIndex("MunicipalityId");
 
-                    b.HasIndex("RealEstateAgentId1");
+                    b.HasIndex("RealEstateAgentId");
 
                     b.ToTable("SaleObjects");
                 });
@@ -386,21 +382,15 @@ namespace FribergHomez.Migrations
                 {
                     b.HasOne("FribergHomez.Models.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("FribergHomez.Models.Municipality", "Municipality")
                         .WithMany()
-                        .HasForeignKey("MunicipalityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MunicipalityId");
 
                     b.HasOne("FribergHomez.Models.RealEstateAgent", "RealEstateAgent")
                         .WithMany()
-                        .HasForeignKey("RealEstateAgentId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RealEstateAgentId");
 
                     b.Navigation("Category");
 
