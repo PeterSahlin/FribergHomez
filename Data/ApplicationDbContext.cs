@@ -1,10 +1,11 @@
 ﻿using FribergHomez.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FribergHomez.Data
 {
     //All
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<RealEstateAgent>
     {
 
         public DbSet<Firm> Firms { get; set; }

@@ -19,7 +19,7 @@ namespace FribergHomez.Data
             await applicationDbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteRealEstateAgentAsync(int id)
+        public async Task DeleteRealEstateAgentAsync(string id)
         {
             var realEstateAgentToDelete = await applicationDbContext.RealEstateAgents.FindAsync(id);
             if (realEstateAgentToDelete != null)
@@ -29,7 +29,7 @@ namespace FribergHomez.Data
             }
         }
 
-        public async Task RealEstateAgentDeletePermanently(int id)
+        public async Task RealEstateAgentDeletePermanently(string id)
         {
             var realEstateAgentToDelete = await applicationDbContext.RealEstateAgents.FindAsync(id);
             if (realEstateAgentToDelete != null)
@@ -44,7 +44,8 @@ namespace FribergHomez.Data
 
         public async Task UpdateRealEstateAgentAsync(RealEstateAgent realEstateAgent)
         {
-            applicationDbContext.Entry(realEstateAgent).State = EntityState.Modified;
+            applicationDbContext.Update(realEstateAgent);
+            //applicationDbContext.Entry(realEstateAgent).State = EntityState.Modified;
             await applicationDbContext.SaveChangesAsync();
         }
 
@@ -55,7 +56,7 @@ namespace FribergHomez.Data
                 .ToListAsync();
         }
 
-        public async Task<RealEstateAgent> GetRealEstateAgentByIdAsync(int id)
+        public async Task<RealEstateAgent> GetRealEstateAgentByIdAsync(string id)
         {
             return await applicationDbContext.RealEstateAgents
                 .Include(r => r.Firm)

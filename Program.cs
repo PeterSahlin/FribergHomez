@@ -1,10 +1,12 @@
 using FribergHomez.Data;
 using FribergHomez.Helper;
+using FribergHomez.Mappings;
 using FribergHomez.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace FribergHomez
 {
@@ -44,16 +46,17 @@ namespace FribergHomez
             });
 
             //Identity
-            //builder.Services.AddIdentity<RealEstateAgent, IdentityRole<Guid>>(options => {
-            //    options.SignIn.RequireConfirmedEmail = false;
-            //    options.SignIn.RequireConfirmedPhoneNumber = false;
-            //    options.SignIn.RequireConfirmedAccount = false;
-            //})
-            //    .AddEntityFrameworkStores<ApplicationDbContext>()
-            //    .AddDefaultTokenProviders();
-
+            //builder.Services.AddIdentityCore<RealEstateAgent>()
+            //    .AddRoles<IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddIdentity<RealEstateAgent, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = true;
+            })
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             //AutomapperService
-            builder.Services.AddAutoMapper(typeof(Program));
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             //Identity
 
@@ -68,8 +71,9 @@ namespace FribergHomez
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
+            
             //Cors
             app.UseCors();
 

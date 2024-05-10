@@ -2,6 +2,7 @@
 using FribergHomez.Data;
 using FribergHomez.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace FribergHomez.Controllers
 {
@@ -130,26 +131,27 @@ namespace FribergHomez.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-                var saleObject = mapper.Map<SaleObject>(objectDto);
-                //new SaleObject
-                //{
-                //    Address = objectDto.Address,
-                //    StartingPrice = objectDto.StartingPrice,
-                //    LivingArea = objectDto.LivingArea,
-                //    AncillaryArea = objectDto.AncillaryArea,
-                //    PlotArea = objectDto.PlotArea,
-                //    Description = objectDto.Description,
-                //    NumberOfRooms = objectDto.NumberOfRooms,
-                //    MonthlyFee = objectDto.MonthlyFee,
-                //    OperatingCostPerYear = objectDto.AnnualOperatingCost,
-                //    YearOfConstruction = objectDto.ConstructionYear,
-                //    CategoryId = objectDto.CategoryId,
-                //    MunicipalityId = objectDto.MunicipalityId
-
-                //};
-                if (objectDto.RealEstateAgentId.HasValue)
+                //var saleObject = mapper.Map<SaleObject>(objectDto);
+                var saleObject = new SaleObject 
                 {
-                    var agent = await agentRepo.GetRealEstateAgentByIdAsync(objectDto.RealEstateAgentId.Value);
+                    Address = objectDto.Address,
+                    StartingPrice = objectDto.StartingPrice,
+                    LivingArea = objectDto.LivingArea,
+                    AncillaryArea = objectDto.AncillaryArea,
+                    PlotArea = objectDto.PlotArea,
+                    Description = objectDto.Description,
+                    NumberOfRooms = objectDto.NumberOfRooms,
+                    MonthlyFee = objectDto.MonthlyFee,
+                    OperatingCostPerYear = objectDto.OperatingCostPerYear,
+                    YearOfConstruction = objectDto.YearOfConstruction,
+                    CategoryId = objectDto.CategoryId,
+                    MunicipalityId = objectDto.MunicipalityId,
+                    RealEstateAgentId = objectDto.RealEstateAgentId
+
+                };
+                if (!objectDto.RealEstateAgentId.IsNullOrEmpty())
+                {
+                    var agent = await agentRepo.GetRealEstateAgentByIdAsync(objectDto.RealEstateAgentId);
                     if (agent == null)
                     {
                         return BadRequest("Invalid agentId");
@@ -191,7 +193,7 @@ namespace FribergHomez.Controllers
         public int OperatingCostPerYear { get; set; }
         public int YearOfConstruction { get; set; }
         public int? CategoryId { get; set; }
-        public int? RealEstateAgentId { get; set; }
+        public string? RealEstateAgentId { get; set; }
         public int? MunicipalityId { get; set; }
         public List<string> ImageUrl { get; set; } = new List<string>();
         public bool IsActive { get; set; } = true;

@@ -21,9 +21,9 @@ namespace FribergHomez.Models
         public bool IsActive { get; set; }  = true;
 
         //Foreign Keys
-        public int? RealEstateAgentId { get; set; }
-        public int MunicipalityId { get; set; }
-        public int CategoryId { get; set; }
+        public string? RealEstateAgentId { get; set; }
+        public int? MunicipalityId { get; set; }
+        public int? CategoryId { get; set; }
 
         //Navigation Properties
         public RealEstateAgent RealEstateAgent { get; set; }
