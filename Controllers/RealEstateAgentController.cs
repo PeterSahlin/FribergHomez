@@ -106,6 +106,7 @@ namespace FribergHomez.Controllers
                     PhoneNumber = agentDto.PhoneNumber,
                     ImageUrl = agentDto.ImageUrl,
                     IsActive = agentDto.IsActive,
+                    UserName = agentDto.Email
                     
                 };
                 if (agentDto.FirmId.HasValue)
@@ -135,7 +136,7 @@ namespace FribergHomez.Controllers
             }
         }
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] AgentDto agentDto)
+        public async Task<IActionResult> Put([FromBody] RealEstateAgent agentDto)
         {
             try
             {
@@ -174,7 +175,6 @@ namespace FribergHomez.Controllers
     }
     public class AgentDto
     {
-        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
@@ -184,6 +184,7 @@ namespace FribergHomez.Controllers
         public int? FirmId { get; set; }
         public bool IsActive { get; set; } = true;
         public string Password { get; set; }
+
 
         //Navigation Properties
         public Firm Firm { get; set; }

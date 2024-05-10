@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergHomez.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240508082905_initial")]
-    partial class initial
+    [Migration("20240510100949_bajs")]
+    partial class bajs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FribergHomez.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class bajs : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
