@@ -4,6 +4,7 @@ using FribergHomez.Data;
 using FribergHomez.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using FribergHomez.Const;
 
 namespace FribergHomez.Controllers
 {
@@ -122,7 +123,15 @@ namespace FribergHomez.Controllers
                 var result = await userManager.CreateAsync(realEstateAgent, agentDto.Password);
                 if (result.Succeeded)
                 {
-                return StatusCode(201, realEstateAgent);
+                    var role = await userManager.AddToRoleAsync(realEstateAgent, APIRoles.User);
+                    if (role.Succeeded)
+                    {
+                        return StatusCode(201, realEstateAgent);
+                    }
+                    else
+                    {
+                        return BadRequest("NEJ!");
+                    }
                 }
                 else
                 {

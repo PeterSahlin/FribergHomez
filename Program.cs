@@ -2,11 +2,14 @@ using FribergHomez.Data;
 using FribergHomez.Helper;
 using FribergHomez.Mappings;
 using FribergHomez.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace FribergHomez
 {
@@ -33,6 +36,25 @@ namespace FribergHomez
             builder.Services.AddScoped<IRealEstateAgent, RealEstateAgentRepository>();
             builder.Services.AddScoped<IMunicipality, MunicipalityRepository>();
             builder.Services.AddScoped<ICategory, CategoryRepository>();
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero,
+                    ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+                    ValidAudience = builder.Configuration["JwtSettings:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                        builder.Configuration["JwtSettings:Key"]))
+                };
+            });
 
             //Cors
             builder.Services.AddCors(options =>
@@ -79,15 +101,15 @@ namespace FribergHomez
 
             app.MapControllers();
 
-
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 var dbContext = services.GetRequiredService<ApplicationDbContext>();
 
-               // await SeedHelper.SeedDataAsync(dbContext);
 
-                SeedHelper seedHelper = new SeedHelper();
+                // Resolve the UserManager
+                var userManager = services.GetRequiredService<UserManager<RealEstateAgent>>();
+                SeedHelper seedHelper = new SeedHelper(userManager);
 
                 await seedHelper.SeedFirmsAndAgentsAsync(dbContext); 
                 await seedHelper.SeedMunicipalitiesAsync(dbContext);

@@ -1,13 +1,24 @@
-﻿using FribergHomez.Data;
+﻿using FribergHomez.Const;
+using FribergHomez.Data;
 using FribergHomez.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using System.Runtime.InteropServices;
 
 namespace FribergHomez.Helper
 {
     public class SeedHelper
     {
-     
+        private readonly UserManager<RealEstateAgent> userManager;
+        public SeedHelper(UserManager<RealEstateAgent> userManager)
+        {
+            this.userManager = userManager;
+        }
+        public SeedHelper()
+        {
+            
+        }
         public async Task SeedCategoriesAsync(ApplicationDbContext applicationDbContext)
         {
             if (!applicationDbContext.Categories.Any())
@@ -99,6 +110,7 @@ namespace FribergHomez.Helper
 
         public async Task SeedFirmsAndAgentsAsync(ApplicationDbContext applicationDbContext)
         {
+            var hasher = new PasswordHasher<RealEstateAgent>();
             //Henrik
             if (!applicationDbContext.Firms.Any())
             {
@@ -132,22 +144,32 @@ namespace FribergHomez.Helper
                 Firm slagskottFirm = applicationDbContext.Firms.FirstOrDefault(f => f.Name.Contains("Slagskott"));
                 Firm rakaPuckarFirm = applicationDbContext.Firms.FirstOrDefault(f => f.Name.Contains("Raka"));
 
-                var kedjekamraterAgent1 = new RealEstateAgent { FirstName = "Mats", LastName = "Sundin", ImageUrl= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRqYLRKkNcA1GFnlpSzx44HU_PQUsWKl_rEw&s", Email = "mats@kedjekamrater.se", PhoneNumber = "555-47813", Firm = kedjekamraterFirm };
-                var kedjekamraterAgent2 = new RealEstateAgent { FirstName = "Tomas", LastName = "Sandström", ImageUrl = "https://www.hockeydb.com/ihdb/photos/tomas-sandstrom-1993-40.jpg", Email = "tomas@kedjekamrater.se", PhoneNumber = "555-47817", Firm = kedjekamraterFirm };
-                var kedjekamraterAgent3 = new RealEstateAgent { FirstName = "Mikael", LastName = "Renberg", ImageUrl = "https://www.hockeydb.com/ihdb/photos/mikael-renberg-1995-53.jpg", Email = "mikael@kedjekamrater.", PhoneNumber = "555-47819", Firm = kedjekamraterFirm };
+                var kedjekamraterAgent1 = new RealEstateAgent { EmailConfirmed = true ,PasswordHash = hasher.HashPassword(null, "!Hej123"), FirstName = "Mats", LastName = "Sundin", ImageUrl= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRqYLRKkNcA1GFnlpSzx44HU_PQUsWKl_rEw&s", UserName = "mats@kedjekamrater.se", NormalizedUserName = "MATS@KEDJEKAMRATER.SE", Email = "mats@kedjekamrater.se", NormalizedEmail = "MATS@KEDJEKAMRATER.SE", PhoneNumber = "555-47813", Firm = kedjekamraterFirm };
+                var kedjekamraterAgent2 = new RealEstateAgent { EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "!Hej123"), FirstName = "Tomas", LastName = "Sandström", ImageUrl = "https://www.hockeydb.com/ihdb/photos/tomas-sandstrom-1993-40.jpg", Email = "tomas@kedjekamrater.se", UserName = "tomas@kedjekamrater.se", NormalizedUserName = "TOMAS@KEDJEKAMRATER.SE", NormalizedEmail = "TOMAS@KEDJEKAMRATER.SE", PhoneNumber = "555-47817", Firm = kedjekamraterFirm };
+                var kedjekamraterAgent3 = new RealEstateAgent { EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "!Hej123"), FirstName = "Mikael", LastName = "Renberg", ImageUrl = "https://www.hockeydb.com/ihdb/photos/mikael-renberg-1995-53.jpg", Email = "mikael@kedjekamrater.", UserName = "mikael@kedjekamrater.", NormalizedUserName = "MIKAEL@KEDJEKAMRATER.SE", NormalizedEmail = "MIKAEL@KEDJEKAMRATER.SE", PhoneNumber = "555-47819", Firm = kedjekamraterFirm };
 
-                var slagskottAgent1 = new RealEstateAgent { FirstName = "Niklas", LastName = "Lidström", ImageUrl = "https://assets-global.website-files.com/651ff9f9e751432883ffd860/65425d1dfafa3a0355ac279c_nicklas.png", Email = "niklas@slagskottochslott.se", PhoneNumber = "599-43505", Firm = slagskottFirm };
-                var slagskottAgent2 = new RealEstateAgent { FirstName = "Tomas", LastName = "Holmström", ImageUrl = "https://dms-api.ntm.eu/api/v1/images/r2kx187r/smart/width/980/height/551/as/jpeg/redirect", Email = "tomas@slagskottochslott.se", PhoneNumber = "599-435896", Firm = slagskottFirm };
-                var slagskottAgent3 = new RealEstateAgent { FirstName = "Ulf", LastName = "Dahlén", ImageUrl = "https://www.hockeydb.com/ihdb/photos/ulf-dahlen-1994-233.jpg", Email = "tomas@slagskottochslott.se", PhoneNumber = "599-435896", Firm = slagskottFirm };
+                var slagskottAgent1 = new RealEstateAgent { EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "!Hej123"), FirstName = "Niklas", LastName = "Lidström", ImageUrl = "https://assets-global.website-files.com/651ff9f9e751432883ffd860/65425d1dfafa3a0355ac279c_nicklas.png", UserName = "niklas@slagskottochslott.se", NormalizedUserName = "NIKLAS@SLAGSKOTTOCHSLOTT.SE", Email = "niklas@slagskottochslott.se", NormalizedEmail = "NIKLAS@SLAGSKOTTOCHSLOTT.SE",  PhoneNumber = "599-43505", Firm = slagskottFirm };
+                var slagskottAgent2 = new RealEstateAgent { EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "!Hej123"), FirstName = "Tomas", LastName = "Holmström", ImageUrl = "https://dms-api.ntm.eu/api/v1/images/r2kx187r/smart/width/980/height/551/as/jpeg/redirect",  UserName = "tomas@slagskottochslott.se", Email = "tomas@slagskottochslott.se", NormalizedUserName = "TOMAS@SLAGSKOTTOCHSLOTT.SE", NormalizedEmail = "TOMAS@SLAGSKOTTOCHSLOTT.SE", PhoneNumber = "599-435896", Firm = slagskottFirm };
+                var slagskottAgent3 = new RealEstateAgent { EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "!Hej123"), FirstName = "Ulf", LastName = "Dahlén", ImageUrl = "https://www.hockeydb.com/ihdb/photos/ulf-dahlen-1994-233.jpg", UserName = "ulf@slagskottochslott.se", NormalizedUserName = "ULF@SLAGSKOTTOCHSLOTT.SE", Email = "ulf@slagskottochslott.se", NormalizedEmail = "ULF@SLAGSKOTTOCHSLOTT.SE", PhoneNumber = "599-435896", Firm = slagskottFirm };
 
-                var rakaPuckarAgent1 = new RealEstateAgent { FirstName = "Peter", LastName = "Forsberg", ImageUrl= "https://nextlevelgroup.se/Images/Profiler/Profil-PeterForsberg.jpg", Email = "peter@rakapuckar.se", PhoneNumber = "988-12421", Firm = rakaPuckarFirm };
-                var rakaPuckarAgent2 = new RealEstateAgent { FirstName = "Ulf", LastName = "Samuelsson", ImageUrl = "https://www.hockeydb.com/ihdb/photos/ulf-samuelsson-1991-46.jpg", Email = "ulf@rakapuckar.se", PhoneNumber = "988-12405", Firm = rakaPuckarFirm };
-                var rakaPuckarAgent3 = new RealEstateAgent { FirstName = "Tommy", LastName = "Salo", ImageUrl = "https://www.hockeydb.com/ihdb/photos/tommy-salo-1996-52.jpg", Email = "tommy@rakapuckar.se", PhoneNumber = "988-12435", Firm = rakaPuckarFirm };
+                var rakaPuckarAgent1 = new RealEstateAgent { EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "!Hej123"), FirstName = "Peter", LastName = "Forsberg", ImageUrl= "https://nextlevelgroup.se/Images/Profiler/Profil-PeterForsberg.jpg", UserName = "peter@rakapuckar.se", NormalizedUserName = "PETER@RAKAPUCKAR.SE", Email = "peter@rakapuckar.se", NormalizedEmail = "PETER@RAKAPUCKAR.SE", PhoneNumber = "988-12421", Firm = rakaPuckarFirm };
+                var rakaPuckarAgent2 = new RealEstateAgent { EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "!Hej123"), FirstName = "Ulf", LastName = "Samuelsson", ImageUrl = "https://www.hockeydb.com/ihdb/photos/ulf-samuelsson-1991-46.jpg", UserName = "ulf@rakapuckar.se", NormalizedUserName = "ULF@RAKAPUCKAR.SE", Email = "ulf@rakapuckar.se", NormalizedEmail = "ULF@RAKAPUCKAR.SE", PhoneNumber = "988-12405", Firm = rakaPuckarFirm };
+                var rakaPuckarAgent3 = new RealEstateAgent { EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "!Hej123"), FirstName = "Tommy", LastName = "Salo", ImageUrl = "https://www.hockeydb.com/ihdb/photos/tommy-salo-1996-52.jpg", UserName = "tommy@rakapuckar.se", NormalizedUserName = "TOMMY@RAKAPUCKAR.SE", Email = "tommy@rakapuckar.se", NormalizedEmail = "TOMMY@RAKAPUCKAR.SE", PhoneNumber = "988-12435", Firm = rakaPuckarFirm };
+
 
                 applicationDbContext.AddRange(slagskottAgent1, slagskottAgent2, slagskottAgent3);
                 applicationDbContext.AddRange(kedjekamraterAgent1, kedjekamraterAgent2, kedjekamraterAgent3);
                 applicationDbContext.AddRange(rakaPuckarAgent1, rakaPuckarAgent2, rakaPuckarAgent3);
                 await applicationDbContext.SaveChangesAsync();
+                await GenerateRole(kedjekamraterAgent1);
+                await GenerateRole(kedjekamraterAgent2);
+                await GenerateRole(kedjekamraterAgent3);
+                await GenerateRole(slagskottAgent1);
+                await GenerateRole(slagskottAgent2);
+                await GenerateRole(slagskottAgent3);
+                await GenerateRole(rakaPuckarAgent1);
+                await GenerateRole(rakaPuckarAgent2);
+                await GenerateRole(rakaPuckarAgent3);
             }
         }
 
@@ -173,6 +195,18 @@ namespace FribergHomez.Helper
                 await applicationDbContext.SaveChangesAsync();
             };
 
+        }
+        public async Task GenerateRole(RealEstateAgent agent)
+        {
+            var userRole = await userManager.AddToRoleAsync(agent, APIRoles.User);
+            if (userRole.Succeeded)
+            {
+                Console.WriteLine("OK");
+            }
+            else
+            {
+                Console.WriteLine("NEJ");
+            }
         }
 
     }
