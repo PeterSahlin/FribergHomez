@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using FribergHomez.Data;
 using FribergHomez.Models;
+using Microsoft.AspNetCore.Authorization;
+using FribergHomez.Const;
+using Microsoft.AspNetCore.Cors;
 
 namespace FribergHomez.Controllers
 {
@@ -18,12 +21,13 @@ namespace FribergHomez.Controllers
             this.firmRep = firmRep;
         }
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<ActionResult<IEnumerable<Firm>>> Get()
         {
             try
             {
                 var firms = await firmRep.GetAllFirmsAsync();
-                return Ok(firms);
+                //return Ok(firms);
+                return firms;
             }
             catch (Exception ex)
             {
@@ -47,6 +51,7 @@ namespace FribergHomez.Controllers
             }
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = APIRoles.User)]
         public async Task<IActionResult> Delete(int id)
         {
             try

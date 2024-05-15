@@ -5,6 +5,7 @@ using FribergHomez.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using FribergHomez.Const;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FribergHomez.Controllers
 {
@@ -107,8 +108,8 @@ namespace FribergHomez.Controllers
                     PhoneNumber = agentDto.PhoneNumber,
                     ImageUrl = agentDto.ImageUrl,
                     IsActive = agentDto.IsActive,
-                    UserName = agentDto.Email
-                    
+                    UserName = agentDto.Email,
+                    EmailConfirmed = true
                 };
                 if (agentDto.FirmId.HasValue)
                 {
