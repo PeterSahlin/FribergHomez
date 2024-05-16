@@ -15,7 +15,7 @@ namespace FribergHomez.Controllers
             this.municipalityRepo = municipalityRepo;
         }
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<ActionResult<IEnumerable<Municipality>>> Get()
         {
             try
             {
@@ -28,7 +28,7 @@ namespace FribergHomez.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<ActionResult<Municipality>> Get(int id)
         {
             try
             {

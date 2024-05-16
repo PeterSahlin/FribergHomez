@@ -45,7 +45,7 @@ namespace FribergHomez.Controllers
                     Token = tokenString,
                     UserId = user.Id
                 };
-                return Accepted(response);
+                return Ok(response);
             }
             catch(Exception ex)
             {

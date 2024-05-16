@@ -15,7 +15,7 @@ namespace FribergHomez.Controllers
             this.categoryRep = categoryRep;
         }
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<ActionResult<IEnumerable<Category>>> Get()
         {
             try
             {
@@ -28,7 +28,7 @@ namespace FribergHomez.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<ActionResult<Category>> GetById(int id)
         {
             try
             {

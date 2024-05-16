@@ -31,7 +31,7 @@ namespace FribergHomez.Controllers
 
         //get all salesobjects
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<ActionResult<IEnumerable<SaleObject>>> Get()
         {
             try
             {
@@ -47,7 +47,7 @@ namespace FribergHomez.Controllers
 
         //get active sales objects
         [HttpGet ("GetAllActiveSalesObjects")]
-        public async Task<IActionResult> GetActiveSalesObjects()
+        public async Task<ActionResult<IEnumerable<SaleObject>>> GetActiveSalesObjects()
         {
             try
             {
@@ -61,7 +61,7 @@ namespace FribergHomez.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<ActionResult<SaleObject>> Get(int id)
         {
             try
             {

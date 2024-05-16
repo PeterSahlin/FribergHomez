@@ -26,7 +26,7 @@ namespace FribergHomez.Controllers
             this.userManager = userManager;
         }
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<ActionResult<IEnumerable<RealEstateAgent>>> Get()
         {
             try
             {
@@ -40,7 +40,7 @@ namespace FribergHomez.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(string id)
+        public async Task<ActionResult<RealEstateAgent>> Get(string id)
         {
             try
             {

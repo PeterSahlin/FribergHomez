@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace FribergHomez
 {
@@ -25,6 +26,8 @@ namespace FribergHomez
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(connectionString));
+
+           
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -57,9 +60,10 @@ namespace FribergHomez
             });
 
             //Cors
+            var myOrigin = "ourCors";
             builder.Services.AddCors(options =>
             {
-                options.AddDefaultPolicy(policy =>
+                options.AddPolicy(name:"ourCors", policy =>
                 {
                     policy.AllowAnyOrigin()
                     .AllowAnyMethod()
@@ -74,6 +78,7 @@ namespace FribergHomez
             builder.Services.AddIdentity<RealEstateAgent, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = true;
+
             })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -91,13 +96,16 @@ namespace FribergHomez
                 app.UseSwaggerUI();
             }
 
+
             app.UseHttpsRedirection();
+
+            app.UseRouting();
+            //Cors
+            app.UseCors(myOrigin);
 
             app.UseAuthentication();
             app.UseAuthorization();
             
-            //Cors
-            app.UseCors();
 
             app.MapControllers();
 

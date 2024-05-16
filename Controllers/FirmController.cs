@@ -38,7 +38,7 @@ namespace FribergHomez.Controllers
 
         [HttpGet("{id}")]
 
-        public async Task<IActionResult> Get(int id)
+        public async Task<ActionResult<Firm>> Get(int id)
         {
             try
             {
@@ -51,7 +51,8 @@ namespace FribergHomez.Controllers
             }
         }
         [HttpDelete("{id}")]
-        [Authorize(Roles = APIRoles.User)]
+        //[Authorize (Roles = "User")]
+       
         public async Task<IActionResult> Delete(int id)
         {
             try
@@ -63,6 +64,7 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize(Roles = "User")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Firm firm)
         {
