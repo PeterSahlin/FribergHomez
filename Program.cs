@@ -43,6 +43,7 @@ namespace FribergHomez
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;                             //test
             }).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
@@ -72,12 +73,14 @@ namespace FribergHomez
             });
 
             //Identity
-            //builder.Services.AddIdentityCore<RealEstateAgent>()
-            //    .AddRoles<IdentityRole>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
-            builder.Services.AddIdentity<RealEstateAgent, IdentityRole>(options =>
+          
+            //builder.Services.AddIdentity<RealEstateAgent, IdentityRole>(options =>
+
+
+            builder.Services.AddIdentityCore<RealEstateAgent>(options =>
             {
                 options.Password.RequireDigit = true;
+                
 
             })
                 .AddRoles<IdentityRole>()

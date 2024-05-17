@@ -74,7 +74,7 @@ namespace FribergHomez.Controllers
                 issuer: config["JwtSettings:Issuer"],
                 audience: config["JwtSettings:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(Convert.ToInt32(config["JwtSettings: DurationInMinutes"])),
+                expires: DateTime.Now.AddMinutes(Convert.ToInt32(config["JwtSettings:DurationInMinutes"])),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

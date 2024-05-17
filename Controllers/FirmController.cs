@@ -20,6 +20,9 @@ namespace FribergHomez.Controllers
         {
             this.firmRep = firmRep;
         }
+
+
+        [Authorize (Roles = APIRoles.User)]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Firm>>> Get()
         {
