@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using FribergHomez.Data;
 using FribergHomez.Models;
+using FribergHomez.Const;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FribergHomez.Controllers
 {
@@ -14,6 +16,7 @@ namespace FribergHomez.Controllers
         {
             this.categoryRep = categoryRep;
         }
+        [Authorize(Roles = APIRoles.User)]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> Get()
         {
@@ -27,6 +30,7 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize(Roles = APIRoles.User)]
         [HttpGet("{id}")]
         public async Task<ActionResult<Category>> GetById(int id)
         {
@@ -40,6 +44,7 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize(Roles = APIRoles.User)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -52,6 +57,7 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize(Roles = APIRoles.User)]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Category category)
         {
@@ -73,6 +79,7 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize(Roles = APIRoles.User)]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put([FromBody] Category category)
         {
