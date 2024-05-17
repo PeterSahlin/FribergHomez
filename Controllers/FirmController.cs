@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Cors;
 namespace FribergHomez.Controllers
 {
 
-    //Skapa en DTO till denna. Gör sedan om put och post metoderna
+   
 
     [Route("api/[controller]")]
     [ApiController]
@@ -38,7 +38,7 @@ namespace FribergHomez.Controllers
             }
         }
 
-
+        [Authorize(Roles = APIRoles.User)]
         [HttpGet("{id}")]
 
         public async Task<ActionResult<Firm>> Get(int id)
@@ -53,9 +53,10 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [Authorize(Roles = APIRoles.User)]
         [HttpDelete("{id}")]
-        //[Authorize (Roles = "User")]
-       
+              
         public async Task<IActionResult> Delete(int id)
         {
             try
@@ -67,7 +68,8 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Authorize(Roles = "User")]
+
+        [Authorize(Roles = APIRoles.User)]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Firm firm)
         {
@@ -88,6 +90,8 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [Authorize(Roles = APIRoles.User)]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] Firm firm)
         {
