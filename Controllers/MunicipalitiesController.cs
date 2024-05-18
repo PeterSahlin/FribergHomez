@@ -16,7 +16,6 @@ namespace FribergHomez.Controllers
         {
             this.municipalityRepo = municipalityRepo;
         }
-        [Authorize(Roles = APIRoles.User)]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Municipality>>> Get()
         {

@@ -3,6 +3,8 @@ using FribergHomez.Data;
 using FribergHomez.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using FribergHomez.Const;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FribergHomez.Controllers
 {
@@ -73,6 +75,7 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize(Roles = APIRoles.User)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -86,6 +89,7 @@ namespace FribergHomez.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+        [Authorize(Roles = APIRoles.User)]
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] SalesObjectDto objectDto)
         {
@@ -122,6 +126,7 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize(Roles = APIRoles.User)]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] SalesObjectDto objectDto)
         {

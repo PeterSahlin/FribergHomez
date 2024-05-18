@@ -22,7 +22,6 @@ namespace FribergHomez.Controllers
         }
 
 
-        [Authorize (Roles = APIRoles.User)]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Firm>>> Get()
         {
@@ -38,7 +37,6 @@ namespace FribergHomez.Controllers
             }
         }
 
-        [Authorize(Roles = APIRoles.User)]
         [HttpGet("{id}")]
 
         public async Task<ActionResult<Firm>> Get(int id)
