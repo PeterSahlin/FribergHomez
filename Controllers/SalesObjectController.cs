@@ -75,7 +75,7 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Authorize(Roles = APIRoles.User)]
+        [Authorize(Roles = APIRoles.AdminAndUser)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -89,7 +89,7 @@ namespace FribergHomez.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-        [Authorize(Roles = APIRoles.User)]
+        [Authorize(Roles = APIRoles.AdminAndUser)]
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] SalesObjectDto objectDto)
         {
@@ -126,7 +126,7 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Authorize(Roles = APIRoles.User)]
+        [Authorize(Roles = APIRoles.AdminAndUser)]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] SalesObjectDto objectDto)
         {
