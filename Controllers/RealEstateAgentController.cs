@@ -25,6 +25,8 @@ namespace FribergHomez.Controllers
             this.mapper = mapper;
             this.userManager = userManager;
         }
+
+       
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RealEstateAgent>>> Get()
         {
@@ -39,6 +41,7 @@ namespace FribergHomez.Controllers
             }
         }
 
+        [Authorize(Roles = APIRoles.User)]
         [HttpGet("{id}")]
         public async Task<ActionResult<RealEstateAgent>> Get(string id)
         {
@@ -53,7 +56,7 @@ namespace FribergHomez.Controllers
             }
         }
 
-
+        [Authorize(Roles = APIRoles.User)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -68,7 +71,7 @@ namespace FribergHomez.Controllers
             }
         }
 
-
+        [Authorize(Roles = APIRoles.User)]
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeletePermanently(string id)
         {
@@ -85,7 +88,7 @@ namespace FribergHomez.Controllers
 
 
 
-
+        [Authorize(Roles = APIRoles.User)]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] AgentDto agentDto)
         {
@@ -145,6 +148,9 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        [Authorize(Roles = APIRoles.User)]
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] RealEstateAgent agentDto)
         {
@@ -162,9 +168,10 @@ namespace FribergHomez.Controllers
                 dbagent.Email = agentDto.Email;
                 dbagent.PhoneNumber = agentDto.PhoneNumber;
                 dbagent.ImageUrl = agentDto.ImageUrl;
+                dbagent.IsActive = agentDto.IsActive;
 
                 await agentRepo.UpdateRealEstateAgentAsync(dbagent);
-                return NoContent();
+                return Ok();
             }
             catch (Exception ex)
             {
