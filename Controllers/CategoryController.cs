@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace FribergHomez.Controllers
 {
+    [Authorize(Roles = APIRoles.AdminAndUser)]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase
@@ -16,7 +17,6 @@ namespace FribergHomez.Controllers
         {
             this.categoryRep = categoryRep;
         }
-        [Authorize(Roles = APIRoles.User)]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> Get()
         {
@@ -30,7 +30,6 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Authorize(Roles = APIRoles.User)]
         [HttpGet("{id}")]
         public async Task<ActionResult<Category>> GetById(int id)
         {
@@ -44,7 +43,6 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Authorize(Roles = APIRoles.User)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -57,7 +55,6 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Authorize(Roles = APIRoles.User)]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Category category)
         {
@@ -79,7 +76,6 @@ namespace FribergHomez.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Authorize(Roles = APIRoles.User)]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put([FromBody] Category category)
         {
@@ -88,11 +84,6 @@ namespace FribergHomez.Controllers
                 return BadRequest("Category object is null");
             }
 
-            //if (id != category.Id)
-            //{
-            //    return BadRequest("ID mismatch between route parameter and request body");
-            //}
-
             if (!ModelState.IsValid)
             {
                 return BadRequest("Invalid model object");
@@ -100,14 +91,6 @@ namespace FribergHomez.Controllers
 
             try
             {
-                //var existingCategory = await categoryRep.GetCategoryByIdAsync(id);
-                //if (existingCategory == null)
-                //{
-                //    return NotFound("Category not found");
-                //}
-
-                //existingCategory.Name = category.Name;
-
                 await categoryRep.UpdateCategoryAsync(category);
 
                 return NoContent();

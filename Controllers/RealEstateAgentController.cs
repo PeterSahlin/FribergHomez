@@ -41,7 +41,6 @@ namespace FribergHomez.Controllers
             }
         }
 
-        [Authorize(Roles = APIRoles.User)]
         [HttpGet("{id}")]
         public async Task<ActionResult<RealEstateAgent>> Get(string id)
         {
@@ -56,7 +55,7 @@ namespace FribergHomez.Controllers
             }
         }
 
-        [Authorize(Roles = APIRoles.User)]
+        [Authorize(Roles = APIRoles.AdminAndUser)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -71,7 +70,7 @@ namespace FribergHomez.Controllers
             }
         }
 
-        [Authorize(Roles = APIRoles.User)]
+        [Authorize(Roles = APIRoles.Admin)]
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeletePermanently(string id)
         {
@@ -86,9 +85,6 @@ namespace FribergHomez.Controllers
             }
         }
 
-
-
-        [Authorize(Roles = APIRoles.User)]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] AgentDto agentDto)
         {
@@ -150,7 +146,7 @@ namespace FribergHomez.Controllers
         }
 
 
-        [Authorize(Roles = APIRoles.User)]
+        [Authorize(Roles = APIRoles.AdminAndUser)]
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] RealEstateAgent agentDto)
         {
