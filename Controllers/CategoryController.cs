@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace FribergHomez.Controllers
 {
+    //Thomas
+
     [Authorize(Roles = APIRoles.AdminAndUser)]
     [Route("api/[controller]")]
     [ApiController]

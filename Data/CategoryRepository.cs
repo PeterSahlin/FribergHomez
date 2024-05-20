@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FribergHomez.Data
 {
+    
     public class CategoryRepository : ICategory
     {
         private readonly ApplicationDbContext applicationDbContext;
@@ -30,7 +31,7 @@ namespace FribergHomez.Data
             await applicationDbContext.SaveChangesAsync();
         }
 
-        public async Task<List<Category>> GetAllCategoriesAsync()                               //ienumerable?
+        public async Task<List<Category>> GetAllCategoriesAsync()                      
         {
             return await applicationDbContext.Categories.ToListAsync();
         }
