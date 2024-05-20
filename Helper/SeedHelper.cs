@@ -19,6 +19,7 @@ namespace FribergHomez.Helper
         {
             
         }
+        //Peter
         public async Task SeedCategoriesAsync(ApplicationDbContext applicationDbContext)
         {
             if (!applicationDbContext.Categories.Any())
@@ -33,7 +34,7 @@ namespace FribergHomez.Helper
         }
         public async Task SeedSaleObjectsAsync(ApplicationDbContext applicationDbContext)
         {
-            //Peter
+        
 
             if (!applicationDbContext.SaleObjects.Any())
             {
@@ -120,7 +121,7 @@ namespace FribergHomez.Helper
         public async Task SeedFirmsAndAgentsAsync(ApplicationDbContext applicationDbContext)
         {
             var hasher = new PasswordHasher<RealEstateAgent>();
-            //Henrik
+        //Peter
             if (!applicationDbContext.Firms.Any())
             {
 
@@ -215,6 +216,7 @@ namespace FribergHomez.Helper
             };
 
         }
+        //Henrik
         public async Task GenerateRole(RealEstateAgent agent)
         {
             var userRole = await userManager.AddToRoleAsync(agent, APIRoles.User);
@@ -228,6 +230,7 @@ namespace FribergHomez.Helper
             }
         }
 
+        //Peter
         //generate admin role
         public async Task GenerateAdminRole(RealEstateAgent agent)
         {

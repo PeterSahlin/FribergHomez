@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace FribergHomez.Controllers
 {
+    //Thomas
+
     [Route("api/[controller]")]
     [ApiController]
     public class MunicipalitiesController : ControllerBase

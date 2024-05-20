@@ -8,9 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace FribergHomez.Controllers
 {
-    /// <summary>
-    /// Den här funkar inte som den ska alls..... :(
-    /// </summary>
+   //Henrik
 
 
     [Route("api/[controller]")]

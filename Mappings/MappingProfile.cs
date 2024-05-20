@@ -8,6 +8,8 @@ namespace FribergHomez.Mappings
     {
         public MappingProfile()
         {
+            //Peter
+
             //SaleObject
             CreateMap<SaleObject, SalesObjectDto>()
             //.ForMember(sODto => sODto.ConstructionYear, opt => opt.MapFrom(s => s.YearOfConstruction))

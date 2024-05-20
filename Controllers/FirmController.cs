@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Cors;
 
 namespace FribergHomez.Controllers
 {
-
+    //Henrik
    
 
     [Route("api/[controller]")]
