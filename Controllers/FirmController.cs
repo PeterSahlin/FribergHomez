@@ -52,7 +52,7 @@ namespace FribergHomez.Controllers
             }
         }
 
-        [Authorize(Roles = APIRoles.User)]
+        [Authorize(Roles = APIRoles.Admin)]
         [HttpDelete("{id}")]
               
         public async Task<IActionResult> Delete(int id)
@@ -67,7 +67,7 @@ namespace FribergHomez.Controllers
             }
         }
 
-        [Authorize(Roles = APIRoles.User)]
+        [Authorize(Roles = APIRoles.Admin)]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Firm firm)
         {
@@ -89,7 +89,7 @@ namespace FribergHomez.Controllers
             }
         }
 
-        [Authorize(Roles = APIRoles.User)]
+        [Authorize(Roles = APIRoles.Admin)]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] Firm firm)
         {
